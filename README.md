@@ -2,6 +2,12 @@
 
 In this repository lies a a C compiler written in [Elixir](https://elixir-lang.org) for the **Compilers** class at [National Autonomous University of Mexico](https://www.topuniversities.com/universities/universidad-nacional-autonoma-de-mexico-unam/undergrad) School of Engineering. This compiler is defined as a proyect with roles each team member must accomplish. 
 
+## Project 
+
+Entire documentation:
+
+- [Project Documentation](https://github.com/hiphoox/c202-assembly/tree/master/docs)
+
 ## What is a compiler?
 
 > Compilers are computer programs that translate a program written in one language into a program written in another language
