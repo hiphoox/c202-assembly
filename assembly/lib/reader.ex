@@ -1,5 +1,10 @@
 defmodule Reader do
     def load(file_path) do
-        IO.puts File.read!(file_path)
+        File.read!(file_path)
+        |> get_scs()
+    end
+
+    def get_scs(file_content)
+        String.trim(content)
     end
 end
