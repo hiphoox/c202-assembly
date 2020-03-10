@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <token-list>
-    <token tag="main-function">
+    <token tag="int">
         <expression>
-            'int[:blank:]+main'
+            'int'
+        </expression>
+    </token>
+    <token tag="main">
+        <expression>
+            'main'
         </expression>
     </token>
     <token tag="parenthesis-open">
