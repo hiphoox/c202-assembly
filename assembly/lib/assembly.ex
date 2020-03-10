@@ -1,18 +1,38 @@
 defmodule Assembly do
   @moduledoc """
-  Documentation for `Assembly`.
+  This module is the main entry point and 
+  handles all the command line parsing. 
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Assembly.hello()
-      :world
-
+  'argv' can take any of the following values:
+     -h or --help     : displays help regarding the use of the compiler
+     -v or --verbose  : executes the compiler with logs on each step
+     file_path        : path to the input source file
+  main(argv) will be in charge of filtering the args and 
+  passing it to the right function for extra processing.
   """
-  def hello do
-    :world
+  def main(argv) do
+    argv
+    |> _parse_args
+    |> _filter_args
   end
+
+  defp _parse_args(argv) do 
+    OptionParser.parse(argv, switches: [help: :boolean, verbose: :boolean], 
+                                       aliases: [h: :help, v: :verbose])
+  end
+
+  defp _filter_args({[help: true],_,_}) do
+    IO.puts "help"
+  end
+
+  defp _filter_args({[verbose: true],file_path,_}) do
+    IO.puts "verbose #{file_path}"
+  end
+  
+  defp _filter_args({_,file_path,_}) do
+    IO.puts file_path
+  end
+
 end
