@@ -18,6 +18,14 @@ defmodule Assembly do
     |> _filter_args
   end
 
+  @doc """
+  'file_path' is the path to the input source file 
+  the compiler will be compiling.
+  """
+  def start(file_path) do 
+    Reader.load(file_path)
+  end
+
   defp _parse_args(argv) do 
     OptionParser.parse(argv, switches: [help: :boolean, verbose: :boolean], 
                                        aliases: [h: :help, v: :verbose])
@@ -30,9 +38,9 @@ defmodule Assembly do
   defp _filter_args({[verbose: true],file_path,_}) do
     IO.puts "verbose #{file_path}"
   end
-  
+
   defp _filter_args({_,file_path,_}) do
-    IO.puts file_path
+    start(file_path)
   end
 
 end
