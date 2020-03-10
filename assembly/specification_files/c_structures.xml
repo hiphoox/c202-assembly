@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<structure-list>
+    <structure tag="function">
+        <token>
+            main-function
+        </token>
+        <substructure tag="args-open">
+            <class>args-opener</class>
+        </substructure>
+        <substructure tag="args-close">
+            <class>args-closer</class>
+        </substructure>
+        <substructure tag="opener">
+            <class>function-opener</class>
+        </substructure>
+        <substructure tag="body">
+            <class>operation</class>
+        </substructure>
+        <substructure tag="closer">
+            <class>function-closer</class>
+        </substructure>
+        <class tag="function"/>
+        <asm>
+            mov :r, :3
+        </asm>
+    </structure>
+    <structure tag="evaluator-open">
+        <token>
+            parenthesis-open
+        </token>
+        <class>group-opener</class>
+        <class>args-opener</class>
+        <asm></asm>
+    </structure>
+    <structure tag="evaluator-closer">
+        <token>
+            parenthesis-close
+        </token>
+        <class>group-opener</class>
+        <class>args-opener</class>
+        <asm></asm>
+    </structure>
+    <structure tag="evaluator-closer">
+        <token>
+            parenthesis-close
+        </token>
+        <class>group-opener</class>
+        <class>args-opener</class>
+        <asm></asm>
+    </structure>
+    <structure tag="return">
+        <token>
+            return
+        </token>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <substructure tag="semicolon">
+            <class>line-ender</class>
+        </substructure>
+        <class>operation</class>
+        <class>returner</class>
+        <asm>
+        mov :r, :0
+        </asm>
+    </structure>
+    <structure tag="semicolon">
+        <token>
+            semicolon
+        </token>
+        <class>line-ender</class>
+        <asm></asm>
+    </structure>
+    <structure tag="aggrupation">
+        <token>
+            
+        </token>
+        <class>line-ender</class>
+        <asm></asm>
+    </structure>
+</structure-list>

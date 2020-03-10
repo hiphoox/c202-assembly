@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<token-list>
+    <token tag="main-function">
+        <expression>
+            'int[:blank:]+main'
+        </expression>
+    </token>
+    <token tag="parenthesis-open">
+        <expression>
+            '('
+        </expression>
+    </token>
+    <token tag="parenthesis-close">
+        <expression>
+            ')'
+        </expression>
+    </token>
+    <token tag="bracket-open">
+        <expression>
+            '{'
+        </expression>
+    </token>
+    <token tag="bracket-close">
+        <expression>
+            '}'
+        </expression>
+    </token>
+    <token tag="return">
+        <expression>
+            'return'
+        </expression>
+    </token>
+    <token tag="literal">
+        <expression>
+            '[0-9]+'
+        </expression>
+    </token>
+    <token tag="semicolon">
+        <expression>
+            ';'
+        </expression>
+    </token>
+</token-list>
