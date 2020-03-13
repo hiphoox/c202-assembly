@@ -5,14 +5,16 @@ defmodule Reader do
 
     def load(file_path)                   do
         scs = File.read!(file_path)
-        # scs   |> IO.inspect()
         gtl = File.read!(@c_tokens_path)
               |> generate_gtl()
-        # gtl   |> IO.inspect()
+
+        # s = " " <> scs
+        ghu = %Structs.Token{tag: "error", expression: "\\S+", pos_y: nil, pos_x: nil}
+        g = gtl ++ [ghu]
+
         gast = File.read!(@c_structures_path)
                |> generate_gast()
-        # gast   |> IO.inspect()
-        {scs, gtl, gast}
+        {scs, g, gast}
     end
 
     def generate_scs(file_content)        do
@@ -40,7 +42,7 @@ defmodule Reader do
         Enum.map list, fn(token) -> 
             %Structs.Token{
                 tag:        token["tag"],
-                expression: Regex.replace(~r/\'/,token["expression"],""),
+                expression: token["expression"],
                 pos_y:      nil,
                 pos_x:      nil,
             }
