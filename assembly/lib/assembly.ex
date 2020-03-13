@@ -25,6 +25,7 @@ defmodule Assembly do
   def start(file_path) do 
     Reader.load(file_path)
     |> Lexer.tokenize()
+    gast = Reader.load_gast() 
   end
 
   defp _parse_args(argv) do 
