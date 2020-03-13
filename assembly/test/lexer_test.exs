@@ -109,37 +109,8 @@ defmodule LexerTest do
           return;
          }
         """
-        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == :error_token_not_present
-    end
-
-    test "008_S1_Invalid_ReturnNoFuncName" do
-        gtl = Reader.generate_gtl(Hps.Lt.get_gtl_content())
-        scs = """
-        int () {
-          return 1;
-        }
-        """
-        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == :error_token_not_present
-    end
-
-    test "009_S1_Invalid_ReturnNoParenth" do
-      gtl = Reader.generate_gtl(Hps.Lt.get_gtl_content())
-      scs = """
-      int main) {
-        return 1;
-      }
-      """
-      assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == :error_token_not_present
-    end
-
-    test "010_S1_Invalid_ReturnNoBrack" do
-      gtl = Reader.generate_gtl(Hps.Lt.get_gtl_content())
-      scs = """
-      int main() 
-        return 13;
-      }
-      """
-      assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == :error_token_not_present
+        new_token = %Structs.Token{expression: "return;", pos_x: nil, pos_y: nil, tag: "error"}
+        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == {:error_invalid_token, new_token}
     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do 
@@ -149,7 +120,8 @@ defmodule LexerTest do
           return 44;
         }
         """
-        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == :error_token_not_present
+        new_token = %Structs.Token{expression: "intmain()", pos_x: nil, pos_y: nil, tag: "error"}
+        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == {:error_invalid_token, new_token}
     end
 
     test "012_S1_Invalid_ReturnComma" do 
