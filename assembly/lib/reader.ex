@@ -4,17 +4,19 @@ defmodule Reader do
     @c_structures_path "./specification_files/c_structures.xml"
 
     def load(file_path)                   do
-        scs = File.read!(file_path)
+        scs = File.read!(file_path) |> generate_scs()
         gtl = File.read!(@c_tokens_path)
               |> generate_gtl()
 
-        # s = " " <> scs
-        ghu = %Structs.Token{tag: "error", expression: "\\S+", pos_y: nil, pos_x: nil}
-        g = gtl ++ [ghu]
+        g = add_error_token(gtl)
 
         gast = File.read!(@c_structures_path)
                |> generate_gast()
         {scs, g, gast}
+    end
+
+    def add_error_token(gtl) do
+        gtl ++ [%Structs.Token{tag: "error", expression: "\\S+", pos_y: nil, pos_x: nil}]
     end
 
     def generate_scs(file_content)        do
