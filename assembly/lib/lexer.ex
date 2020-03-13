@@ -1,7 +1,7 @@
 defmodule Lexer do
 
-    def tokenize({scs, gtl, gast}) do
-        {lex(scs, gtl), gast}
+    def tokenize({scs, gtl}) do
+        lex(scs, gtl)
     end
 
     def lex(string, gtl, output \\ [])
