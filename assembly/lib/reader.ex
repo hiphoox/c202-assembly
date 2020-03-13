@@ -10,9 +10,13 @@ defmodule Reader do
 
         g = add_error_token(gtl)
 
+        
+        {scs, g}
+    end
+
+    def load_gast() do 
         gast = File.read!(@c_structures_path)
-               |> generate_gast()
-        {scs, g, gast}
+        |> generate_gast()
     end
 
     def add_error_token(gtl)              do
