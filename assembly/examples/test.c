@@ -1,3 +1,3 @@
-intmain() {
-	return 44;
+Int main() {
+	return 23;
 }
