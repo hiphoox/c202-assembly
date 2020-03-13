@@ -12,7 +12,7 @@ defmodule Lexer do
         if match == :error do
             token
         else
-            token = %{token | expression: match}
+            token = %{token | expression: String.trim(match)}
             lex(String.replace_prefix(string, match, ""), gtl, output ++ [token])
         end
     end
