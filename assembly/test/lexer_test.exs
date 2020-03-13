@@ -152,7 +152,7 @@ defmodule LexerTest do
         assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == :error_token_not_present
     end
 
-    test "012_S1_Invalid_ReturnComma", context do 
+    test "012_S1_Invalid_ReturnComma" do 
       gtl = Reader.generate_gtl(Hps.Lt.get_gtl_content())
       scs = """
       int main() {
@@ -160,21 +160,18 @@ defmodule LexerTest do
       }
       """
       new_token = %Structs.Token{expression: ",", pos_x: nil, pos_y: nil, tag: "error"}
-      assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == Hps.Lt.update_otl(context[:otl], new_token, 7)
+      assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == {:error_invalid_token, new_token}
     end
 
-    test "013_S1_Invalid_ReturnCaps", context do
+    test "013_S1_Invalid_ReturnCaps" do
         gtl = Reader.generate_gtl(Hps.Lt.get_gtl_content())
         scs = """
         Int main() {
           Return 2;
         }
         """
-        token1 = %Structs.Token{expression: "Int", pos_x: nil, pos_y: nil, tag: "error"}
-        token2 = %Structs.Token{expression: "Return", pos_x: nil, pos_y: nil, tag: "error"}
-        nl = Hps.Lt.update_otl(context[:otl], token1, 0)
-        new_list = Hps.Lt.update_otl(nl, token2, 5)
-        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == new_list
+        new_token = %Structs.Token{expression: "Int", pos_x: nil, pos_y: nil, tag: "error"}
+        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl, ""}) == {:error_invalid_token, new_token}
     end
 
     test "014_S1_Valid_ReturnPrecZero", context do
