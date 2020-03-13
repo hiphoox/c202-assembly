@@ -7,47 +7,48 @@
 <token-list>
     <token tag="int">
         <expression>
-            'int'
+            int\s+
         </expression>
     </token>
     <token tag="main">
         <expression>
-            'main'
+            main
         </expression>
     </token>
     <token tag="parenthesis-open">
         <expression>
-            '('
+            \(
         </expression>
     </token>
     <token tag="parenthesis-close">
         <expression>
-            ')'
+            \)
         </expression>
     </token>
     <token tag="bracket-open">
         <expression>
-            '{'
+            {
         </expression>
     </token>
     <token tag="bracket-close">
         <expression>
-            '}'
+            }
         </expression>
     </token>
     <token tag="return">
         <expression>
-            'return'
+            return\s+
         </expression>
     </token>
     <token tag="literal">
         <expression>
-            '[0-9]+'
+            [0-9]+
         </expression>
     </token>
     <token tag="semicolon">
         <expression>
-            ';'
+            ;
         </expression>
     </token>
+
 </token-list>
