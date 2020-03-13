@@ -4,11 +4,13 @@ defmodule Hps.TokenListProcessor do
 
     def clean(scs) do 
         String.trim(scs)
-        |> String.replace("\n", "")
+        |> String.replace("\n", " ")
+        |> String.replace("\t", " ")
     end
 
     def generate_list_of_expressions(gtl) do
         proc_list(gtl)
     end
+
 
 end
