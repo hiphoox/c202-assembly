@@ -1,22 +1,19 @@
 defmodule Lexer do
+
     def tokenize({scs, gtl, _}) do
-        clean_scs(scs)
-        |> IO.inspect()
-        generate_list_of_regex(gtl)
+        Hps.TokenListProcessor.clean(scs)
+        |> lex(gtl)
         |> IO.inspect()
     end
 
-    defp clean_scs(scs) do
-        tc = String.trim(scs)
-        Regex.split(~r/\s+/, tc)
-    end
-    defp generate_list_of_regex(gtl) do
-        Helpers.TokenListProcessor.proc_list(gtl)
-    end
-
-    def lex_tokens(scs) when scs != "" do
-        {token, rest} =
-        case scs do
-            
+    def lex(string, gtl, output \\ [])
+    def lex("", _, output), do: output
+    def lex(string, gtl, output) do
+        {token, match} = Enum.reduce_while(gtl, {"",""}, fn x, _ -> if (regex_match = Regex.run(~r/^\s*#{x.expression}\s*/, string)) == nil, do: {:cont, {x, :error}}, else: {:halt,{x, Enum.at(regex_match,0)}} end)
+        if match == :error do
+            token
+        else
+            lex(String.replace_prefix(string, match, ""), gtl, output ++ [{token, String.trim(match)}])
+        end
     end
 end
