@@ -1,6 +1,6 @@
 defmodule Lexer do
 
-    def tokenize({scs, gtl, _gast}) do
+    def tokenize({scs, gtl}) do
         lex(scs, gtl)
     end
 
