@@ -1,3 +1,3 @@
-int main() {
-	return 23;
-}
+int main) {
+        return 2;
+      }
