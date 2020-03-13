@@ -1,8 +1,7 @@
 defmodule Lexer do
 
     def tokenize({scs, gtl, _gast}) do
-        Hps.TokenListProcessor.clean(scs)
-        |> lex(gtl)
+        lex(scs, gtl)
     end
 
     def lex(string, gtl, output \\ [])
