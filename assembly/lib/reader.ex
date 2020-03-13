@@ -15,12 +15,14 @@ defmodule Reader do
         {scs, g, gast}
     end
 
-    def add_error_token(gtl) do
+    def add_error_token(gtl)              do
         gtl ++ [%Structs.Token{tag: "error", expression: "\\S+", pos_y: nil, pos_x: nil}]
     end
 
     def generate_scs(file_content)        do
-        clean_file_content(file_content)
+        String.trim(file_content)
+        |> String.replace("\n", " ")
+        |> String.replace("\t", " ")
     end
 
     def generate_gtl(file_content)        do
@@ -33,11 +35,6 @@ defmodule Reader do
         XmlToMap.naive_map(file_content)
         |> generate_useful_list()
         |> parse_to_node_list()
-    end
-
-    defp clean_file_content(file_content) do
-        content = String.trim(file_content)
-        Regex.replace(~r/\n/, content, " ")
     end
 
     defp parse_to_token_list(list)        do
