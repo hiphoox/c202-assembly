@@ -3,7 +3,7 @@ defmodule Lexer do
     def tokenize({scs, gtl, _}) do
         Hps.TokenListProcessor.clean(scs)
         |> lex(gtl)
-        |> IO.inspect()
+        |> IO.inspect(label: "OTL")
     end
 
     def lex(string, gtl, output \\ [])
@@ -13,7 +13,12 @@ defmodule Lexer do
         if match == :error do
             token
         else
-            lex(String.replace_prefix(string, match, ""), gtl, output ++ [{token, String.trim(match)}])
+            token = %{token | expression: match}
+            lex(String.replace_prefix(string, match, ""), gtl, output ++ [token])
         end
     end
+
+    # def generate_otl(gtl_modif) do
+    #     Enum.map gtl_modif, fn {x,y} -> [x.expression = y,y] end
+    # end
 end
