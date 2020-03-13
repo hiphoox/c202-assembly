@@ -15,8 +15,7 @@ defmodule Reader do
     end
 
     def load_gast() do 
-        gast = File.read!(@c_structures_path)
-        |> generate_gast()
+        File.read!(@c_structures_path) |> generate_gast()
     end
 
     def add_error_token(gtl)              do

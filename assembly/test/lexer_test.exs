@@ -110,7 +110,11 @@ defmodule LexerTest do
          }
         """
         new_token = %Structs.Token{expression: "return;", pos_x: nil, pos_y: nil, tag: "error"}
+<<<<<<< HEAD
         assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl }) == {:error_invalid_token, new_token}
+=======
+        assert Lexer.tokenize({scs |> Reader.generate_scs(), gtl}) == {:error_invalid_token, new_token}
+>>>>>>> pm
     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do 
