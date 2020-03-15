@@ -26,7 +26,7 @@ defmodule Assembly do
     Reader.load(file_path)
     |> Lexer.tokenize()
     |> IO.inspect(label: "OTL")
-    _gast = Reader.load_gast()
+    _gast = Reader.load_gast() |> IO.inspect(label: "gast")
   end
 
   defp _parse_args(argv) do 
