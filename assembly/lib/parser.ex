@@ -37,7 +37,7 @@ defmodule Parser do
 	defp nextChildMatch(CL,TL,previousChildren,p_s,PS_M) do
 		[child | CL_1] = CL
 		Possible_Structures = PS_M[child.class]
-		{result_token, Matched_Structure, TL_1, incoming_error} = checkPS(Possible_Structures,TL,p_s,PS_M)
+		{result_token, Matched_Structure, TL_1, incoming_error} = checkPS(Possible_Structures,TL,p_s,nil,PS_M)
 		if result_token === :ok do
 			nextChildMatch(CL_1,TL_1,previousChildren++[Matched_Structure],p_s,PS_M)
 		else
@@ -50,16 +50,16 @@ defmodule Parser do
 		end
 	end		
 	
-	defp checkPS([],TL,p_s,PS_M) do
-		{:error,nil,TL,nil}
+	defp checkPS([],TL,p_s,error_cause,PS_M) do
+		{:error,nil,TL,error_cause}
 	end
-	defp checkPS(PS,TL,p_s,PS_M) do
+	defp checkPS(PS,TL,p_s,error_cause,PS_M) do
 		[Candidate_Structure | PS_1] = PS
-		{result_token,current_candidate,TL_1,error_cause} = myStructureMatches(Candidate_Structure,TL,p_s,PS_M)
+		{result_token,current_candidate,TL_1,error_cause_1} = myStructureMatches(Candidate_Structure,TL,p_s,PS_M)
 		if result_token === :ok do 
 			{:ok,current_candidate,TL_1,nil}
 		else
-			checkPS(PS_1,TL,p_s,PS_M)
+			checkPS(PS_1,TL,p_s,error_cause_1,PS_M)
 		end
 
 	end
