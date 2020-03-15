@@ -1,9 +1,9 @@
 defmodule Parser do
 
 	def parse(OTL, GAST) do
-		PS_M = GeneratePossibleStructureMap(GAST)
-		root_AST = GenerateRootAST()
-		{result_token, OAST, TL, error_cause} = MyStructureMatches(root_AST, OTL, nil, PS_M)
+		PS_M = generatePossibleStructureMap(GAST)
+		root_AST = generateRootAST()
+		{result_token, OAST, TL, error_cause} = myStructureMatches(root_AST, OTL, nil, PS_M)
 		if TL === [] do
 			{result_token,OAST,TL,error_cause}
 		else
@@ -31,7 +31,7 @@ defmodule Parser do
 		nextChildMatch(ChildrenList,TL,[],CS,PS_M)
 	end
 	
-	defp nextChildMatch([],TL,previousChildren,p_s,PS_M) do
+	defp nextChildMatch([],TL,previous_children,p_s,PS_M) do
 		{:ok, TL, previous_children, nil}
 	end
 	defp nextChildMatch(CL,TL,previousChildren,p_s,PS_M) do
@@ -46,6 +46,7 @@ defmodule Parser do
 				{:error,TL,previousChildren++[child_e],child_e}
 			else
 				{:error,TL,previousChildren++[child_e],incoming_error}
+			end
 		end
 	end		
 	
@@ -79,7 +80,7 @@ defmodule Parser do
 		%{node |class: CS.class, 
 			token: absorbed_token, 
 			tag: CS.tag, 
-			asm : CS.asm, 
+			asm: CS.asm, 
 			children: Enum.map(children_list, fn c -> elem(c, 1) end),
 			parent: parent_s
 		}
@@ -89,7 +90,7 @@ defmodule Parser do
 		%{node |class: child.class, 
 			token: nil, 
 			tag: child.tag, 
-			asm : child.asm, 
+			asm: child.asm, 
 			children: nil,
 			parent: parent_s
 		}
@@ -104,7 +105,7 @@ defmodule Parser do
 			token: nil,
 			tag: :root,
 			children: [%{"class"=>"program-root", "tag"=>"program-root"}],
-			asm : "mov :r, :0",
+			asm: "mov :r, :0",
 			parent: nil
 		}
 	end
