@@ -1,13 +1,14 @@
-
-
-
-
 <?xml version="1.0"?>
 <structure-list>
     <structure tag="function">
         <token>
-            main-function
         </token>
+	<substructure tag="data-type">
+            <class>data-type</class>
+	</substructure>
+	<substructure tag="function-name">
+            <class>function-name</class>
+	</substructure>
         <substructure tag="args-open">
             <class>args-opener</class>
         </substructure>
@@ -23,10 +24,24 @@
         <substructure tag="closer">
             <class>function-closer</class>
         </substructure>
-        <class tag="function"/>
+        <class>program-root</class>
         <asm>
-            mov :r, :3
+            mov :5, :r
         </asm>
+    </structure>
+    <structure tag="int-data-type">
+        <token>
+            int
+        </token>
+        <class>data-type</class>
+        <asm></asm>
+    </structure>
+    <structure tag="main-function-name">
+        <token>
+            main
+        </token>
+        <class>function-name</class>
+        <asm></asm>
     </structure>
     <structure tag="evaluator-open">
         <token>
@@ -36,20 +51,26 @@
         <class>args-opener</class>
         <asm></asm>
     </structure>
-    <structure tag="evaluator-closer">
+    <structure tag="evaluator-close">
         <token>
             parenthesis-close
         </token>
-        <class>group-opener</class>
-        <class>args-opener</class>
+        <class>group-closer</class>
+        <class>args-closer</class>
         <asm></asm>
     </structure>
-    <structure tag="evaluator-closer">
+    <structure tag="section-open">
         <token>
-            parenthesis-close
+            bracket-open
         </token>
-        <class>group-opener</class>
-        <class>args-opener</class>
+        <class>function-opener</class>
+        <asm></asm>
+    </structure>
+    <structure tag="section-close">
+        <token>
+            bracket-close
+        </token>
+        <class>function-closer</class>
         <asm></asm>
     </structure>
     <structure tag="return">
@@ -65,19 +86,21 @@
         <class>operation</class>
         <class>returner</class>
         <asm>
-        mov :r, :0
+        mov :0, :r
         </asm>
+    </structure>
+    <structure tag="literal">
+        <token>
+            literal
+        </token>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
     </structure>
     <structure tag="semicolon">
         <token>
             semicolon
-        </token>
-        <class>line-ender</class>
-        <asm></asm>
-    </structure>
-    <structure tag="aggrupation">
-        <token>
-            
         </token>
         <class>line-ender</class>
         <asm></asm>
