@@ -22,7 +22,7 @@ defmodule Parser do
 				{:error,CS,TL,error_cause} #:structure-does-not-match-expectation
 			end
 		else
-			{:error,CS,TL,:dontmatter} #:Could not absorb token of structure
+			{:error,CS,TL,nil} #:Could not absorb token of structure
 		end
 	end
 	
