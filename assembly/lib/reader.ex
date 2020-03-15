@@ -35,7 +35,7 @@ defmodule Reader do
     end
 
     def generate_gast(file_content)       do
-        XmlToMap.naive_map(file_content)
+        XmlToMap.naive_map(file_content) 
         |> generate_useful_list()
         |> parse_to_node_list()
     end
@@ -57,11 +57,15 @@ defmodule Reader do
                 tag:        node["tag"],
                 token:      node["token"],
                 parent:     nil,
-                children:   node["substructure"],
+                children:   get_c(node),
                 class:      node["class"],
                 asm:        node["asm"]
             }
         end
+    end
+
+    def get_c(node) do 
+        if node["substructure"] == nil, do: [], else: node["substructure"]
     end
 
     defp generate_useful_list(map)        do
