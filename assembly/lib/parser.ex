@@ -1,9 +1,9 @@
 defmodule Parser do
 
 	def parse(OTL, GAST) do
-		PS_M = GeneratePossibleStructureMap(GAST)
-		root_AST = GenerateRootAST()
-		{result_token, OAST, TL, error_cause} = MyStructureMatches(root_AST, OTL, nil, PS_M)
+		PS_M = generatePossibleStructureMap(GAST)
+		root_AST = generateRootAST()
+		{result_token, OAST, TL, error_cause} = myStructureMatches(root_AST, OTL, nil, PS_M)
 		if TL === [] do
 			{result_token,OAST,TL,error_cause}
 		else
