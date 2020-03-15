@@ -3,7 +3,7 @@ defmodule Parser do
 	def parse(OTL, GAST) do
 		PS_M = GeneratePossibleStructureMap(GAST)
 		root_AST = GenerateRootAST()
-		{result_token, OAST, TL, error_cause} = MyStructureMatches?(root_AST, OTL, nil, PS_M)
+		{result_token, OAST, TL, error_cause} = MyStructureMatches(root_AST, OTL, nil, PS_M)
 		if TL === [] do
 			{result_token,OAST,TL,error_cause}
 		else
@@ -11,10 +11,10 @@ defmodule Parser do
 		end
 	end
 
-	defp myStructureMatches?(CS,TL,p_s,PS_M) do
-		{result_token_1, TL_1, absorbed_token} = myTokenMatches?(CS,TL)
+	defp myStructureMatches(CS,TL,p_s,PS_M) do
+		{result_token_1, TL_1, absorbed_token} = myTokenMatches(CS,TL)
 		if result_token_1 === :ok do
-			{result_token_2, TL_2, children_list,error_cause} = myChildrenMatch?(CS,TL_1,PS_M)
+			{result_token_2, TL_2, children_list,error_cause} = myChildrenMatch(CS,TL_1,PS_M)
 			if result_token_2 === :ok do
 				D_CS = specifizeStructure(CS,absorbed_token,children_list,p_s)
 				{:ok,D_CS,TL_2,nil}
@@ -26,51 +26,51 @@ defmodule Parser do
 		end
 	end
 	
-	defp myChildrenMatch?(CS,TL,PS_M) do
+	defp myChildrenMatch(CS,TL,PS_M) do
 		ChildrenList = CS.children
-		nextChildMatch?(ChildrenList,TL,[],CS,PS_M)
+		nextChildMatch(ChildrenList,TL,[],CS,PS_M)
 	end
 	
-	defp nextChildMatch?([],TL,previousChildren,p_s,cascading_error,PS_M) do
-		{:ok, TL, previous_children, cascading_error}
+	defp nextChildMatch([],TL,previousChildren,p_s,PS_M) do
+		{:ok, TL, previous_children, nil}
 	end
-	defp nextChildMatch?(CL,TL,previousChildren,p_s,cascading_error,PS_M) do
+	defp nextChildMatch(CL,TL,previousChildren,p_s,PS_M) do
 		[child | CL_1] = CL
 		Possible_Structures = PS_M[child.class]
-		{result_token, Matched_Structure, TL_1} = checkPS?(Possible_Structures,TL,p_s,nil,PS_M)
+		{result_token, Matched_Structure, TL_1, incoming_error} = checkPS(Possible_Structures,TL,p_s,PS_M)
 		if result_token === :ok do
-			nextChildMatch?(CL_1,TL_1,previousChildren++[Matched_Structure],p_s,PS_M)
+			nextChildMatch(CL_1,TL_1,previousChildren++[Matched_Structure],p_s,PS_M)
 		else
 			child_e = setProblemChildParent(child,p_s)
-			if cascading_error === nil do
+			if incoming_error === nil do
 				{:error,TL,previousChildren++[child_e],child_e}
 			else
-				{:error,TL,previousChildren++[child_e],cascading_error}
+				{:error,TL,previousChildren++[child_e],incoming_error}
 		end
 	end		
 	
-	defp checkPS?([],TL,p_s,cascading_error,PS_M) do
-		{:error,nil,TL,cascading_error}
+	defp checkPS([],TL,p_s,PS_M) do
+		{:error,nil,TL,nil}
 	end
-	defp checkPS?(PS,TL,p_s,cascading_error,PS_M) do
+	defp checkPS(PS,TL,p_s,PS_M) do
 		[Candidate_Structure | PS_1] = PS
-		{result_token,current_candidate,TL_1,error_cause} = myStructureMatches?(Candidate_Structure,TL,p_s,cascading_error,PS_M)
+		{result_token,current_candidate,TL_1,error_cause} = myStructureMatches(Candidate_Structure,TL,p_s,PS_M)
 		if result_token === :ok do 
-			{:ok,current_candidate,TL_1,cascading_error}
+			{:ok,current_candidate,TL_1,nil}
 		else
-			checkPS?(PS_1,TL,error_cause,PS_M)
+			checkPS(PS_1,TL,p_s,PS_M)
 		end
 
 	end
 	defp myTokenMatches(CS,TL) do
 		[absorbed_token | TL_1] = TL
-		if CS.token === absorbed_token.tag do
-			{:ok,TL_1,absorbed_token}
+		if CS.token === nil do
+			{:ok,TL,nil}
 		else
-			if CS.token === nil do
-				{:ok,TL,nil}
+			if CS.token === absorbed_token.tag do
+				{:ok,TL_1,absorbed_token}
 			else
-				{:error,TL_1,absorbed_token}
+				{:error,TL,absorbed_token}
 			end
 			
 		end
