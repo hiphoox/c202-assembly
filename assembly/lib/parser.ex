@@ -95,8 +95,8 @@ defmodule Parser do
 		}
 	end
 	defp GeneratePossibleStructureMap(GAST) do
-		keys = (Enum.map(GAST, fn x -> x.class end) |> Enum.flatten |> Enum.uniq)
-		Enum.map(keys, fn k -> {k,Enum.filter(GAST, fn y -> y.class === k end)} end)
+		keys = (Enum.map(GAST, fn x -> [x.class] end) |> List.flatten |> Enum.uniq)
+		Enum.map(keys, fn k -> {k,Enum.filter(GAST, fn y -> Enum.member?(List.flatten([y.class]),k) end)} end)
 		|> Map.new
 	end
 	defp GenerateRootAST() do
