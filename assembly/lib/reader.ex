@@ -56,6 +56,7 @@ defmodule Reader do
             %Structs.Node{
                 tag:        node["tag"],
                 token:      node["token"],
+                parent:     nil,
                 children:   node["substructure"],
                 class:      node["class"],
                 asm:        node["asm"]
