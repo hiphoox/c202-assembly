@@ -3,7 +3,7 @@ defmodule Hps.OASTPrinter do
         if oast == nil do 
             IO.puts generate_program() |> process(0)
         else
-            process(oast)
+            process(oast, 0)
         end
     end
 
