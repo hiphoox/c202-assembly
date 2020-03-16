@@ -10,7 +10,6 @@ defmodule Lexer do
         if err == nil do
             output
         else
-            {:error_invalid_token, err}
             IO.puts("[Lexer Error]: Invalid token: \'#{err.expression}\' in:")
             IO.puts build_code(output, err) 
             System.halt(0)
