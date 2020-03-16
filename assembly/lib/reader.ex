@@ -55,17 +55,24 @@ defmodule Reader do
         Enum.map list, fn(node) -> 
             %Structs.Node{
                 tag:        node["tag"],
-                token:      node["token"],
-                parent:     nil,
+                token:      get_t(node),
                 children:   get_c(node),
                 class:      node["class"],
-                asm:        node["asm"]
+                asm:        get_asm(node)
             }
         end
     end
 
     def get_c(node) do 
         if node["substructure"] == nil, do: [], else: node["substructure"]
+    end
+
+    def get_t(node) do 
+        if node["token"] == %{}, do: nil, else: node["token"]
+    end
+
+    def get_asm(node) do 
+        if node["asm"] == %{}, do: "", else: node["asm"]
     end
 
     defp generate_useful_list(map)        do

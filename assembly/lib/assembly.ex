@@ -25,8 +25,13 @@ defmodule Assembly do
   def start(file_path) do 
     Reader.load(file_path)
     |> Lexer.tokenize()
-    |> IO.inspect(label: "OTL")
-    _gast = Reader.load_gast() |> IO.inspect(label: "gast")
+    _gast = Reader.load_gast()
+  end
+
+  def test(file_path \\ "examples/test.c") do
+    otl = (Reader.load(file_path) |> Lexer.tokenize())
+    gast = Reader.load_gast()
+    Parser.parse(otl,gast)
   end
 
   defp _parse_args(argv) do 

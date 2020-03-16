@@ -5,9 +5,6 @@ defmodule Lexer do
     end
 
     def lex(string, gtl, output \\ [])
-    # def lex("", gtl, output) when length(gtl)-1 != length(output) do
-    #     :error_token_not_present
-    # end
     def lex("", _gtl, output) do
         err = Enum.find(output, fn x -> x.tag == "error" end)
         if err == nil do

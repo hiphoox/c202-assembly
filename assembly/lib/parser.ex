@@ -1,112 +1,108 @@
 defmodule Parser do
 
-	def parse(OTL, GAST) do
-		PS_M = generatePossibleStructureMap(GAST)
+	def parse(otl, gast) do
+		ps_m = generatePossibleStructureMap(gast)
 		root_AST = generateRootAST()
-		{result_token, OAST, TL, error_cause} = myStructureMatches(root_AST, OTL, nil, PS_M)
-		if TL === [] do
-			{result_token,OAST,TL,error_cause}
+		{result_token, oast, tl, error_cause} = myStructureMatches(root_AST, otl, ps_m)
+		if tl === [] do
+			{result_token,oast,tl,error_cause}
 		else
-			{:token_not_absorbed_error,OAST,TL,error_cause}
+			{:token_not_absorbed_error,oast,tl,error_cause}
 		end
 	end
 
-	defp myStructureMatches(CS,TL,p_s,PS_M) do
-		{result_token_1, TL_1, absorbed_token} = myTokenMatches(CS,TL)
+	defp myStructureMatches(cs,tl,ps_m) do
+		{result_token_1, tl_1, absorbed_token} = myTokenMatches(cs,tl)
 		if result_token_1 === :ok do
-			{result_token_2, TL_2, children_list,error_cause} = myChildrenMatch(CS,TL_1,PS_M)
+			{result_token_2, tl_2, children_list,error_cause} = myChildrenMatch(cs,tl_1,ps_m)
 			if result_token_2 === :ok do
-				D_CS = specifizeStructure(CS,absorbed_token,children_list,p_s)
-				{:ok,D_CS,TL_2,nil}
+				d_cs = specifizeStructure(cs,absorbed_token,children_list)
+				{:ok,d_cs,tl_2,nil}
 			else
-				{:error,CS,TL,error_cause} #:structure-does-not-match-expectation
+				#there was no if
+				if error_cause === nil do
+					{:error,cs,tl,cs}
+				else
+					{:error,cs,tl,error_cause}
+				end
+				#{:error,cs,tl,incoming_error} #:structure-does-not-match-expectation
 			end
 		else
-			{:error,CS,TL,nil} #:Could not absorb token of structure
+			{:error,cs,tl,nil} #:Could not absorb token of structure
 		end
 	end
 	
-	defp myChildrenMatch(CS,TL,PS_M) do
-		ChildrenList = CS.children
-		nextChildMatch(ChildrenList,TL,[],CS,PS_M)
+	defp myChildrenMatch(cs,tl,ps_m) do
+		children_list = cs.children
+		nextChildMatch(children_list,tl,[],ps_m)
 	end
 	
-	defp nextChildMatch([],TL,previous_children,p_s,PS_M) do
-		{:ok, TL, previous_children, nil}
+	defp nextChildMatch([],tl,previous_children,_ps_m) do
+		{:ok, tl, previous_children, nil}
 	end
-	defp nextChildMatch(CL,TL,previousChildren,p_s,PS_M) do
-		[child | CL_1] = CL
-		Possible_Structures = PS_M[child.class]
-		{result_token, Matched_Structure, TL_1, incoming_error} = checkPS(Possible_Structures,TL,p_s,nil,PS_M)
+	defp nextChildMatch(cl,tl,previous_children,ps_m) do
+		[child | cl_1] = cl
+		possible_structures = ps_m[child["class"]]
+		{result_token, matched_structure, tl_1, incoming_error} = checkPS(possible_structures,tl,nil,ps_m)
 		if result_token === :ok do
-			nextChildMatch(CL_1,TL_1,previousChildren++[Matched_Structure],p_s,PS_M)
+			nextChildMatch(cl_1,tl_1,previous_children++[matched_structure],ps_m)
 		else
-			child_e = setProblemChildParent(child,p_s)
-			if incoming_error === nil do
-				{:error,TL,previousChildren++[child_e],child_e}
-			else
-				{:error,TL,previousChildren++[child_e],incoming_error}
-			end
+			{:error,tl,previous_children++[child],incoming_error}
+			#if incoming_error === nil do
+			#	{:error,tl,previous_children++[child],child}
+			#else
+			#	{:error,tl,previous_children++[child],incoming_error}
+			#end
 		end
 	end		
 	
-	defp checkPS([],TL,p_s,error_cause,PS_M) do
-		{:error,nil,TL,error_cause}
+	defp checkPS([],tl,error_cause,_ps_m) do
+		{:error,nil,tl,error_cause}
 	end
-	defp checkPS(PS,TL,p_s,error_cause,PS_M) do
-		[Candidate_Structure | PS_1] = PS
-		{result_token,current_candidate,TL_1,error_cause_1} = myStructureMatches(Candidate_Structure,TL,p_s,PS_M)
+	defp checkPS(ps,tl,_error_cause,ps_m) do
+		[candidate_structure | ps_1] = ps
+		{result_token,current_candidate,tl_1,error_cause_1} = myStructureMatches(candidate_structure,tl,ps_m)
 		if result_token === :ok do 
-			{:ok,current_candidate,TL_1,nil}
+			{:ok,current_candidate,tl_1,nil}
 		else
-			checkPS(PS_1,TL,p_s,error_cause_1,PS_M)
+			checkPS(ps_1,tl,error_cause_1,ps_m)
 		end
 
 	end
-	defp myTokenMatches(CS,TL) do
-		[absorbed_token | TL_1] = TL
-		if CS.token === nil do
-			{:ok,TL,nil}
+	defp myTokenMatches(cs,tl) do
+		[absorbed_token | tl_1] = tl
+		if cs.token === nil do
+			{:ok,tl,nil}
 		else
-			if CS.token === absorbed_token.tag do
-				{:ok,TL_1,absorbed_token}
+			if cs.token === absorbed_token.tag do
+				{:ok,tl_1,absorbed_token}
 			else
-				{:error,TL,absorbed_token}
+				{:error,tl,absorbed_token}
 			end
 			
 		end
 	end
-	defp specifizeStructure(CS,absorbed_token,children_list,parent_s) do
-		%{node |class: CS.class, 
+	defp specifizeStructure(cs,absorbed_token,children_list) do
+		%Structs.Node{
+			class: cs.class, 
 			token: absorbed_token, 
-			tag: CS.tag, 
-			asm: CS.asm, 
-			children: Enum.map(children_list, fn c -> elem(c, 1) end),
-			parent: parent_s
+			tag: cs.tag, 
+			asm: cs.asm, 
+			children: children_list
 		}
 	end
-	
-	defp setProblemChildParent(child,parent_s) do
-		%{node |class: child.class, 
-			token: nil, 
-			tag: child.tag, 
-			asm: child.asm, 
-			children: nil,
-			parent: parent_s
-		}
-	end
-	defp generatePossibleStructureMap(GAST) do
-		keys = (Enum.map(GAST, fn x -> [x.class] end) |> List.flatten |> Enum.uniq)
-		Enum.map(keys, fn k -> {k,Enum.filter(GAST, fn y -> Enum.member?(List.flatten([y.class]),k) end)} end)
+	defp generatePossibleStructureMap(gast) do
+		keys = (Enum.map(gast, fn x -> [x.class] end) |> List.flatten |> Enum.uniq)
+		Enum.map(keys, fn k -> {k,Enum.filter(gast, fn y -> Enum.member?(List.flatten([y.class]),k) end)} end)
 		|> Map.new
 	end
 	defp generateRootAST() do
-		%{node |class: :root,
+		%Structs.Node{
+			class: :root,
 			token: nil,
 			tag: :root,
 			children: [%{"class"=>"program-root", "tag"=>"program-root"}],
-			asm: "mov :r, :0",
-			parent: nil
+			asm: "mov :r, :0"
 		}
 	end
 end

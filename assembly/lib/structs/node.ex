@@ -1,3 +1,3 @@
 defmodule Structs.Node do
-    defstruct [:tag, :token, :parent, :children, :class, :asm]
+    defstruct [:tag, :token, :children, :class, :asm]
 end
