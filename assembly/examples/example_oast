@@ -1,0 +1,136 @@
+%Structs.Node{
+  asm: "mov :r, :0",
+  children: [
+    %Structs.Node{
+      asm: "mov :5, :r",
+      children: [
+        %Structs.Node{
+          asm: "",
+          children: [],
+          class: "data-type",
+          parent: nil,
+          tag: "int-data-type",
+          token: %Structs.Token{
+            expression: "int",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "int"
+          }
+        },
+        %Structs.Node{
+          asm: "",
+          children: [],
+          class: "function-name",
+          parent: nil,
+          tag: "main-function-name",
+          token: %Structs.Token{
+            expression: "main",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "main"
+          }
+        },
+        %Structs.Node{
+          asm: "",
+          children: [],
+          class: ["group-opener", "args-opener"],
+          parent: nil,
+          tag: "evaluator-open",
+          token: %Structs.Token{
+            expression: "(",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "parenthesis-open"
+          }
+        },
+        %Structs.Node{
+          asm: "",
+          children: [],
+          class: ["group-closer", "args-closer"],
+          parent: nil,
+          tag: "evaluator-close",
+          token: %Structs.Token{
+            expression: ")",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "parenthesis-close"
+          }
+        },
+        %Structs.Node{
+          asm: "",
+          children: [],
+          class: "function-opener",
+          parent: nil,
+          tag: "section-open",
+          token: %Structs.Token{
+            expression: "{",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "bracket-open"
+          }
+        },
+        %Structs.Node{
+          asm: "mov :0, :r",
+          children: [
+            %Structs.Node{
+              asm: "mov :t, :r",
+              children: [],
+              class: "evaluation",
+              parent: nil,
+              tag: "literal",
+              token: %Structs.Token{
+                expression: "2",
+                pos_x: nil, 
+                pos_y: nil,
+                tag: "literal"
+              }
+            },
+            %Structs.Node{
+              asm: "",
+              children: [],
+              class: "line-ender",
+              parent: nil,
+              tag: "semicolon",
+              token: %Structs.Token{
+                expression: ";",
+                pos_x: nil,
+                pos_y: nil,
+                tag: "semicolon"
+              }
+            }
+          ],
+          class: ["operation", "returner"],
+          parent: nil,
+          tag: "return",
+          token: %Structs.Token{
+            expression: "return", 
+            pos_x: nil,
+            pos_y: nil,
+            tag: "return"
+          }
+        },
+        %Structs.Node{
+          asm: "",
+          children: [],
+          class: "function-closer",
+          parent: nil,
+          tag: "section-close",
+          token: %Structs.Token{
+            expression: "}",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "bracket-close"
+          }
+        }
+      ],
+      class: "program-root",
+      parent: nil,
+      tag: "function",
+      token: nil
+    }
+  ],
+  class: :root,
+  parent: nil,
+  tag: :root,
+  token: nil
+}
