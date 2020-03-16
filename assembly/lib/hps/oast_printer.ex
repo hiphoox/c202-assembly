@@ -1,9 +1,9 @@
 defmodule Hps.OASTPrinter do 
     def print(oast) do
         if oast == nil do 
-            IO.puts generate_program() |> proc()
+            IO.puts generate_program() |> process(0)
         else
-            proc(oast)
+            process(oast)
         end
     end
 
@@ -43,5 +43,17 @@ defmodule Hps.OASTPrinter do
     end
     def p2(x, num_tabs) do 
         "\n" <> String.duplicate("\t", num_tabs) <> "{#{x.tag}, #{x.token}}"
+    end
+
+    def process(root, num) do 
+        if num == 0 do 
+            rs = String.duplicate("\t", num) <> "{#{root.token}, #{root.tag}}"
+            str = Enum.map(root.children, fn x -> if x.children == [], do: "\n" <> String.duplicate("\t", num + 1) <> "{#{x.token}, #{x.tag}}", else: process(x, num + 1) end)
+            rs <> Enum.join(str)
+        else
+            rs = "\n" <> String.duplicate("\t", num) <> "{#{root.token}, #{root.tag}}"
+            str = Enum.map(root.children, fn x -> "\n" <> String.duplicate("\t", num + 1) <> "{#{x.token}, #{x.tag}}" end)
+            rs <> Enum.join(str)
+        end
     end
 end
