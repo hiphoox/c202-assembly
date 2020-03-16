@@ -23,7 +23,7 @@ defmodule Assembly do
   the compiler will be compiling.
   """
   def start(file_path \\ "examples/test.c") do 
-    otl = Reader.load(file_path) |> Lexer.tokenize()
+    otl = Reader.load(file_path) |> Lexer.tokenize() 
     gast = Reader.load_gast()
     {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
     if result_token === :ok do
