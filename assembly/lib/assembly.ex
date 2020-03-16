@@ -23,9 +23,10 @@ defmodule Assembly do
   the compiler will be compiling.
   """
   def start(file_path) do 
-    Reader.load(file_path)
-    |> Lexer.tokenize()
-    _gast = Reader.load_gast()
+    otl = Reader.load(file_path) |> Lexer.tokenize()
+    gast = Reader.load_gast()
+    {_result_token,oast,_tl,_error_cause} = Parser.parse(otl, gast) 
+    Hps.OASTPrinter.print(oast)
   end
 
   def test(file_path \\ "examples/test.c") do
