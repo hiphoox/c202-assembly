@@ -22,11 +22,22 @@ defmodule Assembly do
   'file_path' is the path to the input source file 
   the compiler will be compiling.
   """
-  def start(file_path) do 
+  def start(file_path \\ "examples/test.c") do 
     otl = Reader.load(file_path) |> Lexer.tokenize()
     gast = Reader.load_gast()
-    {_result_token,oast,_tl,_error_cause} = Parser.parse(otl, gast) 
-    Hps.OASTPrinter.print(oast)
+    {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
+    if result_token === :ok do
+      Hps.OASTPrinter.print(oast)#Podemos continuar
+      :ok
+    else
+      if result_token === :token_missing_error do
+        IO.puts("[Parser Error]: Structure <#{error_cause.tag}> is missing something.")
+        :error
+      else
+        IO.puts("[Parser Error]: Token <#{Enum.at(tl,0).expression}> was not accepted.")
+        :error
+      end
+    end
   end
 
   def test(file_path \\ "examples/test.c") do

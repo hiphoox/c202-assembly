@@ -73,10 +73,12 @@
         <class>function-closer</class>
         <asm></asm>
     </structure>
-    <structure tag="return">
+    <structure tag="operation">
         <token>
-            return
         </token>
+        <substructure tag="return">
+            <class>return-word</class>
+        </substructure>
         <substructure tag="evaluation">
             <class>evaluation</class>
         </substructure>
@@ -88,6 +90,15 @@
         <asm>
         mov :0, :r
         </asm>
+    </structure>
+    <structure tag="return-word">
+        <token>
+            return
+        </token>
+        <class>return-word</class>
+        <asm>
+	mov :t, :r
+	</asm>
     </structure>
     <structure tag="literal">
         <token>

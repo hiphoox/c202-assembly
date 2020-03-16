@@ -4,10 +4,14 @@ defmodule Parser do
 		ps_m = generatePossibleStructureMap(gast)
 		root_AST = generateRootAST()
 		{result_token, oast, tl, error_cause} = myStructureMatches(root_AST, otl, ps_m)
-		if tl === [] do
-			{result_token,oast,tl,error_cause}
+		if result_token === :ok and tl === [] do
+			{:ok,oast,tl,error_cause}
 		else
-			{:token_not_absorbed_error,oast,tl,error_cause}
+			if result_token === :error do
+				{:token_missing_error,oast,tl,error_cause}
+			else
+				{:token_not_absorbed_error,oast,tl,error_cause}
+			end
 		end
 	end
 
@@ -68,6 +72,13 @@ defmodule Parser do
 			checkPS(ps_1,tl,error_cause_1,ps_m)
 		end
 
+	end
+	defp myTokenMatches(cs,[]) do
+		if cs.token === nil do
+			{:ok,[],nil}
+		else
+				{:error,[],nil}
+		end
 	end
 	defp myTokenMatches(cs,tl) do
 		[absorbed_token | tl_1] = tl
