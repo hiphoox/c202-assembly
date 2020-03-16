@@ -9,8 +9,6 @@ defmodule Reader do
               |> generate_gtl()
 
         g = add_error_token(gtl)
-
-        
         {scs, g}
     end
 
