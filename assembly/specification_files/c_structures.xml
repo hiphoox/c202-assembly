@@ -88,7 +88,7 @@
         <class>operation</class>
         <class>returner</class>
         <asm>
-        mov :0, :r
+        mov :1, :r
         </asm>
     </structure>
     <structure tag="return-word">
@@ -97,7 +97,6 @@
         </token>
         <class>return-word</class>
         <asm>
-	mov :t, :r
 	</asm>
     </structure>
     <structure tag="literal">
