@@ -11,13 +11,13 @@ defmodule CodeGenerator.Node do
   end
 
   def search_token(%Structs.Node{}, %Structs.Token{}) do
-  print_principal_segments()
     s1 = %Structs.Node{}
     s2 = %Structs.Token{}
     if s1.tag == "literal" do
 
       lit = s2.expression
-
+      print_principal_segments()
+      <>
       """
       mov $#{lit},%rax
       ret
