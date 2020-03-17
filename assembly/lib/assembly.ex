@@ -27,15 +27,17 @@ defmodule Assembly do
     {otl, status} = Lexer.tokenize({scs, gtl}) 
     if status == :error do
         Hps.ErrorDetecter.lexer_error(otl, file_path)
-    end
-    gast = Reader.load_gast()
-    {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
-    if result_token === :ok do
-      CodeGenerator.generate_code(oast)
-      :ok
+        :error
     else
-      Hps.ErrorDetecter.parser_error(result_token, tl, error_cause, file_path)
-      :error
+      gast = Reader.load_gast()
+      {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
+      if result_token === :ok do
+        CodeGenerator.generate_code(oast)
+        :ok
+      else
+        Hps.ErrorDetecter.parser_error(result_token, tl, error_cause, file_path)
+        :error
+    end
     end
   end
 

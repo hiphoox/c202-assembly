@@ -5,7 +5,7 @@ defmodule Hps.ErrorDetecter do
 
     def lexer_error(token, file_path) do
         IO.puts(@colors[:red] <> "** (Lexer Error) invalid token \'" <> @styles[:bold] <>  @colors[:red] <> "#{token.expression}" <> @styles[:reset] <> @colors[:red] <> "\' in file #{file_path}" <> @styles[:reset])
-        System.halt(0)
+        # System.halt(0)
     end
 
     def parser_error(result_token, tl, error_cause, file_path) do
