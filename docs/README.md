@@ -3,6 +3,7 @@
 ## Overall summary
 
 - [Team Assembly Documentation Overview](https://github.com/hiphoox/c202-assembly/blob/master/docs/TeamAssembly_Documentation_Overview.pdf)
+- [Stage 1 Presentation](https://github.com/hiphoox/c202-assembly/blob/master/docs/presentations/Stage1/Stage1-Integers-Presentation.pdf)
 
 ## In detail
 
