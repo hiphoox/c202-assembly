@@ -1,29 +1,22 @@
-defmodule CodeGenerator.Node do
+defmodule CodeGenerator do
 
-  def print_principal_segments do
+  def generate_code(oast) do
+    return_node = get_node_with_tag(Enum.at(oast.children, 0), "operation")
+    literal_node = get_node_with_tag(return_node, "literal")
+    literal = literal_node.token.expression
+
     """
     .section .data
     .section .text
     .global _main
     _main:
-    
+      mov $#{literal},%rax
+      ret
+
     """
   end
 
-  def search_token(%Structs.Node{}, %Structs.Token{}) do
-    s1 = %Structs.Node{}
-    s2 = %Structs.Token{}
-    if s1.tag == "literal" do
-
-      lit = s2.expression
-      print_principal_segments()
-      <>
-      """
-      mov $#{lit},%rax
-      ret
-
-      """
-
-    end
+  def get_node_with_tag(root, str_tag) do
+    Enum.find(root.children, fn x -> x.tag == str_tag end)
   end
 end
