@@ -5,7 +5,7 @@ defmodule CodeGenerator do
     literal_node = get_node_with_tag(return_node, "literal")
     literal = literal_node.token.expression
 
-    """
+    string = """
     .section .data
     .section .text
     .global _main
@@ -14,6 +14,8 @@ defmodule CodeGenerator do
       ret
 
     """
+
+    Writer.write_file(string)
   end
 
   def get_node_with_tag(root, str_tag) do
