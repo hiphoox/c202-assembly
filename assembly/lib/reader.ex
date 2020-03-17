@@ -5,12 +5,8 @@ defmodule Reader do
 
     def load(file_path)                   do
         scs = File.read!(file_path) |> generate_scs()
-        gtl = File.read!(@c_tokens_path)
-              |> generate_gtl()
-
+        gtl = File.read!(@c_tokens_path) |> generate_gtl()
         g = add_error_token(gtl)
-
-        
         {scs, g}
     end
 
