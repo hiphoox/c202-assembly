@@ -1,4 +1,4 @@
-def module AssemblyTest do
+defmodule AssemblyTest do
   use ExUnit.Case
   doctest Assembly
   
