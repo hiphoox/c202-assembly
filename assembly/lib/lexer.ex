@@ -8,9 +8,9 @@ defmodule Lexer do
     def lex("", _gtl, output) do
         err = Enum.find(output, fn x -> x.tag == "error" end)
         if err == nil do
-            output
+            {output, :ok}
         else
-            {:error_invalid_token, err}
+            {err, :error}
         end
     end
     def lex(string, gtl, output) do

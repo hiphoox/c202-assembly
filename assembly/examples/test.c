@@ -1,3 +1,3 @@
-int main() {
-  return 232;
+int () {
+  return 3;
 }
