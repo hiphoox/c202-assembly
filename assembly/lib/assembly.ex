@@ -24,7 +24,9 @@ defmodule Assembly do
   """
   def start(file_path \\ "examples/test.c") do
     {scs, gtl} = Reader.load(file_path)
+    scs |> IO.inspect(label: "Reader -> SCS")
     {otl, status} = Lexer.tokenize({scs, gtl}) 
+    otl |> IO.inspect(label: "Lexer -> OTL")
     if status == :error do
         Hps.ErrorDetecter.lexer_error(otl, file_path)
         :error
@@ -32,7 +34,12 @@ defmodule Assembly do
       gast = Reader.load_gast()
       {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
       if result_token === :ok do
+        # oast |> IO.inspect(label: "Parser -> OAST")
+        IO.puts "Parser -> OAST"
+        Hps.OASTPrinter.print(oast)
+        IO.puts "CodeGenerator -> AS"
         CodeGenerator.generate_code(oast)
+        |> IO.puts
         |> Writer.write_file
         |> Invoker.invoke_gcc
         :ok
