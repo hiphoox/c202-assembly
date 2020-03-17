@@ -2,7 +2,7 @@
 
 ## Overall summary
 
-- [Summary.pdf]
+- [Team Assembly Documentation Overview](https://github.com/hiphoox/c202-assembly/blob/master/docs/TeamAssembly_Documentation_Overview.pdf)
 
 ## In detail
 
