@@ -39,7 +39,6 @@ defmodule Assembly do
         Hps.OASTPrinter.print(oast)
         IO.puts "CodeGenerator -> AS"
         CodeGenerator.generate_code(oast)
-        |> IO.puts
         |> Writer.write_file
         |> Invoker.invoke_gcc
         :ok
