@@ -1,3 +1,0 @@
-intmain() {
-	return 44;
-}
