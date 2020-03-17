@@ -6,13 +6,12 @@ defmodule CodeGenerator do
     literal = literal_node.token.expression
 
     string = """
-    .section .data
-    .section .text
-    .global main
-    main:
+      .section        __TEXT,__text,regular,pure_instructions
+      .p2align        4, 0x90
+      .globl _main
+    _main:
       movl $#{literal},%eax
       ret
-
     """
     string
   end
