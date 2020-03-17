@@ -35,6 +35,7 @@ defmodule Assembly do
       :ok
     else
       Hps.ErrorDetecter.parser_error(result_token, tl, error_cause, file_path)
+      :error
     end
   end
 
