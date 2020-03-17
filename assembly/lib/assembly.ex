@@ -22,8 +22,12 @@ defmodule Assembly do
   'file_path' is the path to the input source file 
   the compiler will be compiling.
   """
-  def start(file_path \\ "examples/test.c") do 
-    otl = Reader.load(file_path) |> Lexer.tokenize() 
+  def start(file_path \\ "examples/test.c") do
+    {scs, gtl} = Reader.load(file_path)
+    {otl, status} = Lexer.tokenize({scs, gtl}) 
+    if status == :error do
+        Hps.ErrorDetecter.generate_error(otl, file_path)
+    end
     gast = Reader.load_gast()
     {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
     if result_token === :ok do
