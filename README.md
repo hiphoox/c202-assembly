@@ -1,12 +1,48 @@
 # c202-assembly
 
-In this repository lies a a C compiler written in [Elixir](https://elixir-lang.org) for the **Compilers** class at [National Autonomous University of Mexico](https://www.topuniversities.com/universities/universidad-nacional-autonoma-de-mexico-unam/undergrad) School of Engineering. This compiler is defined as a proyect with roles each team member must accomplish. 
+In this repository lies a C compiler written in [Elixir](https://elixir-lang.org) for the **Compilers** class at [National Autonomous University of Mexico](https://www.topuniversities.com/universities/universidad-nacional-autonoma-de-mexico-unam/undergrad) [School of Engineering](http://www.fi-a.unam.mx). 
 
-## Project 
+## Project Development
 
 Entire documentation:
 
 - [Project Documentation](https://github.com/hiphoox/c202-assembly/tree/master/docs)
+
+## Requirements
+
+- Elixir
+- Mix
+
+## Usage
+
+- **Clone** this repository
+
+  ```
+  git clone https://github.com/hiphoox/c202-assembly
+  cd c202-assembly/assembly
+  ```
+
+- **Compile** it
+
+  ```
+  mix escript.build
+  ```
+
+- **Run** it (just an example)
+
+  ```
+  ./assembly examples/test.c
+  ```
+
+  <u>Note:</u> if you want to run your own C example just pass the path to that file after ```./assembly <path-to-your-file>```
+
+- **Test** it 
+
+  ```
+  mix test
+  ```
+
+  [Set of tests for this stage](https://github.com/hiphoox/c202-assembly/tree/master/docs/testing_integration/Stage_1)
 
 ## What is a compiler?
 
