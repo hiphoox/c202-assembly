@@ -8,9 +8,9 @@ defmodule CodeGenerator do
     string = """
     .section .data
     .section .text
-    .global _main
-    _main:
-      mov $#{literal},%rax
+    .global main
+    main:
+      movl $#{literal},%eax
       ret
 
     """
