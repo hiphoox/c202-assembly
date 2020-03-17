@@ -14,8 +14,7 @@ defmodule CodeGenerator do
       ret
 
     """
-
-    Writer.write_file(string)
+    string
   end
 
   def get_node_with_tag(root, str_tag) do

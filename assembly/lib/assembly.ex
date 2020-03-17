@@ -33,6 +33,8 @@ defmodule Assembly do
       {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
       if result_token === :ok do
         CodeGenerator.generate_code(oast)
+        |> Writer.write_file
+        |> Invoker.invoke_gcc
         :ok
       else
         Hps.ErrorDetecter.parser_error(result_token, tl, error_cause, file_path)
