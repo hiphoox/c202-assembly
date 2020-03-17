@@ -31,7 +31,7 @@ defmodule Assembly do
     gast = Reader.load_gast()
     {result_token,oast,tl,error_cause} = Parser.parse(otl, gast)
     if result_token === :ok do
-      Hps.OASTPrinter.print(oast)#Podemos continuar
+      CodeGenerator.generate_code(oast)
       :ok
     else
       Hps.ErrorDetecter.parser_error(result_token, tl, error_cause, file_path)
