@@ -1,4 +1,4 @@
-defmodule CodeGenerator do
+defmodule code_generator do
 
   def generate_code(oast) do
     return_node = get_node_with_tag(Enum.at(oast.children, 0), "operation")
