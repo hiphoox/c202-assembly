@@ -1,4 +1,4 @@
-defmodule writer do
+defmodule Writer do
     def write_file(code) do
         route = "./code.s"
         File.write(route, code)
