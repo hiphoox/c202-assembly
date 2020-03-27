@@ -1,4 +1,4 @@
-defmodule Invoker do
+defmodule invoker do
     def invoke_gcc(file) do
         bfn = Path.basename(file, ".s")
         System.cmd("gcc", [file, "-o#{bfn}"])
