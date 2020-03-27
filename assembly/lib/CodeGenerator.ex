@@ -1,5 +1,5 @@
 defmodule CodeGenerator do
-
+  #No me deja poner la primera en minúscula
   def generate_code(oast) do
     return_node = get_node_with_tag(Enum.at(oast.children, 0), "operation")
     literal_node = get_node_with_tag(return_node, "literal")
