@@ -99,6 +99,125 @@
         <asm>
 	</asm>
     </structure>
+    <structure tag="grouped-operation">
+        <token></token>
+        <substructure tag="group-open">
+            <class>group-opener</class>
+        </substructure>
+	<substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <substructure tag="group-close">
+            <class>group-closer</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    <structure tag="preincrement-operation">
+        <token></token>
+        <substructure tag="operator">
+            <class>increment-operator</class>
+        </substructure>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="postincrement-operation">
+        <token></token>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <substructure tag="operator">
+            <class>increment-operator</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="predecrement-operation">
+        <token></token>
+        <substructure tag="operator">
+            <class>decrement-operator</class>
+        </substructure>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="postdecrement-operation">
+        <token></token>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <substructure tag="operator">
+            <class>decrement-operator</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="positive-operation">
+        <token></token>
+	<substructure tag="operator">
+            <class>positive-operator</class>
+        </substructure>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="negative-operation">
+        <token></token>
+	<substructure tag="operator">
+            <class>negative-operator</class>
+        </substructure>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="complement-operation">
+        <token></token>
+	<substructure tag="operator">
+            <class>complement-operator</class>
+        </substructure>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
+    <structure tag="negation-operation">
+        <token></token>
+	<substructure tag="operator">
+            <class>negation-operator</class>
+        </substructure>
+        <substructure tag="evaluation">
+            <class>evaluation</class>
+        </substructure>
+        <class>evaluation</class>
+        <asm>
+	mov :t, :r
+	</asm>
+    </structure>
     <structure tag="literal">
         <token>
             literal
@@ -113,6 +232,48 @@
             semicolon
         </token>
         <class>line-ender</class>
+        <asm></asm>
+    </structure>
+    <structure tag="increment">
+        <token>
+            increment
+        </token>
+        <class>increment-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="decrement">
+        <token>
+            decrement
+        </token>
+        <class>decrement-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="plus">
+        <token>
+            plus
+        </token>
+        <class>positive-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="minus">
+        <token>
+            minus
+        </token>
+        <class>negative-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="complement">
+        <token>
+            complement
+        </token>
+        <class>complement-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="negation">
+        <token>
+            negation
+        </token>
+        <class>negation-operator</class>
         <asm></asm>
     </structure>
 </structure-list>
