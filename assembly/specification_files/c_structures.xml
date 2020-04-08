@@ -176,7 +176,7 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	mov :t, :r
+	mov :1, :r
 	</asm>
     </structure>
     <structure tag="negative-operation">
@@ -189,7 +189,8 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	mov :t, :r
+	neg %:1
+	mov :1, :r
 	</asm>
     </structure>
     <structure tag="complement-operation">
@@ -202,7 +203,8 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	mov :t, :r
+	not %:1
+	mov :1, :r
 	</asm>
     </structure>
     <structure tag="negation-operation">
@@ -215,7 +217,8 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	mov :t, :r
+	notl %:1
+	mov :1, :r
 	</asm>
     </structure>
     <structure tag="literal">
