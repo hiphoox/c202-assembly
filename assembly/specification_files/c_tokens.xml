@@ -45,4 +45,34 @@
             ;
         </expression>
     </token>
+    <token tag="increment">
+        <expression>
+            ++
+        </expression>
+    </token>
+    <token tag="decrement">
+        <expression>
+            --
+        </expression>
+    </token>
+    <token tag="plus">
+        <expression>
+            +
+        </expression>
+    </token>
+    <token tag="minus">
+        <expression>
+            -
+        </expression>
+    </token>
+    <token tag="negation">
+        <expression>
+            !
+        </expression>
+    </token>
+    <token tag="complement">
+        <expression>
+            ~
+        </expression>
+    </token>
 </token-list>
