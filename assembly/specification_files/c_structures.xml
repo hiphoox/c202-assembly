@@ -114,70 +114,6 @@
         <asm>
 	mov :t, :r
 	</asm>
-    <structure tag="preincrement-operation">
-        <token></token>
-        <substructure tag="operator">
-            <class>increment-operator</class>
-        </substructure>
-        <substructure tag="evaluation">
-            <class>evaluation</class>
-        </substructure>
-        <class>evaluation</class>
-        <asm>
-	mov :t, :r
-	</asm>
-    </structure>
-    <structure tag="postincrement-operation">
-        <token></token>
-        <substructure tag="evaluation">
-            <class>evaluation</class>
-        </substructure>
-        <substructure tag="operator">
-            <class>increment-operator</class>
-        </substructure>
-        <class>evaluation</class>
-        <asm>
-	mov :t, :r
-	</asm>
-    </structure>
-    <structure tag="predecrement-operation">
-        <token></token>
-        <substructure tag="operator">
-            <class>decrement-operator</class>
-        </substructure>
-        <substructure tag="evaluation">
-            <class>evaluation</class>
-        </substructure>
-        <class>evaluation</class>
-        <asm>
-	mov :t, :r
-	</asm>
-    </structure>
-    <structure tag="postdecrement-operation">
-        <token></token>
-        <substructure tag="evaluation">
-            <class>evaluation</class>
-        </substructure>
-        <substructure tag="operator">
-            <class>decrement-operator</class>
-        </substructure>
-        <class>evaluation</class>
-        <asm>
-	mov :t, :r
-	</asm>
-    </structure>
-    <structure tag="positive-operation">
-        <token></token>
-	<substructure tag="operator">
-            <class>positive-operator</class>
-        </substructure>
-        <substructure tag="evaluation">
-            <class>evaluation</class>
-        </substructure>
-        <class>evaluation</class>
-        <asm>
-	mov :1, :r
-	</asm>
     </structure>
     <structure tag="negative-operation">
         <token></token>
@@ -235,27 +171,6 @@
             semicolon
         </token>
         <class>line-ender</class>
-        <asm></asm>
-    </structure>
-    <structure tag="increment">
-        <token>
-            increment
-        </token>
-        <class>increment-operator</class>
-        <asm></asm>
-    </structure>
-    <structure tag="decrement">
-        <token>
-            decrement
-        </token>
-        <class>decrement-operator</class>
-        <asm></asm>
-    </structure>
-    <structure tag="plus">
-        <token>
-            plus
-        </token>
-        <class>positive-operator</class>
         <asm></asm>
     </structure>
     <structure tag="minus">
