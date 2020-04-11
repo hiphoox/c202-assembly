@@ -113,7 +113,7 @@ defmodule Parser do
 			token: nil,
 			tag: :root,
 			children: [%{"class"=>"program-root", "tag"=>"program-root"}],
-			asm: "mov :r, :0"
+			asm: "mov rax, $:0"
 		}
 	end
 end

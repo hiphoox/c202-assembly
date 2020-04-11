@@ -3,12 +3,12 @@
     <structure tag="function">
         <token>
         </token>
-	<substructure tag="data-type">
-            <class>data-type</class>
-	</substructure>
-	<substructure tag="function-name">
-            <class>function-name</class>
-	</substructure>
+        <substructure tag="data-type">
+                <class>data-type</class>
+        </substructure>
+        <substructure tag="function-name">
+                <class>function-name</class>
+        </substructure>
         <substructure tag="args-open">
             <class>args-opener</class>
         </substructure>
@@ -26,7 +26,7 @@
         </substructure>
         <class>program-root</class>
         <asm>
-            mov :5, :r
+            mov :r, $:5
         </asm>
     </structure>
     <structure tag="int-data-type">
@@ -88,7 +88,7 @@
         <class>operation</class>
         <class>returner</class>
         <asm>
-        mov :1, :r
+        mov :r, $:1
         </asm>
     </structure>
     <structure tag="return-word">
@@ -97,14 +97,14 @@
         </token>
         <class>return-word</class>
         <asm>
-	</asm>
+	    </asm>
     </structure>
     <structure tag="grouped-operation">
         <token></token>
         <substructure tag="group-open">
             <class>group-opener</class>
         </substructure>
-	<substructure tag="evaluation">
+	    <substructure tag="evaluation">
             <class>evaluation</class>
         </substructure>
         <substructure tag="group-close">
@@ -112,12 +112,12 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	mov :t, :r
-	</asm>
+	    mov :r, $:1
+	    </asm>
     </structure>
     <structure tag="negative-operation">
         <token></token>
-	<substructure tag="operator">
+	    <substructure tag="operator">
             <class>negative-operator</class>
         </substructure>
         <substructure tag="evaluation">
@@ -125,13 +125,13 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	neg %:1
-	mov :1, :r
-	</asm>
+	        neg $:1
+mov :r, $:1
+	    </asm>
     </structure>
     <structure tag="complement-operation">
         <token></token>
-	<substructure tag="operator">
+	    <substructure tag="operator">
             <class>complement-operator</class>
         </substructure>
         <substructure tag="evaluation">
@@ -139,13 +139,13 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	not %:1
-	mov :1, :r
-	</asm>
+	        not $:1
+mov :r, $:1
+	    </asm>
     </structure>
     <structure tag="negation-operation">
         <token></token>
-	<substructure tag="operator">
+	    <substructure tag="operator">
             <class>negation-operator</class>
         </substructure>
         <substructure tag="evaluation">
@@ -153,9 +153,9 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	notl %:1
-	mov :1, :r
-	</asm>
+	        notl $:1
+mov :r, $:1
+	    </asm>
     </structure>
     <structure tag="literal">
         <token>
@@ -163,8 +163,8 @@
         </token>
         <class>evaluation</class>
         <asm>
-	mov :t, :r
-	</asm>
+	        mov :r, :t
+	    </asm>
     </structure>
     <structure tag="semicolon">
         <token>

@@ -38,7 +38,7 @@ defmodule Assembly do
         IO.puts "Parser -> OAST"
         Hps.OASTPrinter.print(oast)
         IO.puts "CodeGenerator -> AS"
-        cg = CodeGenerator.generate_code(oast)
+        cg = CodeGenerator.generateCode(oast)
         IO.puts cg
         Writer.write_file(cg)
         |> Invoker.invoke_gcc
