@@ -22,7 +22,7 @@ defmodule CodeGenerator do
   defp printNextChildren(children_list, incoming_siblings_context, incoming_free_context, sibling_number, incoming_string) do
     [head | tail] = children_list
     {return_string, return_siblings_context, return_free_context}  = generateRawStringCode(head, incoming_free_context, sibling_number)
-    printNextChildren(tail, incoming_siblings_context ++ return_siblings_context, return_free_context, sibling_number + 1, return_string <> incoming_string)
+    printNextChildren(tail, return_siblings_context ++ incoming_siblings_context, return_free_context, sibling_number + 1, return_string <> incoming_string)
   end
 
   defp getAvailableRegisters() do
@@ -34,13 +34,13 @@ defmodule CodeGenerator do
     register_candidates = Regex.scan(~r/:r|:v[0-9]+/, code) |> Enum.uniq |> List.flatten
     register_identities = fetchRegisters(register_candidates, incoming_free_context)
     #Create a replacement rule list for the equivalencies for placeholder-registry
-    replacement_list = Enum.zip(register_candidates,register_identities) ++ incoming_children_context
+    replacement_list = incoming_children_context ++ Enum.zip(register_candidates,register_identities)
     #Replace placeholders in string
     replaced_code = Enum.reduce_while(replacement_list, code, fn {k,v}, acc -> {:cont, String.replace(acc,k,v)} end)
     #Free children registers
     result_registry = Enum.into(replacement_list, %{})[":r"]
     canonical_registers = getAvailableRegisters() #Get legal registers
-    new_free_registers = Enum.filter(incoming_free_context, fn x -> x != result_registry end) ++ ( MapSet.intersection(canonical_registers |> MapSet.new ,Enum.map(incoming_children_context, fn {_x,y} -> y end) |> MapSet.new ) |> MapSet.to_list )
+    new_free_registers = ( MapSet.intersection(canonical_registers |> MapSet.new ,Enum.map(incoming_children_context, fn {_x,y} -> y end) |> MapSet.new ) |> MapSet.to_list ) ++ Enum.filter(incoming_free_context, fn x -> x != result_registry end) 
     #Generate my return register equivalency
     my_register = [{":#{sibling_number}", if result_registry == nil do "" else  result_registry end}]
     #Return tuple
