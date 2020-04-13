@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.21.3">
+    <meta name="project" content="ExC v0.2.0">
+    <title>Filter — ExC v0.2.0</title>
+    <link rel="stylesheet" href="dist/elixir-0ab8a6a80ebaaa287431.css" />
+    <script src="dist/sidebar_items-5ee376e3b8.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-a225d03098e64fef431a.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="api-reference.html" class="sidebar-projectName">
+ExC      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.2.0
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">ExC v0.2.0</small>
+Filter          <a href="https://github.com/hiphoox/c202-assembly/blob/master/lib/filter.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Filters the outputs of <a href="Lexer.html#tokenize/1"><code class="inline">Lexer.tokenize/1</code></a> and <a href="Parser.html#parse/2"><code class="inline">Parser.parse/2</code></a>. </p>
+        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#filter_lexer_output/3">filter_lexer_output(arg, source_code_path, verbose)</a>
+  </div>
+    <div class="summary-synopsis"><h2>Specs</h2>
+<p>Given the output of the <a href="Lexer.html"><code class="inline">Lexer</code></a>, it prints any lexing errors or continues with the compilation if there are none.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#filter_parser_output/3">filter_parser_output(arg, source_code_path, verbose)</a>
+  </div>
+    <div class="summary-synopsis"><h2>Specs</h2>
+<p>Given the output of the <a href="Parser.html"><code class="inline">Parser</code></a>, it prints any parsing errors or continues with the compilation if there are none.</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="filter_lexer_output/3">
+  <div class="detail-header">
+    <a href="#filter_lexer_output/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">filter_lexer_output(arg, source_code_path, verbose)</h1>
+      <a href="https://github.com/hiphoox/c202-assembly/blob/master/lib/filter.ex#L18" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+  <section class="docstring">
+<h2 id="filter_lexer_output/3-specs" class="section-heading">
+  <a href="#filter_lexer_output/3-specs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Specs
+</h2>
+
+<p>Given the output of the <a href="Lexer.html"><code class="inline">Lexer</code></a>, it prints any lexing errors or continues with the compilation if there are none.</p>
+<p><code class="inline">arg</code> is a tuple that contains the following elements:</p>
+<ul>
+<li><strong>output_token_list</strong>: list of all the tokens found in the source code. Refer to <a href="Structs.Token.html"><code class="inline">Structs.Token</code></a> for more information. 
+</li>
+<li><strong>status</strong>: atom indicating if there was an invalid token in the source code.
+</li>
+</ul>
+<p><code class="inline">source_code_path</code> is the path to the file to be compiled. </p>
+<p><code class="inline">verbose</code> a boolean value indicating if the compiler should output all of its steps.</p>
+  </section>
+</section>
+<section class="detail" id="filter_parser_output/3">
+  <div class="detail-header">
+    <a href="#filter_parser_output/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">filter_parser_output(arg, source_code_path, verbose)</h1>
+      <a href="https://github.com/hiphoox/c202-assembly/blob/master/lib/filter.ex#L43" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+  <section class="docstring">
+<h2 id="filter_parser_output/3-specs" class="section-heading">
+  <a href="#filter_parser_output/3-specs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Specs
+</h2>
+
+<p>Given the output of the <a href="Parser.html"><code class="inline">Parser</code></a>, it prints any parsing errors or continues with the compilation if there are none.</p>
+<p><code class="inline">arg</code> is a tuple that contains the following elements:</p>
+<ul>
+<li><strong>status</strong>: atom indicating if there was an invalid token in the source code.
+</li>
+<li><strong>output_abstract_syntax_tree</strong>: Abstract Syntax Tree (OAST) generated given Output Token List (OTL).
+</li>
+<li><strong>token_list</strong>: list of all the bad tokens found in the source code
+</li>
+<li><strong>error_cause</strong>: string containing the cause of the bad tokens.
+</li>
+</ul>
+<p><code class="inline">source_code_path</code> is the path to the file to be compiled. </p>
+<p><code class="inline">verbose</code> a boolean value indicating if the compiler should output all of its steps.</p>
+  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.21.3),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>
