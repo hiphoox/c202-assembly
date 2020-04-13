@@ -15,7 +15,7 @@ defmodule CodeGenerator do
     {raw_code, _result_my_context, _result_free_context} = generate_raw_string_code(abstract_syntax_tree)
     raw_code |> raw_code_cleanup
     if verbose do
-      Helpers.Printer.cg(raw_code)
+      Helpers.Printer.print_element(Helpers.StringElements.rc, raw_code)
     end
   end
 

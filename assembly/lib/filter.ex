@@ -21,7 +21,8 @@ defmodule Filter do
     end
     def filter_lexer_output({otl, :ok}, _, verbose) do
         if verbose do
-            Helpers.Printer.otl(otl)
+            inspect = true
+            Helpers.Printer.print_element(Helpers.StringElements.otl, otl, inspect)
         end
         otl
     end
@@ -50,7 +51,8 @@ defmodule Filter do
     end
     def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, verbose) do
         if verbose do
-            Helpers.Printer.oast(output_abstract_syntax_tree)
+            oast_string = Helpers.ASTTraveler.travel(output_abstract_syntax_tree, 0)
+            Helpers.Printer.print_element(Helpers.StringElements.oast, oast_string)
         end
         output_abstract_syntax_tree
     end

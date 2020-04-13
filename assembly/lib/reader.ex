@@ -22,8 +22,9 @@ defmodule Reader do
         scs = read_source_code_string(source_code_path)
         gtl = read_general_token_list(tokens_path)
         if verbose do
-            Helpers.Printer.scs(scs)
-            Helpers.Printer.gtl(gtl)
+            Helpers.Printer.print_element(Helpers.StringElements.scs, scs)
+            inspect = true
+            Helpers.Printer.print_element(Helpers.StringElements.gtl, gtl, inspect)
         end
         {scs, gtl}
     end
