@@ -13,7 +13,7 @@ defmodule Helpers.Printer do
         
     end
     def cg(cg) do 
-        cg 
-        |> IO.inspect(label: "CG") 
+        IO.puts("CG")
+        IO.puts(cg)
     end
 end
