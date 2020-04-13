@@ -21,7 +21,7 @@ defmodule Filter do
     end
     def filter_lexer_output({otl, :ok}, _, verbose) do
         if verbose do
-            #TODO: print otl
+            Helpers.Printer.otl(otl)
         end
         {otl, :ok}
     end
@@ -49,7 +49,9 @@ defmodule Filter do
         System.halt(1)
     end
     def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, verbose) do
-        Helpers.OASTPrinter.print(output_abstract_syntax_tree, verbose)
+        if verbose do
+            Helpers.OASTPrinter.print(output_abstract_syntax_tree)
+        end
         output_abstract_syntax_tree
     end
 end
