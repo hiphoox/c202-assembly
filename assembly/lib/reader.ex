@@ -21,8 +21,9 @@ defmodule Reader do
     def read_code_and_tokens(source_code_path, tokens_path, verbose \\ false) do
         scs = read_source_code_string(source_code_path)
         gtl = read_general_token_list(tokens_path)
-        if verbose do 
-            #TODO: print scs and gtl
+        if verbose do
+            Helpers.Printer.scs(scs)
+            Helpers.Printer.gtl(gtl)
         end
         {scs, gtl}
     end

@@ -1,8 +1,6 @@
 defmodule Helpers.OASTPrinter do 
-    def print(oast_root, verbose) do
-        if verbose do 
-            IO.puts eat(oast_root, 0)
-        end
+    def print(oast_root) do
+        IO.puts eat(oast_root, 0)
     end
     def eat(root, num) do 
         if num == 0, do: IO.puts "{#{root.tag} => {#{decide(root)}}}"
