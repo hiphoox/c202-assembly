@@ -1,5 +1,6 @@
 defmodule Helpers.Printer do 
-
+    @moduledoc false
+    
     @unicode_start "\u001B["
     @unicode_finish "m"
 
