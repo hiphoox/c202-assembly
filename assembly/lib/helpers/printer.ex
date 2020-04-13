@@ -1,7 +1,10 @@
 defmodule Helpers.Printer do 
 
-    @styles %{:reset => "\u001B[0m", :bold => "\u001B[1m"}
-    @colors %{:red => "\u001B[31m"}
+    @unicode_start "\u001B["
+    @unicode_finish "m"
+
+    @styles %{:reset => "#{@unicode_start}0#{@unicode_finish}", :bold => "#{@unicode_start}1#{@unicode_finish}", :underline => "#{@unicode_start}4#{@unicode_finish}"}
+    @colors %{:red => "#{@unicode_start}31#{@unicode_finish}"}
 
     def scs(scs) do 
         scs 
@@ -32,7 +35,7 @@ defmodule Helpers.Printer do
     end
 
     def _print_error(class, fault_element, reason, location) do
-        IO.puts(@colors[:red] <> class <> " \'" <> @styles[:bold] <>  @colors[:red] <> "#{fault_element}" <> @styles[:reset] <> @colors[:red] <> "\' " <> reason <> " in file "  <> "#{location}" <> @styles[:reset])
+        IO.puts(@colors[:red] <> class <> " \'" <> @styles[:bold] <>  @colors[:red] <> "#{fault_element}" <> @styles[:reset] <> @colors[:red] <> "\'" <> reason <> " in file "  <> @styles[:underline] <> "#{location}" <> @styles[:reset])
     end
 
 end
