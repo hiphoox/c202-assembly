@@ -1,6 +1,6 @@
 defmodule Parser do
 
-	def parse(otl, gast) do
+	def parse({otl, :ok}, gast) do
 		ps_m = generatePossibleStructureMap(gast)
 		root_AST = generateRootAST()
 		{result_token, oast, tl, error_cause} = myStructureMatches(root_AST, otl, ps_m)
