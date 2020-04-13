@@ -10,7 +10,9 @@ defmodule Assembly.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(), 
       name: "ExC",
-      source_url: "https://github.com/hiphoox/c202-assembly"
+      source_url: "https://github.com/hiphoox/c202-assembly",
+      description: description(),
+      package: package()
     ]
   end
 
@@ -32,6 +34,19 @@ defmodule Assembly.MixProject do
   defp escript_config do 
     [
       main_module: ExC
+    ]
+  end
+
+  defp description do 
+      """
+      C compiler built with Elixir. This library will only allow you to compile basic C programs. 
+      """
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/hiphoox/c202-assembly"}
     ]
   end
 end
