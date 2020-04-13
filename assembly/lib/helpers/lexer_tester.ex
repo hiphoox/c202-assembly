@@ -1,4 +1,4 @@
-defmodule Hps.Lt do
+defmodule Helpers.Lt do
     @moduledoc false
     
     def get_gtl_content() do

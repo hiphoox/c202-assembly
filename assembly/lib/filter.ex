@@ -16,7 +16,7 @@ defmodule Filter do
     ```verbose``` a boolean value indicating if the compiler should output all of its steps.
     """
     def filter_lexer_output({otl, :error}, source_code_path, _) do 
-        Hps.ErrorDetecter.lexer_error(otl, source_code_path)
+        Helpers.ErrorDetecter.lexer_error(otl, source_code_path)
         System.halt(1)
     end
     def filter_lexer_output({otl, :ok}, _, verbose) do
@@ -41,15 +41,15 @@ defmodule Filter do
     ```verbose``` a boolean value indicating if the compiler should output all of its steps.
     """
     def filter_parser_output({:token_missing_error, _, token_list, error_cause}, source_code_path, _) do
-        Hps.ErrorDetecter.parser_error(:token_missing_error, token_list, error_cause, source_code_path)
+        Helpers.ErrorDetecter.parser_error(:token_missing_error, token_list, error_cause, source_code_path)
         System.halt(1)
     end
     def filter_parser_output({:token_not_absorbed_error, _, token_list, error_cause}, source_code_path, _) do
-        Hps.ErrorDetecter.parser_error(:token_not_absorbed_error, token_list, error_cause, source_code_path)
+        Helpers.ErrorDetecter.parser_error(:token_not_absorbed_error, token_list, error_cause, source_code_path)
         System.halt(1)
     end
     def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, verbose) do
-        Hps.OASTPrinter.print(output_abstract_syntax_tree, verbose)
+        Helpers.OASTPrinter.print(output_abstract_syntax_tree, verbose)
         output_abstract_syntax_tree
     end
 end

@@ -1,4 +1,4 @@
-defmodule Hps.TokenListProcessor do
+defmodule Helpers.TokenListProcessor do
     @moduledoc false
     
     defp proc_list([]), do: []

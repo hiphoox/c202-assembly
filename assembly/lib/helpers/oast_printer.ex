@@ -1,4 +1,4 @@
-defmodule Hps.OASTPrinter do 
+defmodule Helpers.OASTPrinter do 
     def print(oast_root, verbose) do
         if verbose do 
             IO.puts eat(oast_root, 0)

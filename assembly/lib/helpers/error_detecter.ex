@@ -1,4 +1,4 @@
-defmodule Hps.ErrorDetecter do
+defmodule Helpers.ErrorDetecter do
     @moduledoc false
 
     @styles %{:reset => "\u001B[0m", :bold => "\u001B[1m"}
