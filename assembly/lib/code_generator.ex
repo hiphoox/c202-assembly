@@ -1,7 +1,11 @@
 defmodule CodeGenerator do
-  def generateCode(abstract_syntax_tree) do
+  
+  def generateCode(abstract_syntax_tree, verbose) do
     {raw_code, _result_my_context, _result_free_context} = generateRawStringCode(abstract_syntax_tree)
     raw_code |> rawCodeCleanup
+    if verbose do
+      #TODO: print ast
+    end
   end
 
   defp generateRawStringCode(abstract_syntax_tree, incoming_free_context \\ getAvailableRegisters(), sibling_number \\ 0) do
