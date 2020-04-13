@@ -52,7 +52,7 @@ defmodule ExC do
     |> Filter.filter_lexer_output(file_path, verbose)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
     |> Filter.filter_parser_output(file_path, verbose)
-    |> CodeGenerator.generateCode(verbose)
+    |> CodeGenerator.generate_code(verbose)
     |> Writer.write_file()
     |> Invoker.invoke_gcc()
   end
