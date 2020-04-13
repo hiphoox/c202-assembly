@@ -8,13 +8,13 @@ defmodule Hps.ErrorDetecter do
         # System.halt(0)
     end
 
-    def parser_error(result_token, tl, error_cause, file_path) do
-        if result_token === :token_missing_error do
-            IO.puts parser_localized("structure", error_cause.tag, "is missing something", file_path)
-        else
-            IO.puts parser_localized("token", Enum.at(tl,0).expression, "was not accepted", file_path)
-        end
+    def parser_error(:token_missing_error, _, error_cause, file_path) do
+        IO.puts parser_localized("structure", error_cause.tag, "is missing something", file_path)
     end
+    def parser_error(:token_not_absorbed_error, tl, _, file_path) do
+        IO.puts parser_localized("token", Enum.at(tl,0).expression, "was not accepted", file_path)
+    end
+
     defp parser_localized(element, fault_token, msg, file_path) do 
         @colors[:red] <> "** (Parser Error) #{element}" <> @styles[:bold] <>  @colors[:red] <> "<#{fault_token}> " <> @styles[:reset] <> @colors[:red] <> "#{msg} in file #{file_path}"
     end
