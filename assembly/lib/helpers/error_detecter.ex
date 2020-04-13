@@ -1,22 +1,31 @@
 defmodule Helpers.ErrorDetecter do
     @moduledoc false
 
-    @styles %{:reset => "\u001B[0m", :bold => "\u001B[1m"}
-    @colors %{:red => "\u001B[31m"}
-
     def lexer_error(token, file_path) do
-        IO.puts(@colors[:red] <> "** (Lexer Error) invalid token \'" <> @styles[:bold] <>  @colors[:red] <> "#{token.expression}" <> @styles[:reset] <> @colors[:red] <> "\' in file #{file_path}" <> @styles[:reset])
-        # System.halt(0)
+        class_msg = "** (Lexer Error) invalid token"
+        fault_element_msg = "#{token.expression}"
+        reason_msg  = ""
+        location_msg = "#{file_path}"
+
+        Helpers.Printer._print_error(class_msg, fault_element_msg, reason_msg, location_msg)
     end
 
     def parser_error(:token_missing_error, _, error_cause, file_path) do
-        IO.puts parser_localized("structure", error_cause.tag, "is missing something", file_path)
+        
+        class_msg = "** (Parser Error) structure"
+        fault_element = error_cause.tag
+        reason_msg = "is missing something"
+        location = file_path
+
+        Helpers.Printer._print_error(class_msg, fault_element, reason_msg, location)
     end
     def parser_error(:token_not_absorbed_error, tl, _, file_path) do
-        IO.puts parser_localized("token", Enum.at(tl,0).expression, "was not accepted", file_path)
+        class_msg = "** (Parser Error) token"
+        fault_element = Enum.at(tl, 0).expression
+        reason_msg = "was not accepted"
+        location = file_path
+
+        Helpers.Printer._print_error(class_msg, fault_element, reason_msg, location)
     end
 
-    defp parser_localized(element, fault_token, msg, file_path) do 
-        @colors[:red] <> "** (Parser Error) #{element}" <> @styles[:bold] <>  @colors[:red] <> "<#{fault_token}> " <> @styles[:reset] <> @colors[:red] <> "#{msg} in file #{file_path}"
-    end
 end
