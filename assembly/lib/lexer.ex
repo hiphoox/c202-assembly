@@ -1,7 +1,22 @@
 defmodule Lexer do
+    @moduledoc """
+        Breaks the source code string (SCS) into an output list of tokens (OTL).
+    """
 
-    def tokenize({scs, gtl}) do
-        lex(scs, gtl)
+    @doc """
+        Breaks the source code string (SCS) into an output list of tokens (OTL).
+        ## Specs  
+        ```{source_code_string, general_token_list}``` is a tuple that contains the following elements:
+            + **source_code_string**: source code
+            + **general_token_list**: target language's valid token list. Refer to Reader.read_general_token_list for more information.
+        
+        ## Examples
+        ```
+            iex> otl = Lexer.tokenize({source_code_string, general_token_list})
+        ``` 
+    """
+    def tokenize({source_code_string, general_token_list}) do
+        lex(source_code_string, general_token_list)
     end
 
     def lex(string, gtl, output \\ [])
