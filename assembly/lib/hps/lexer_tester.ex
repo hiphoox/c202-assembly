@@ -1,4 +1,6 @@
 defmodule Hps.Lt do
+    @moduledoc false
+    
     def get_gtl_content() do
         """
         <?xml version="1.0"?>

@@ -1,4 +1,5 @@
 defmodule Hps.ErrorDetecter do
+    @moduledoc false
 
     @styles %{:reset => "\u001B[0m", :bold => "\u001B[1m"}
     @colors %{:red => "\u001B[31m"}
