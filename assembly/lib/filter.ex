@@ -50,7 +50,7 @@ defmodule Filter do
     end
     def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, verbose) do
         if verbose do
-            Helpers.OASTPrinter.print(output_abstract_syntax_tree)
+            Helpers.Printer.oast(output_abstract_syntax_tree)
         end
         output_abstract_syntax_tree
     end
