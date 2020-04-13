@@ -23,7 +23,7 @@ defmodule Filter do
         if verbose do
             Helpers.Printer.otl(otl)
         end
-        {otl, :ok}
+        otl
     end
 
     @doc """
