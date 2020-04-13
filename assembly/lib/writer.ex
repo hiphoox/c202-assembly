@@ -16,10 +16,9 @@ defmodule Writer do
         output_path
     end
 
-    defp build_output_path(source_code_path) do 
+    defp build_output_path() do 
         base_directory = "./"
         output_code_file_name = "exc_o.s"
-        output_path = base_directory <> output_code_file_name
-        output_path
+        base_directory <> output_code_file_name
     end
 end
