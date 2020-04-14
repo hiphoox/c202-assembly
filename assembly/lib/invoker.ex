@@ -3,14 +3,15 @@ defmodule Invoker do
     Generates the assembly output file. 
     """
     @doc """
-    Returns a file ```foo.s``` that contains the assembly code of the source input program.
+    Invokes ```gcc``` to produce an executable file.
     
     ### Specs  
     ```file``` is the path to the file to be compiled.
 
     """
-    def invoke_gcc(file) do
-        bfn = Path.basename(file, ".s")
-        System.cmd("gcc", [file, "-o#{bfn}"])
+    def invoke_gcc(assembly_source_code) do
+        target_code_name = Path.basename(assembly_source_code, ".s")
+        System.cmd("gcc", [assembly_source_code, "-o#{target_code_name}"])
+        File.rm!(assembly_source_code)
     end
 end
