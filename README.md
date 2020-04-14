@@ -29,6 +29,7 @@ Entire documentation:
 - **Compile** it
 
   ```
+  mix deps.get
   mix escript.build
   ```
 
