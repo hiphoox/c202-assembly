@@ -5,28 +5,28 @@ defmodule LexerTest do
     setup_all do
         {:ok,
          [otl:
-        [
-          %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
-          %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
-          %Structs.Token{
-            expression: "(",
-            pos_x: nil,
-            pos_y: nil,
-            tag: "parenthesis-open"
-          },
-          %Structs.Token{
-            expression: ")",
-            pos_x: nil,
-            pos_y: nil,
-            tag: "parenthesis-close"
-          },
-          %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
-          %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
-          %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"},
-          %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"},
-          %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
-          %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
-         ]
+          [
+            %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
+            %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
+            %Structs.Token{
+              expression: "(",
+              pos_x: nil,
+              pos_y: nil,
+              tag: "parenthesis-open"
+            },
+            %Structs.Token{
+              expression: ")",
+              pos_x: nil,
+              pos_y: nil,
+              tag: "parenthesis-close"
+            },
+            %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
+            %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
+            %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"},
+            %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"},
+            %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
+            %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
+          ]
         ]}
       end
 
@@ -157,6 +157,7 @@ defmodule LexerTest do
       new_token = %Structs.Token{expression: "007", pos_x: nil, pos_y: nil, tag: "literal"}
       assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
     end
+
     test "015_S2_Valid_Negative", context do
       gtl = Reader._generate_general_token_list(Helpers.Lt.get_gtl_content())
       scs = """
@@ -165,6 +166,19 @@ defmodule LexerTest do
       }
       """
       new_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
+      #new_token2 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
+      assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
+      #assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token2), :ok}
+    end
+
+    test "016_S2_Valid_Bitwise", context do
+      gtl = Reader._generate_general_token_list(Helpers.Lt.get_gtl_content())
+      scs = """
+      int main() {
+        return ~7;
+      }
+      """
+      new_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, tag: "minus"}
       #new_token2 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
       assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
       #assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token2), :ok}
