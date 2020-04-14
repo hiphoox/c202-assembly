@@ -1,9 +1,7 @@
-import ExUnit.CaptureLog
-
-defmodule ExcTest do
+cdefmodule ExcTest do
     use ExUnit.Case
     # doctest ExC
     # doctest Reader
-    doctest Lexer
+    #doctest Lexer
     
 end
