@@ -2,6 +2,10 @@
 
 In this repository lies a C compiler written in [Elixir](https://elixir-lang.org) for the **Compilers** class at [National Autonomous University of Mexico](https://www.topuniversities.com/universities/universidad-nacional-autonoma-de-mexico-unam/undergrad) [School of Engineering](http://www.fi-a.unam.mx). 
 
+## Hex Documentation
+
+- [ExC Compiler](https://hex.pm/packages/exc)
+
 ## Project Development
 
 Entire documentation:
