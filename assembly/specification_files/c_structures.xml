@@ -26,7 +26,7 @@
         </substructure>
         <class>program-root</class>
         <asm>
-            mov :r, $:5
+            mov $:5, %:r
         </asm>
     </structure>
     <structure tag="int-data-type">
@@ -88,7 +88,7 @@
         <class>operation</class>
         <class>returner</class>
         <asm>
-        mov :r, $:1
+        movl $:1, %:r
         </asm>
     </structure>
     <structure tag="return-word">
@@ -112,7 +112,7 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	    mov :r, $:1
+	    movl $:1, %:r
 	    </asm>
     </structure>
     <structure tag="negative-operation">
@@ -125,8 +125,8 @@
         </substructure>
         <class>evaluation</class>
         <asm>
-	        neg $:1
-mov :r, $:1
+	        neg %:1
+movl $:1, %:r
 	    </asm>
     </structure>
     <structure tag="complement-operation">
@@ -139,8 +139,8 @@ mov :r, $:1
         </substructure>
         <class>evaluation</class>
         <asm>
-	        not $:1
-mov :r, $:1
+	        not %:1
+movl $:1, %:r
 	    </asm>
     </structure>
     <structure tag="negation-operation">
@@ -153,8 +153,8 @@ mov :r, $:1
         </substructure>
         <class>evaluation</class>
         <asm>
-	        notl $:1
-mov :r, $:1
+	        notl %:1
+movl $:1, %:r
 	    </asm>
     </structure>
     <structure tag="literal">
@@ -163,7 +163,7 @@ mov :r, $:1
         </token>
         <class>evaluation</class>
         <asm>
-	        mov :r, :t
+            movl :t, %:r
 	    </asm>
     </structure>
     <structure tag="semicolon">
