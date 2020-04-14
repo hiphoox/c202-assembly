@@ -76,6 +76,7 @@ defmodule Parser do
 	defp nextChildMatch([],tl,previous_children,_ps_m) do
 		{:ok, tl, previous_children, nil}
 	end
+	
 	defp nextChildMatch(cl,tl,previous_children,ps_m) do
 		[child | cl_1] = cl
 		possible_structures = ps_m[child["class"]]
