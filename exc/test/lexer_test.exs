@@ -1,6 +1,5 @@
 defmodule LexerTest do
     use ExUnit.Case
-    doctest Lexer
 
     setup_all do
         {:ok,
