@@ -1,4 +1,4 @@
-cdefmodule ExcTest do
+defmodule ExcTest do
     use ExUnit.Case
     # doctest ExC
     # doctest Reader

@@ -15,7 +15,7 @@ defmodule CodeGeneratorTest do
         |> Filter.filter_parser_output(file_path, verbose)
         |> CodeGenerator.generate_code(verbose)
         
-        assert cg == "    .section        __TEXT,__text,regular,pure_instructions\n    .p2align        4, 0x90\n    .globl _main\n  _main: \n            \nmovl $0, %ebx\nmovl %ebx, %ecx\nmov %ecx, %ebx\nmovl %ebx, %eax\n \n    ret\n"
+        assert cg == "    .section        __TEXT,__text,regular,pure_instructions\n    .p2align        4, 0x90\n    .globl _main\n  _main: \n            \nmovl $0, %ebx\nmovl %ebx, %ecx\nmovl %ecx, %ebx\nmovl %ebx, %eax\n \n    ret\n"
     end
 
 end
