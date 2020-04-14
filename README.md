@@ -23,19 +23,20 @@ Entire documentation:
 
   ```
   git clone https://github.com/hiphoox/c202-assembly
-  cd c202-assembly/assembly
+  cd c202-assembly/exc
   ```
 
 - **Compile** it
 
   ```
+  mix deps.get
   mix escript.build
   ```
 
 - **Run** it (just an example)
 
   ```
-  ./assembly examples/test.c
+  ./exc examples/test.c
   ```
 
   <u>Note:</u> if you want to run your own C example just pass the path to that file after ```./assembly <path-to-your-file>```
