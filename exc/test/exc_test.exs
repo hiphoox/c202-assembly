@@ -5,5 +5,8 @@ defmodule ExcTest do
     doctest ExC
 
     test "001_Valid_Return_0" do
-        scs = 
+        scs = File.read("../docs/testing_integration/Stage_1/001_S1_Valid_Return0.c")
+        tar = File.read(""../docs/testing_integration/Stage_1/001_S1_Valid_Return0.s"")
+
+        Assert exc.Start(scs)
 end
