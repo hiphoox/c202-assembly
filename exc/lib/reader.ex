@@ -38,7 +38,9 @@ defmodule Reader do
     ## Examples
     ```
         iex> scs = Reader.read_source_code_string("examples/test_s2.c")
-        "int main(){  return -7; }"
+        "int main(){  return -7; }
+        
+        "
     ``` 
     """
     def read_source_code_string(source_code_path)           do 
@@ -65,7 +67,7 @@ defmodule Reader do
     + General Token List (GTL): list of target language's valid tokens.
     
     ## Examples
-        iex> gtl = Reader.read_general_token_list("/specification_files/c_tokens.xml")
+        iex> gtl = Reader.read_general_token_list("specification_files/c_tokens.xml")
     """
     def read_general_token_list(tokens_path)                do
         File.read!(tokens_path) 
