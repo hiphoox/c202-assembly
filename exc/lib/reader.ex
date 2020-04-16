@@ -14,9 +14,7 @@ defmodule Reader do
     + General Token List (GTL): list of target language valid tokens.
     
     ## Examples
-    ```
-        iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c', tokens_path)
-    ``` 
+        iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c', "specification_files/c_tokens.xml")
     """
     def read_code_and_tokens(source_code_path, tokens_path, verbose \\ false) do
         scs = read_source_code_string(source_code_path)
@@ -39,7 +37,10 @@ defmodule Reader do
     
     ## Examples
     ```
-        iex> scs = Reader.read_source_code_string(source_code_path)
+        iex> scs = Reader.read_source_code_string("examples/test_s2.c")
+        "int main(){  return -7; }
+        
+        "
     ``` 
     """
     def read_source_code_string(source_code_path)           do 
@@ -66,9 +67,7 @@ defmodule Reader do
     + General Token List (GTL): list of target language's valid tokens.
     
     ## Examples
-    ```
-        iex> gtl = Reader.read_general_token_list(tokens_path)
-    ``` 
+        iex> gtl = Reader.read_general_token_list("specification_files/c_tokens.xml")
     """
     def read_general_token_list(tokens_path)                do
         File.read!(tokens_path) 
@@ -106,9 +105,7 @@ defmodule Reader do
     + General Abstract Syntax Treee (GAST): list containing the target language grammar production rules.
     
     ## Examples
-    ```
-        iex> gast = Reader.read_general_ast(grammar_prod_rules_path)
-    ``` 
+        # iex> gast = Reader.read_general_ast(grammar_prod_rules_path)
     """
     def read_general_ast(grammar_prod_rules_path)           do 
         File.read!(grammar_prod_rules_path) 
