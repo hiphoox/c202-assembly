@@ -80,7 +80,7 @@
             <class>return-word</class>
         </substructure>
         <substructure tag="evaluation">
-            <class>evaluation</class>
+            <class>high-evaluation</class>
         </substructure>
         <substructure tag="semicolon">
             <class>line-ender</class>
@@ -99,18 +99,102 @@
         <asm>
 	    </asm>
     </structure>
+    <structure tag="sum-operation">
+        <token></token>
+        <substructure tag="first-value">
+            <class>mid-evaluation</class>
+        </substructure>
+	    <substructure tag="sum-operator">
+            <class>sum-operator</class>
+        </substructure>
+        <substructure tag="second-value">
+            <class>high-evaluation</class>
+        </substructure>
+        <class>high-evaluation</class>
+        <asm>
+	    mov :r, $:1
+	    </asm>
+    </structure>
+    <structure tag="minus-operation">
+        <token></token>
+        <substructure tag="first-value">
+            <class>mid-evaluation</class>
+        </substructure>
+	    <substructure tag="minus-operator">
+            <class>minus-operator</class>
+        </substructure>
+        <substructure tag="second-value">
+            <class>high-evaluation</class>
+        </substructure>
+        <class>high-evaluation</class>
+        <asm>
+	    mov :r, $:1
+	    </asm>
+    </structure>
+    <structure tag="high-evaluation">
+        <token></token>
+        <substructure tag="value">
+            <class>mid-evaluation</class>
+        </substructure>
+        <class>high-evaluation</class>
+        <asm>
+	    mov :r, $:1
+	    </asm>
+    </structure>
+    <structure tag="division-operation">
+        <token></token>
+        <substructure tag="first-value">
+            <class>low-evaluation</class>
+        </substructure>
+	    <substructure tag="division-operator">
+            <class>division-operator</class>
+        </substructure>
+        <substructure tag="second-value">
+            <class>mid-evaluation</class>
+        </substructure>
+        <class>mid-evaluation</class>
+        <asm>
+	    mov :r, $:1
+	    </asm>
+    </structure>
+    <structure tag="multiplication-operation">
+        <token></token>
+        <substructure tag="first-value">
+            <class>low-evaluation</class>
+        </substructure>
+	    <substructure tag="multiplication-operator">
+            <class>multiplication-operator</class>
+        </substructure>
+        <substructure tag="second-value">
+            <class>mid-evaluation</class>
+        </substructure>
+        <class>mid-evaluation</class>
+        <asm>
+	    mov :r, $:1
+	    </asm>
+    </structure>
+    <structure tag="mid-evaluation">
+        <token></token>
+        <substructure tag="value">
+            <class>low-evaluation</class>
+        </substructure>
+        <class>mid-evaluation</class>
+        <asm>
+	    mov :r, $:0
+	    </asm>
+    </structure>
     <structure tag="grouped-operation">
         <token></token>
         <substructure tag="group-open">
             <class>group-opener</class>
         </substructure>
 	    <substructure tag="evaluation">
-            <class>evaluation</class>
+            <class>high-evaluation</class>
         </substructure>
         <substructure tag="group-close">
             <class>group-closer</class>
         </substructure>
-        <class>evaluation</class>
+        <class>low-evaluation</class>
         <asm>
 	    movl %:1, %:r
 	    </asm>
@@ -121,9 +205,9 @@
             <class>negative-operator</class>
         </substructure>
         <substructure tag="evaluation">
-            <class>evaluation</class>
+            <class>low-evaluation</class>
         </substructure>
-        <class>evaluation</class>
+        <class>low-evaluation</class>
         <asm>
 	        neg %:1
 movl %:1, %:r
@@ -135,9 +219,9 @@ movl %:1, %:r
             <class>complement-operator</class>
         </substructure>
         <substructure tag="evaluation">
-            <class>evaluation</class>
+            <class>low-evaluation</class>
         </substructure>
-        <class>evaluation</class>
+        <class>low-evaluation</class>
         <asm>
 	        not %:1
 movl %:1, %:r
@@ -149,9 +233,9 @@ movl %:1, %:r
             <class>negation-operator</class>
         </substructure>
         <substructure tag="evaluation">
-            <class>evaluation</class>
+            <class>low-evaluation</class>
         </substructure>
-        <class>evaluation</class>
+        <class>low-evaluation</class>
         <asm>
 	        notl %:1
 movl %:1, %:r
@@ -161,7 +245,7 @@ movl %:1, %:r
         <token>
             literal
         </token>
-        <class>evaluation</class>
+        <class>low-evaluation</class>
         <asm>
             movl $:t, %:r
 	    </asm>
@@ -178,6 +262,7 @@ movl %:1, %:r
             minus
         </token>
         <class>negative-operator</class>
+        <class>minus-operator</class>
         <asm></asm>
     </structure>
     <structure tag="complement">
@@ -192,6 +277,27 @@ movl %:1, %:r
             negation
         </token>
         <class>negation-operator</class>
+        <asm></asm>
+    </structure>
+        <structure tag="sum">
+        <token>
+            plus
+        </token>
+        <class>sum-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="division">
+        <token>
+            slant
+        </token>
+        <class>division-operator</class>
+        <asm></asm>
+    </structure>
+    <structure tag="multiplication">
+        <token>
+            asterix
+        </token>
+        <class>multiplication-operator</class>
         <asm></asm>
     </structure>
 </structure-list>

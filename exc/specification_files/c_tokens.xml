@@ -60,4 +60,19 @@
             ~
         </expression>
     </token>
+    <token tag="plus">
+        <expression>
+            \+
+        </expression>
+    </token>
+    <token tag="asterix">
+        <expression>
+            \*
+        </expression>
+    </token>
+    <token tag="slant">
+        <expression>
+            /
+        </expression>
+    </token>
 </token-list>
