@@ -129,7 +129,7 @@ defmodule Reader do
             %Structs.Node{
                 tag:        node["tag"],
                 token:      get_t(node),
-                children:   get_c(node),
+                children:   [get_c(node)] |> List.flatten,
                 class:      node["class"],
                 asm:        get_asm(node)
             }
