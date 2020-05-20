@@ -78,6 +78,7 @@ defmodule Parser do
 	end
 	
 	defp next_child_match(cl,tl,previous_children,ps_m) do
+		IO.inspect(cl, label: "The list is: ")
 		[child | cl_1] = cl
 		possible_structures = ps_m[child["class"]]
 		{result_token, matched_structure, tl_1, incoming_error} = check_ps(possible_structures,tl,nil,ps_m)
@@ -137,7 +138,8 @@ defmodule Parser do
 	end
 	defp generate_possible_structure_map(gast) do
 		keys = (Enum.map(gast, fn x -> [x.class] end) |> List.flatten |> Enum.uniq)
-		Enum.map(keys, fn k -> {k,Enum.filter(gast, fn y -> Enum.member?(List.flatten([y.class]),k) end)} end)
+		Enum.map(keys, fn k -> {k,Enum.filter(gast, fn y -> Enum.member?(List.flatten([y.class]),String.replace(k,"*","")) end)} end)
+		|> Enum.map(fn {k,value_list} ->  if String.contains?(k, "*"), do: {k,value_list ++ [generate_null_ast(k)]}, else: {k,value_list} end)
 		|> Map.new
 	end
 	defp generate_root_ast() do
@@ -147,6 +149,15 @@ defmodule Parser do
 			tag: :root,
 			children: [%{"class"=>"program-root", "tag"=>"program-root"}],
 			asm: "movl %:0, %eax"
+		}
+	end
+	defp generate_null_ast(optional_class) do
+		%Structs.Node{
+			class: String.replace(optional_class,"*",""),
+			token: nil,
+			tag: "no_match_for_optional_substructure",
+			children: [],
+			asm: ""
 		}
 	end
 end
