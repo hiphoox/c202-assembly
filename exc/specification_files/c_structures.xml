@@ -112,7 +112,7 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
-	    mov :r, $:1
+	    addl %:2, %:r
 	    </asm>
     </structure>
     <structure tag="minus-operation">
@@ -128,7 +128,7 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
-	    mov :r, $:1
+	    subl %:2, %:r
 	    </asm>
     </structure>
     <structure tag="high-evaluation">
@@ -138,7 +138,7 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
-	    mov :r, $:1
+	    mov %:0, %:r
 	    </asm>
     </structure>
     <structure tag="division-operation">
@@ -154,7 +154,8 @@
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-	    mov :r, $:1
+	    cdq
+idivl %:r
 	    </asm>
     </structure>
     <structure tag="multiplication-operation">
@@ -170,7 +171,7 @@
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-	    mov :r, $:1
+	    imul %:0, %:r
 	    </asm>
     </structure>
     <structure tag="mid-evaluation">
@@ -180,7 +181,7 @@
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-	    mov :r, $:0
+	    mov %:0, %:r
 	    </asm>
     </structure>
     <structure tag="grouped-operation">
