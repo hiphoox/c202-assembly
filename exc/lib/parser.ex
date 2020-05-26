@@ -78,7 +78,7 @@ defmodule Parser do
 	end
 	
 	defp next_child_match(cl,tl,previous_children,ps_m) do
-		IO.inspect(cl, label: "The list is: ")
+		# IO.inspect(cl, label: "The list is: ") # Commented line to avoid printing
 		[child | cl_1] = cl
 		possible_structures = ps_m[child["class"]]
 		{result_token, matched_structure, tl_1, incoming_error} = check_ps(possible_structures,tl,nil,ps_m)
