@@ -55,7 +55,7 @@ defmodule Reader do
     defp clean_source_code_string(file_content)             do
         String.trim(file_content)
         |> String.replace("\n", " ")
-        |> String.replace("\t", " ")
+        |> String.replace("\t", "")
     end
 
     @doc """
