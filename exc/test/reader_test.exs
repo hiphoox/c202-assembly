@@ -8,8 +8,6 @@ defmodule ReaderTest do
       }
       """
       assert Reader._generate_source_code_string(scs) == "int main() { return 0; }"
-  end
-
-  
+  end 
 
 end
