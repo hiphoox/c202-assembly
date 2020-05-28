@@ -1,2 +1,0 @@
-defmodule StageOneFilterLexer do
-end
