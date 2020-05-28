@@ -8,6 +8,39 @@ defmodule StageOneReader do
       }
       """
       assert Reader._generate_source_code_string(scs) == "int main() { return 0; }"
-  end 
+  end
+  
+  test "002_S1_Valid_Return7" do
+      scs = """
+      int main() {
+      \treturn 7;
+      }
+      """
+      assert Reader._generate_source_code_string(scs) == "int main() { return 7; }"
+  end
+  
+  test "003_S1_Valid_ReturnMD130" do
+      scs = """
+      int main() {
+      \treturn 130;
+      }
+      """
+      assert Reader._generate_source_code_string(scs) == "int main() { return 130; }"
+  end
+  
+  test "004_S1_Valid_ReturnBlankSpaces" do
+      scs = """
+      int
+      main
+      (
+      )
+      {
+      return
+      1
+      ;
+      }
+      """
+      assert Reader._generate_source_code_string(scs) == "int main() { return 1; }"
+  end
 
 end
