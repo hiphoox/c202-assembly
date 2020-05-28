@@ -30,7 +30,7 @@ defmodule LexerTest do
       end
 
     test "001_S1_Valid_Return0", context do
-        gtl = Reader._generate_general_token_list(Helpers.Lt.get_gtl_content())
+        gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
         scs = """
         int main() {
           return 0;
