@@ -28,7 +28,7 @@ defmodule StageTwoLexer do
     end
 
   test "001_S2_Valid_Negative", context do
-    gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
+    gtl = Reader._generate_general_token_list(Helpers.LexerTester.get_c_tokens_content())
     scs = """
     int main() {
       return -7;
@@ -39,13 +39,13 @@ defmodule StageTwoLexer do
 
     token_list = [minus_token, literal_token]
 
-    right_element = {Helpers.Lt.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+    right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
   end
 
   test "002_S2_Valid_Bitwise", context do
-    gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
+    gtl = Reader._generate_general_token_list(Helpers.LexerTester.get_c_tokens_content())
     scs = """
     int main() {
       return ~7;
@@ -56,7 +56,7 @@ defmodule StageTwoLexer do
 
     token_list = [complement_token, literal_token]
 
-    right_element = {Helpers.Lt.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+    right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
   end

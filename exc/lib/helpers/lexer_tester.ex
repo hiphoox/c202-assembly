@@ -1,4 +1,4 @@
-defmodule Helpers.Lt do
+defmodule Helpers.LexerTester do
     @moduledoc false
     
     def get_c_tokens_content() do

@@ -3,6 +3,6 @@ defmodule ExcTest do
     # doctest ExC
     # doctest Reader
     # doctest Lexer
-    doctest CodeGenerator
+    # doctest CodeGenerator
     
 end
