@@ -1,4 +1,4 @@
-defmodule StageOneLexer do
+defmodule StageThreeLexer do
   use ExUnit.Case
 
   setup_all do
