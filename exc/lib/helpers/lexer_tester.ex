@@ -84,7 +84,13 @@ defmodule Helpers.Lt do
         """
     end
 
-    def update_otl(otl, token, index \\ 6) do
-        List.update_at(otl, index, fn _ -> token end)
+    def insert_token_list(output_token_list, [], _index) do
+        output_token_list
+    end
+
+    def insert_token_list(output_token_list, list, index) do
+        {token, list} = List.pop_at(list, 0)
+        otl = List.insert_at(output_token_list, index, token)
+        insert_token_list(otl, list, index + 1)
     end
 end
