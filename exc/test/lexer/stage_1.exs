@@ -170,31 +170,4 @@ defmodule StageOneLexer do
       new_token = %Structs.Token{expression: "007", pos_x: nil, pos_y: nil, tag: "literal"}
       assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
     end
-
-    # test "015_S2_Valid_Negative", context do
-    #   gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
-    #   scs = """
-    #   int main() {
-    #     return -7;
-    #   }
-    #   """
-    #   new_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    #   #new_token2 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    #   assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
-    #   #assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token2), :ok}
-    # end
-
-    # test "016_S2_Valid_Bitwise", context dos
-    #   gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
-    #   scs = """
-    #   int main() {
-    #     return ~7;
-    #   }
-    #   """
-    #   new_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, tag: "minus"}
-    #   #new_token2 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    #   assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
-    #   #assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token2), :ok}
-    # end
-
 end
