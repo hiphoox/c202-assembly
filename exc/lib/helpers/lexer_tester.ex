@@ -7,7 +7,7 @@ defmodule Helpers.Lt do
         <token-list>
             <token tag="int">
                 <expression>
-                    int\s+
+                    int\\s+
                 </expression>
             </token>
             <token tag="main">
@@ -37,7 +37,7 @@ defmodule Helpers.Lt do
             </token>
             <token tag="return">
                 <expression>
-                    return\s+
+                    return\\s+
                 </expression>
             </token>
             <token tag="literal">
@@ -67,12 +67,12 @@ defmodule Helpers.Lt do
             </token>
             <token tag="plus">
                 <expression>
-                    \+
+                    \\+
                 </expression>
             </token>
             <token tag="asterix">
                 <expression>
-                    \*
+                    \\*
                 </expression>
             </token>
             <token tag="slant">
