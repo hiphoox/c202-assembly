@@ -1,4 +1,4 @@
-defmodule LexerTest do
+defmodule StageOneLexer do
     use ExUnit.Case
 
     setup_all do
@@ -22,7 +22,7 @@ defmodule LexerTest do
             %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
             %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
             # %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"},
-            # %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"},
+            # %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"},
             %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
             %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
           ]
@@ -30,14 +30,18 @@ defmodule LexerTest do
       end
 
     test "001_S1_Valid_Return0", context do
-        gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
-        scs = """
+        general_token_list = Helpers.Lt.get_c_tokens_content()
+        |> Reader._generate_general_token_list()
+        source_code_string = """
         int main() {
           return 0;
         }
         """
+        |> Reader._generate_source_code_string()
+        left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
+
         new_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
-        left_element = {Reader._generate_source_code_string(scs), gtl} |> Lexer.tokenize()
+        
         assert left_element == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
     end
 
