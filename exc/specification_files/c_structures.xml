@@ -112,6 +112,7 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
+        movl %:0, %:r
 	    addl %:2, %:r
 	    </asm>
     </structure>
@@ -128,6 +129,7 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
+        movl %:0, %:r
 	    subl %:2, %:r
 	    </asm>
     </structure>
@@ -155,7 +157,7 @@
         <class>mid-evaluation</class>
         <asm>
 	    cdq
-idivl %:r
+        idivl %:r
 	    </asm>
     </structure>
     <structure tag="multiplication-operation">
@@ -171,7 +173,8 @@ idivl %:r
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-	    imul %:0, %:r
+        movl %:0, %:r
+	    imul %:2, %:r
 	    </asm>
     </structure>
     <structure tag="mid-evaluation">
