@@ -115,16 +115,16 @@ defmodule StageOneLexer do
         assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
     end
 
-    test "007_S1_Invalid_ReturnNull" do 
-        gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
-        scs = """
-        int main() {
-          return;
-         }
-        """
-        new_token = %Structs.Token{expression: "return;", pos_x: nil, pos_y: nil, tag: "error"}
-        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {new_token, :error}
-    end
+     test "007_S1_Invalid_ReturnNull" do 
+         gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
+         scs = """
+         int main() {
+           return;
+          }
+         """
+         new_token = %Structs.Token{expression: "return;", pos_x: nil, pos_y: nil, tag: "error"}
+         assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {new_token, :error}
+     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do 
         gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
