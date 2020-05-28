@@ -7,7 +7,7 @@ defmodule StageOneReader do
       \treturn 0;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() { return 0; }"
-  end 
+      assert Reader._generate_source_code_string(scs) == "int main() {  return 0; }"
+  end
 
 end
