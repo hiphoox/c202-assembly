@@ -1,4 +1,4 @@
-defmodule ReaderTest do
+defmodule StageOneReader do
   use ExUnit.Case
 
   test "001_S1_Valid_Return0" do
