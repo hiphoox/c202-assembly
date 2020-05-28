@@ -3,7 +3,7 @@ defmodule StageOneLexer do
 
     setup_all do
         {:ok,
-         [otl:
+         [output_token_list:
           [
             %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
             %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
@@ -21,8 +21,6 @@ defmodule StageOneLexer do
             },
             %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
             %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
-            # %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"},
-            # %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"},
             %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
             %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
           ]
@@ -39,22 +37,27 @@ defmodule StageOneLexer do
         """
         |> Reader._generate_source_code_string()
         left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
-
         new_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
-        
-        assert left_element == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
+        token_list = [new_token]
+        right_element = {Helpers.Lt.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+        assert left_element == right_element
     end
 
-    # test "002_S1_Valid_Return7", context do
-    #     gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
-    #     scs = """
-    #     int main() {
-    #       return 7;
-    #     }
-    #     """
-    #     new_token = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    #     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
-    # end
+    test "002_S1_Valid_Return7", context do
+      general_token_list = Helpers.Lt.get_c_tokens_content()
+      |> Reader._generate_general_token_list()
+      source_code_string = """
+      int main() {
+       return 7;
+      }
+      """
+      |> Reader._generate_source_code_string()
+      left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
+      new_token = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
+      token_list = [new_token]
+      right_element = {Helpers.Lt.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+      assert left_element == right_element
+    end
 
     # test "003_S1_Valid_ReturnMD130", context do
     #     gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
@@ -67,22 +70,27 @@ defmodule StageOneLexer do
     #     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
     # end
     
-    # test "004_S1_Valid_ReturnBlankSpaces", context do 
-    #     gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
-    #     scs = """
-    #     int
-    #     main
-    #     (
-    #     )
-    #     {
-    #     return
-    #     1
-    #     ; 
-    #     }
-    #     """
-    #     new_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, tag: "literal"}
-    #     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.Lt.update_otl(context[:otl], new_token), :ok}
-    # end
+    test "004_S1_Valid_ReturnBlankSpaces", context do
+      general_token_list = Helpers.Lt.get_c_tokens_content()
+      |> Reader._generate_general_token_list()
+      source_code_string = """
+      int
+      main
+      (
+      )
+      {
+      return
+      1
+      ; 
+      }
+      """
+      |> Reader._generate_source_code_string()
+      left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
+      new_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, tag: "literal"}
+      token_list = [new_token]
+      right_element = {Helpers.Lt.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+      assert left_element == right_element
+    end
 
     # test "005_S1_Valid_ReturnNoLineB", context do 
     #     gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
