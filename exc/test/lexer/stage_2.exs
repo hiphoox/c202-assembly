@@ -27,7 +27,7 @@ defmodule StageOneLexer do
       ]}
     end
 
-  test "015_S2_Valid_Negative", context do
+  test "001_S2_Valid_Negative", context do
     gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
     scs = """
     int main() {
@@ -44,7 +44,7 @@ defmodule StageOneLexer do
     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
   end
 
-  test "016_S2_Valid_Bitwise", context do
+  test "002_S2_Valid_Bitwise", context do
     gtl = Reader._generate_general_token_list(Helpers.Lt.get_c_tokens_content())
     scs = """
     int main() {
