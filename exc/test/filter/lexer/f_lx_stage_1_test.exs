@@ -35,7 +35,7 @@ defmodule StageOneFilterLexer do
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main() {
-      return;
+      return 7;
     }
     """ |> Reader._generate_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
