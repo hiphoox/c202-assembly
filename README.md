@@ -33,11 +33,35 @@ Entire documentation:
   mix escript.build
   ```
 
-- **Run** it (just an example)
+- **Run** it
 
-  ```
-  ./exc examples/test.c
-  ```
+  - Run ```test.c```.
+
+    ```
+    ./exc examples/test.c 
+    ./output.o
+    ```
+
+  - Run ```test.c``` with verbose. 
+
+    ```
+    ./exc examples/test.c -v
+    ./output_o
+    ```
+
+  - Run ```test.c```; the compiled output will be **```<any-name.extension>```**
+
+    ```
+    ./exc examples/test.c -o test.o
+    ./test.o
+    ```
+
+  - Run ```test.c``` with verbose; the compiled output will be **```<any-name.extension>```**
+
+    ```
+    ./exc examples/test.c -v -o test.o
+    ./test.o
+    ```
 
   <u>Note:</u> if you want to run your own C example just pass the path to that file after ```./assembly <path-to-your-file>```
 
