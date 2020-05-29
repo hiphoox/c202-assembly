@@ -219,7 +219,7 @@ defmodule StageTwoLexer do
     """
     literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
     
-    temp_list = Helpers.LexerTester.update_otl(context[:output_token_list], 6)
+    temp_list = Helpers.LexerTester.delete_token_from_otl(context[:output_token_list], 6)
     
     right_element = {Helpers.LexerTester.insert_token_list(temp_list, [literal_token], 6), :ok}
 
