@@ -26,7 +26,7 @@
         </substructure>
         <class>program-root</class>
         <asm>
-            movl %:5, %:r
+            movq %:5, %:r
         </asm>
     </structure>
     <structure tag="int-data-type">
@@ -88,7 +88,7 @@
         <class>operation</class>
         <class>returner</class>
         <asm>
-        movl %:1, %:r
+        movq %:1, %:r
         </asm>
     </structure>
     <structure tag="return-word">
@@ -112,8 +112,8 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
-        movl %:0, %:r
-	    addl %:2, %:r
+        movq %:0, %:r
+	    add %:2, %:r
 	    </asm>
     </structure>
     <structure tag="minus-operation">
@@ -129,8 +129,8 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
-        movl %:0, %:r
-	    subl %:2, %:r
+        movq %:0, %:r
+	    sub %:2, %:r
 	    </asm>
     </structure>
     <structure tag="high-evaluation">
@@ -140,7 +140,7 @@
         </substructure>
         <class>high-evaluation</class>
         <asm>
-	    movl %:0, %:r
+	    movq %:0, %:r
 	    </asm>
     </structure>
     <structure tag="division-operation">
@@ -156,9 +156,9 @@
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-	    movl %:0, %RAX
+	    movq %:0, %RAX
         idiv %:2
-        movl %RAX, %:r
+        movq %RAX, %:r
 	    </asm>
     </structure>
     <structure tag="multiplication-operation">
@@ -174,7 +174,7 @@
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-        movl %:0, %:r
+        movq %:0, %:r
 	    imul %:2, %:r
 	    </asm>
     </structure>
@@ -185,7 +185,7 @@
         </substructure>
         <class>mid-evaluation</class>
         <asm>
-	    movl %:0, %:r
+	    movq %:0, %:r
 	    </asm>
     </structure>
     <structure tag="grouped-operation">
@@ -201,7 +201,7 @@
         </substructure>
         <class>low-evaluation</class>
         <asm>
-	    movl %:1, %:r
+	    movq %:1, %:r
 	    </asm>
     </structure>
     <structure tag="negative-operation">
@@ -215,7 +215,7 @@
         <class>low-evaluation</class>
         <asm>
 	        neg %:1
-movl %:1, %:r
+movq %:1, %:r
 	    </asm>
     </structure>
     <structure tag="complement-operation">
@@ -229,7 +229,7 @@ movl %:1, %:r
         <class>low-evaluation</class>
         <asm>
 	        not %:1
-movl %:1, %:r
+movq %:1, %:r
 	    </asm>
     </structure>
     <structure tag="negation-operation">
@@ -243,7 +243,7 @@ movl %:1, %:r
         <class>low-evaluation</class>
         <asm>
 	        notl %:1
-movl %:1, %:r
+movq %:1, %:r
 	    </asm>
     </structure>
     <structure tag="literal">
@@ -252,7 +252,7 @@ movl %:1, %:r
         </token>
         <class>low-evaluation</class>
         <asm>
-            movl $:t, %:r
+            movq $:t, %:r
 	    </asm>
     </structure>
     <structure tag="semicolon">
