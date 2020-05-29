@@ -94,8 +94,7 @@ defmodule Helpers.LexerTester do
         insert_token_list(otl, list, index + 1)
     end
     
-    def update_otl(output_token_list, index) do
-       #List.delete_at(output_token_list, index, fn _ -> token end)
+    def delete_token_from_otl(output_token_list, index) do
         List.delete_at(output_token_list, index)
     end
 end
