@@ -19,53 +19,70 @@ Entire documentation:
 
 ## Usage
 
-- **Clone** this repository
+- **Clone** this project
 
   ```
   git clone https://github.com/hiphoox/c202-assembly
   cd c202-assembly/exc
   ```
 
-- **Compile** it
+- **Compile** the project
 
   ```
   mix deps.get
   mix escript.build
   ```
 
-- **Run** it
+- **Run** the default ```test.c``` file or provide your own C file by using its path: ```./exc <path-to-your-file>```
 
-  - Run ```test.c```.
+  - Simple compilation
 
     ```
-    ./exc examples/test.c 
+    ./exc <path-to-your-file>
+    ```
+    
+  - Simple compilation with verbose: <u>this will output every compilation stage your file passes through.</u>
+
+    ```
+    ./exc <path-to-your-file> -v
+    ```
+    
+  - Compilation with a given **output name**
+
+    ```
+    ./exc <path-to-your-file> -o <random-output-file>.o
+    ```
+    
+  - Compilation with a given **output name** and verbose. 
+
+    ```
+    ./exc <path-to-your-file> -o <random-output-file>.o -v
+    ```
+
+- **Verify** the output
+
+  - Execute the output file
+
+    - Simple compilation
+
+    ```
     ./output.o
     ```
-
-  - Run ```test.c``` with verbose. 
-
-    ```
-    ./exc examples/test.c -v
-    ./output_o
-    ```
-
-  - Run ```test.c```; the compiled output will be **```<any-name.extension>```**
+    - Compilation with a given **output name**
 
     ```
-    ./exc examples/test.c -o test.o
-    ./test.o
+    ./<random-output-file>.o
     ```
 
-  - Run ```test.c``` with verbose; the compiled output will be **```<any-name.extension>```**
+  - Verify its output
 
     ```
-    ./exc examples/test.c -v -o test.o
-    ./test.o
+    echo $?
     ```
 
-  <u>Note:</u> if you want to run your own C example just pass the path to that file after ```./assembly <path-to-your-file>```
+    <u>Note:</u> if you are using the fish interactive shell (**fish**) use ```echo $status```, instead. 
 
-- **Test** it 
+- **Run tests**: if you want to find out the number of tests we ran on this project: s
 
   ```
   mix test
