@@ -9,5 +9,14 @@ defmodule StageTwoReader do
       """
       assert Reader._generate_source_code_string(scs) == "int main() {  return -7; }"
   end
+  
+  test "002_S2_Valid_Bitwise" do
+      scs = """
+      int main(){
+      return ~7;
+      }
+      """
+      assert Reader._generate_source_code_string(scs) == "int main(){ return ~7; }"
+  end
 
 end
