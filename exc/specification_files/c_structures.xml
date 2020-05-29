@@ -238,8 +238,14 @@ movl %:1, %:r
         </substructure>
         <class>low-evaluation</class>
         <asm>
-	        notl %:1
-movl %:1, %:r
+            movl %:1, %:r
+cmpl $0, %:r
+je cero
+movl $0, %:r
+jmp continue
+cero:
+movl $1, %:r
+continue:
 	    </asm>
     </structure>
     <structure tag="literal">
