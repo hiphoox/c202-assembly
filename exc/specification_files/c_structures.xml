@@ -242,7 +242,7 @@ movq %:1, %:r
         </substructure>
         <class>low-evaluation</class>
         <asm>
-	        notl %:1
+	        not %:1
 movq %:1, %:r
 	    </asm>
     </structure>
