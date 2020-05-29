@@ -9,5 +9,5 @@ defmodule Helpers.StringElements do
     def oast(), do: "OAST"      # Output Abstract Syntax Tree
 
     # Output file names
-    def asm_generated_file(), do: "exc_o.s"
+    def asm_generated_file(), do: "output.o.s"
 end
