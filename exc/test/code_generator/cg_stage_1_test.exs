@@ -27,17 +27,17 @@ defmodule CodeGeneratorTest do
       end
     
     # Regression tests
-    test "001_S1_Valid_Return7" do
-        general_token_list = Helpers.LexerTester.get_c_tokens_content()
-        |> Reader._generate_general_token_list()
-        source_code_string = """
-        int main() {
-          return 7;
-        }
-        """
-        |> Reader._generate_source_code_string()
+    # test "001_S1_Valid_Return7" do
+    #     general_token_list = Helpers.LexerTester.get_c_tokens_content()
+    #     |> Reader._generate_general_token_list()
+    #     source_code_string = """
+    #     int main() {
+    #       return 7;
+    #     }
+    #     """
+    #     |> Reader._generate_source_code_string()
         
-    end
+    # end
     # test "001_S1_Valid_Return0" do
     #     verbose = false
     #     c_tokens_path = "./specification_files/c_tokens.xml"
