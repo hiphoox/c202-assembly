@@ -30,4 +30,4 @@ exc_o
 output.o
 
 # Ignore examples dir
-examples/test_s*.c
+examples/test_s3.c
