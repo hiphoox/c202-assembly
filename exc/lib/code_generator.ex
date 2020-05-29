@@ -45,7 +45,7 @@ defmodule CodeGenerator do
   end
 
   defp get_available_registers() do
-    ["ebx", "ecx", "edx", "r8d", "r9d", "r10d", "r11d", "r12d", "r13d", "r14d", "r15d"]
+    ["r8d", "r9d", "r10d", "r11d", "r12d", "r13d", "r14d", "r15d"]
   end
 
   defp contextualize_asm(code, incoming_children_context, incoming_free_context, sibling_number) do
