@@ -22,5 +22,11 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 assembly-*.tar
 
-# Ignore assembly file
-assembly
+# Ignore exc file
+exc
+
+# Ignore compiler result file
+exc_o
+
+# Ignore examples dir
+examples/*

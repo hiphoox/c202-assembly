@@ -2,7 +2,8 @@ defmodule Helpers.ASTTraveler do
     @moduledoc """
     Travels through an Abstract Syntax Tree.
     """ 
-
+    @num_spaces "   " #3 spaces
+    
     @doc """
     Returns a string that results from the traveling of the Abstract Syntax Tree.
     ## Specs  
@@ -12,7 +13,7 @@ defmodule Helpers.ASTTraveler do
     """
     def travel(root, num) do
         if num == 0, do: "{#{root.tag} => {#{decide(root)}}}"
-        Enum.map(root.children, fn x -> if x.children == [], do: "\n" <> String.duplicate("\t", num + 1) <> "{#{x.tag} => #{x.token.expression}}", else: "\n" <> String.duplicate("\t", num + 1) <> "{#{x.tag} => #{decide(x)}}" <> "#{travel(x, num + 1)}" end)
+        Enum.map(root.children, fn x -> if x.children == [], do: "\n" <> String.duplicate(@num_spaces, num + 1) <> "{#{x.tag} => #{x.token.expression}}", else: "\n" <> String.duplicate(@num_spaces, num + 1) <> "{#{x.tag} => #{decide(x)}}" <> "#{travel(x, num + 1)}" end)
     end
     defp decide(node) do 
         if node.token == nil, do: "", else: node.token.expression
