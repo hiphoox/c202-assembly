@@ -164,11 +164,13 @@ defmodule StageThreeLexer do
     """
     literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
     asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
     literal_token2 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token3 = %Structs.Token{expression: "13", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token3 = %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
 
-    token_list = [literal_token1, asterix_token, minus_token, literal_token2]
+    token_list = [literal_token1, asterix_token, parenthesis_open_token, literal_token2, asterix_token, parenthesis_open_token, literal_token3, minus_token, literal_token2, parenthesis_close_token, parenthesis_close_token]
 
     right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
