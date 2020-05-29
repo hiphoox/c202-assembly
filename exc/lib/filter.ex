@@ -56,4 +56,12 @@ defmodule Filter do
         end
         output_abstract_syntax_tree
     end
+
+    def filter_output_file_name(file_path, "") do
+        Path.basename(file_path, ".s")
+    end
+
+    def filter_output_file_name(_file_path, output_file_name) do 
+        output_file_name
+    end
 end

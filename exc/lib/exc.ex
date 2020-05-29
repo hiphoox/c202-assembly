@@ -18,7 +18,9 @@ defmodule ExC do
   ``` 
   """
   def main(argv)                                              do
-    OptionParser.parse(argv, switches: [help: :boolean, verbose: :boolean, module: :boolean], aliases: [h: :help, v: :verbose, m: :module])
+    OptionParser.parse(argv, switches: 
+    [help: :boolean, verbose: :boolean, module: :boolean, output: :boolean], 
+    aliases: [h: :help, v: :verbose, m: :module, o: :output])
     |> filter_args
   end
 
@@ -26,8 +28,16 @@ defmodule ExC do
     IO.puts "help"
   end
 
-  defp filter_args({[verbose: true],file_path,_})             do
-    start_compilation(file_path, true)
+  defp filter_args({[output: true, verbose: true],[file_path, output_file_name],_})             do
+    start_compilation(file_path, output_file_name, true)
+  end
+
+  defp filter_args({[verbose: true, output: true],[file_path, output_file_name],_})             do
+    start_compilation(file_path, output_file_name, true)
+  end
+
+  defp filter_args({[verbose: true],[file_path],_})             do
+    start_compilation(file_path, "", true)
   end
 
   defp filter_args({[module: true], [file_path, module, all_trace], _}) do
@@ -42,8 +52,12 @@ defmodule ExC do
     end
   end
 
-  defp filter_args({_,file_path,_})                           do
-    start_compilation(file_path, false)
+  defp filter_args({[output: true],[file_path, output_file_name],_})                           do
+    start_compilation(file_path, output_file_name, false)
+  end
+
+  defp filter_args({_,[file_path],_})                           do
+    start_compilation(file_path, "", false)
   end
 
   
@@ -58,7 +72,7 @@ defmodule ExC do
     $ ./exc examples/test.c
   ``` 
   """
-  def start_compilation(file_path, verbose)                   do
+  def start_compilation(file_path, output_file_name \\ "", verbose)                   do
     Reader.read_code_and_tokens(file_path, @c_tokens_path, verbose)
     |> Lexer.tokenize()
     |> Filter.filter_lexer_output(file_path, verbose)
@@ -66,7 +80,7 @@ defmodule ExC do
     |> Filter.filter_parser_output(file_path, verbose)
     |> CodeGenerator.generate_code(verbose)
     |> Writer.write_file()
-    |> Invoker.invoke_gcc()
+    |> Invoker.invoke_gcc(output_file_name)
   end
 
   def _test(file_path \\ "examples/test.c")                   do
