@@ -148,7 +148,7 @@ defmodule Parser do
 			token: nil,
 			tag: :root,
 			children: [%{"class"=>"program-root", "tag"=>"program-root"}],
-			asm: "mov %:0, %rax"
+			asm: "movl %:0, %rax"
 		}
 	end
 	defp generate_null_ast(optional_class) do
