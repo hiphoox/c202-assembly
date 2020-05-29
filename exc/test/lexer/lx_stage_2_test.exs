@@ -217,7 +217,6 @@ defmodule StageTwoLexer do
       return 0
     }
     """
-    semicolon_token = %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"}
     literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
     
     temp_list = Helpers.LexerTester.update_otl(context[:output_token_list], 6)
@@ -227,6 +226,36 @@ defmodule StageTwoLexer do
     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
   end
   
+  test "012_S2_Invalid_Not_Missing_Const", context do
+    gtl = Reader._generate_general_token_list(Helpers.LexerTester.get_c_tokens_content())
+    scs = """
+    int main() {
+      return !;
+    }
+    """
+    negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, tag: "negation"}
+
+
+    right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], [negation_token], 6), :ok}
+
+    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+  end
   
+  test "013_S2_Invalid_Not_Bitwise_Const", context do
+    gtl = Reader._generate_general_token_list(Helpers.LexerTester.get_c_tokens_content())
+    scs = """
+    int main() {
+      return !~;
+    }
+    """
+    negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, tag: "negation"}
+	complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, tag: "complement"}    
+
+    token_list = [negation_token, complement_token]
+
+    right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+
+    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+  end
   
 end
