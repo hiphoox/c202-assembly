@@ -1,7 +1,43 @@
 defmodule CodeGeneratorTest do
     use ExUnit.Case
-    doctest CodeGenerator
+    setup_all do
+        {:ok,
+         [output_token_list:
+          [
+            %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
+            %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
+            %Structs.Token{
+              expression: "(",
+              pos_x: nil,
+              pos_y: nil,
+              tag: "parenthesis-open"
+            },
+            %Structs.Token{
+              expression: ")",
+              pos_x: nil,
+              pos_y: nil,
+              tag: "parenthesis-close"
+            },
+            %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
+            %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
+            %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
+            %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
+          ]
+        ]}
+      end
+    
     # Regression tests
+    # test "001_S1_Valid_Return7" do
+    #     general_token_list = Helpers.LexerTester.get_c_tokens_content()
+    #     |> Reader._generate_general_token_list()
+    #     source_code_string = """
+    #     int main() {
+    #       return 7;
+    #     }
+    #     """
+    #     |> Reader._generate_source_code_string()
+        
+    # end
     # test "001_S1_Valid_Return0" do
     #     verbose = false
     #     c_tokens_path = "./specification_files/c_tokens.xml"
@@ -13,7 +49,7 @@ defmodule CodeGeneratorTest do
     #     |> Filter.filter_lexer_output(file_path, verbose)
     #     |> Parser.parse(Reader.read_general_ast(c_structures_path))
     #     |> Filter.filter_parser_output(file_path, verbose)
-    #     |> CodeGenerator.generate_code(verbose)
+    #     |> CodeGenerator.generate_code(verbose)s
         
     #     assert cg == "    .section        __TEXT,__text,regular,pure_instructions\n    .p2align        4, 0x90\n    .globl _main\n  _main: \n            \nmovl $0, %ebx\nmovl %ebx, %ecx\nmovl %ecx, %ebx\nmovl %ebx, %eax\n \n    ret\n"
     # end

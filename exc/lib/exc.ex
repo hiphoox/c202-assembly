@@ -18,8 +18,7 @@ defmodule ExC do
   ``` 
   """
   def main(argv)                                              do
-    OptionParser.parse(argv, switches: [help: :boolean, verbose: :boolean], 
-                                       aliases: [h: :help, v: :verbose])
+    OptionParser.parse(argv, switches: [help: :boolean, verbose: :boolean, module: :boolean], aliases: [h: :help, v: :verbose, m: :module])
     |> filter_args
   end
 
@@ -31,9 +30,22 @@ defmodule ExC do
     start_compilation(file_path, true)
   end
 
+  defp filter_args({[module: true], [file_path, module, all_trace], _}) do
+    # all_trace is a flag to indicate if the ouput should contain
+    # only the module output or the whole compilation process trace up until that
+    # module
+    case all_trace do
+      "0"
+        -> start_module_compilation(file_path, module, false)
+      "1"
+        -> start_module_compilation(file_path, module, true)
+    end
+  end
+
   defp filter_args({_,file_path,_})                           do
     start_compilation(file_path, false)
   end
+
   
   @doc """
   Starts the compilation process given an input path.
@@ -61,6 +73,19 @@ defmodule ExC do
     otl = (Reader.read_code_and_tokens(file_path, @c_tokens_path) |> Lexer.tokenize())
     gast = Reader.read_general_ast(@c_structures_path)
     Parser.parse(otl,gast)
+  end
+
+  defp start_module_compilation(file_path, module, all_trace) do 
+    case module do
+      "r"
+        -> ModuleCompilator.start_reader(file_path, all_trace)
+      "l"
+        -> ModuleCompilator.start_lexer(file_path, all_trace)
+      "p"
+        -> ModuleCompilator.start_parser(file_path, all_trace)
+      "c"
+        -> ModuleCompilator.start_code_generator(file_path, all_trace)
+    end
   end
 
 end
