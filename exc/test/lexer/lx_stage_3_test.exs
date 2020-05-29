@@ -155,24 +155,24 @@ defmodule StageThreeLexer do
     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
   end
   
-  test "008_S3_Valid_Parenthesis", context do
-    gtl = Reader._generate_general_token_list(Helpers.LexerTester.get_c_tokens_content())
-    scs = """
-    int main() {
-      return 7 * (5 * (8 - 5));
-    }
-    """
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    literal_token2 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token3 = %Structs.Token{expression: "13", pos_x: nil, pos_y: nil, tag: "literal"}
+  # test "008_S3_Valid_Parenthesis", context do
+  #   gtl = Reader._generate_general_token_list(Helpers.LexerTester.get_c_tokens_content())
+  #   scs = """
+  #   int main() {
+  #     return 7 * (5 * (8 - 5));
+  #   }
+  #   """
+  #   literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
+  #   asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
+  #   literal_token2 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
+  #   minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
+  #   literal_token3 = %Structs.Token{expression: "13", pos_x: nil, pos_y: nil, tag: "literal"}
 
-    token_list = [literal_token1, asterix_token, minus_token, literal_token2]
+  #   token_list = [literal_token1, asterix_token, minus_token, literal_token2]
 
-    right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+  #   right_element = {Helpers.LexerTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
-  end
+  #   assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+  # end
 		
 end
