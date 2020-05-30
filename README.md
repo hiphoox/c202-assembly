@@ -42,7 +42,7 @@ Entire documentation:
     |------------ | -------------|
     |_<filepath_> | Input C source code file.|
     |-v | Enables verbose output.|
-    |-o <filename> | Sets the name for the output file to <filename>. By default it's output.o|
+    |-o _<filename_> | Sets the name for the output file to _<filename_>. By default it's output.o|
   
 - **Run** it
     
