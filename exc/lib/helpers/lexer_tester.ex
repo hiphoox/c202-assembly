@@ -1,4 +1,4 @@
-defmodule Helpers.LexerTester do
+defmodule Helpers.GeneralTester do
     @moduledoc false
 
     def insert_token_list(output_token_list, [], _index) do
