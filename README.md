@@ -32,17 +32,18 @@ Entire documentation:
   mix deps.get
   mix escript.build
   ```
-
-- **Run** it
-Usage:
+- **Learn** how to use it
+  - Usage:
     ```
     ./exc <filepath> <arguments>
     ```
-Possible arguments:
+  - Possible arguments:
 Argument | Description
 ------------ | -------------
 -v | Enables verbose output.
 -o <filename> | Sets the name for the output file. By default it's output.o
+  
+- **Run** it
     
   - Run ```test.c```.
 
