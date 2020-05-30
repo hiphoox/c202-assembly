@@ -62,10 +62,10 @@ defmodule StageOneParser do
 
     # Parser inputs (otl, gast)
     new_literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
-    output_token_list = Helpers.LexerTester.insert_token_list(
+    output_token_list = Helpers.GeneralTester.insert_token_list(
       context[:output_token_list], [new_literal_token], 6
     )
-    general_abstract_syntax_tree =  Helpers.LexerTester.get_c_structures_content()
+    general_abstract_syntax_tree =  Helpers.GeneralTester.get_c_structures_content()
                                     |> Reader._generate_general_ast()
     {status_token, oast, token_list, error_cause} = 
       Parser.parse(output_token_list, general_abstract_syntax_tree)
@@ -74,7 +74,7 @@ defmodule StageOneParser do
     program_root = List.first(root.children)
     [int_node|[main_node|[opener|[closer|[open_function|[operation|[close_function|_tail]]]]]]] = program_root.children
     
-    new_operation_children = Helpers.LexerTester.insert_token_list(operation.children, [high_evaluation_token], 1)
+    new_operation_children = Helpers.GeneralTester.insert_token_list(operation.children, [high_evaluation_token], 1)
     new_operation = %Structs.Node{asm: "movq %:1, %:r", children: new_operation_children, class: ["operation", "returner"], tag: "operation", token: nil}
 
     new_program_root = %Structs.Node{asm: "movq %:5, %:r",

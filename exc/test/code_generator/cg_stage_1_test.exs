@@ -28,7 +28,7 @@ defmodule CodeGeneratorTest do
     
     # Regression tests
     # test "001_S1_Valid_Return7" do
-    #     general_token_list = Helpers.LexerTester.get_c_tokens_content()
+    #     general_token_list = Helpers.GeneralTester.get_c_tokens_content()
     #     |> Reader._generate_general_token_list()
     #     source_code_string = """
     #     int main() {
