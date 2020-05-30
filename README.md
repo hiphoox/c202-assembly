@@ -34,7 +34,16 @@ Entire documentation:
   ```
 
 - **Run** it
-
+Usage:
+    ```
+    ./exc <filepath> <arguments>
+    ```
+Possible arguments:
+Argument | Description
+------------ | -------------
+-v | Enables verbose output.
+-o <filename> | Sets the name for the output file. By default it's output.o
+    
   - Run ```test.c```.
 
     ```
