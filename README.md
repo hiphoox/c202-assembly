@@ -39,6 +39,8 @@ Entire documentation:
 
     ```
     ./exc examples/test.c 
+    ```
+    ```
     ./output.o
     ```
 
@@ -46,13 +48,17 @@ Entire documentation:
 
     ```
     ./exc examples/test.c -v
-    ./output_o
+    ```
+    ```
+    ./output.o
     ```
 
   - Run ```test.c```; the compiled output will be **```<any-name.extension>```**
 
     ```
     ./exc examples/test.c -o test.o
+    ```
+    ```
     ./test.o
     ```
 
@@ -60,10 +66,10 @@ Entire documentation:
 
     ```
     ./exc examples/test.c -v -o test.o
+    ```
+    ```
     ./test.o
     ```
-
-  <u>Note:</u> if you want to run your own C example just pass the path to that file after ```./assembly <path-to-your-file>```
 
 - **Test** it 
 
@@ -115,7 +121,7 @@ The expressions the compiler will recognize are the following:
 
    ```c
    int main() {
-     return 2 + 3; //addition (+), multiplication (*), division (/)
+     return 2 + 3; //addition (+), subtraction (-), multiplication (*), division (/)
    }
    ```
 
