@@ -40,17 +40,11 @@ Entire documentation:
     ```
     ./exc examples/test.c 
     ```
-    ```
-    ./output.o
-    ```
 
   - Run ```test.c``` with verbose. 
 
     ```
     ./exc examples/test.c -v
-    ```
-    ```
-    ./output.o
     ```
 
   - Run ```test.c```; the compiled output will be **```<any-name.extension>```**
@@ -58,19 +52,20 @@ Entire documentation:
     ```
     ./exc examples/test.c -o test.o
     ```
-    ```
-    ./test.o
-    ```
 
   - Run ```test.c``` with verbose; the compiled output will be **```<any-name.extension>```**
 
     ```
     ./exc examples/test.c -v -o test.o
     ```
-    ```
-    ./test.o
-    ```
 
+- **Verify** output
+
+  - Execute the output file. **```(Note that the result is returned as an exit code, therefore platform restrictions on this value may apply)```**
+
+    ```
+    ./output.o
+    ```
 - **Test** it 
 
   ```
