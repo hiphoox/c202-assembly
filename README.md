@@ -32,39 +32,51 @@ Entire documentation:
   mix deps.get
   mix escript.build
   ```
-
+- **Learn** how to use it
+  - Usage:
+    ```
+    ./exc <filepath> [-v] [-o <filename>]
+    ```
+  - Possible arguments:
+    |Argument | Description|
+    |------------ | -------------|
+    |_<filepath_> | Input C source code file.|
+    |-v | Enables verbose output.|
+    |-o _<filename_> | Sets the name for the output file to _<filename_>. By default it's output.o|
+  
 - **Run** it
-
+    
   - Run ```test.c```.
 
     ```
     ./exc examples/test.c 
-    ./output.o
     ```
 
   - Run ```test.c``` with verbose. 
 
     ```
     ./exc examples/test.c -v
-    ./output_o
     ```
 
   - Run ```test.c```; the compiled output will be **```<any-name.extension>```**
 
     ```
     ./exc examples/test.c -o test.o
-    ./test.o
     ```
 
   - Run ```test.c``` with verbose; the compiled output will be **```<any-name.extension>```**
 
     ```
     ./exc examples/test.c -v -o test.o
-    ./test.o
     ```
 
-  <u>Note:</u> if you want to run your own C example just pass the path to that file after ```./assembly <path-to-your-file>```
+- **Verify** output
 
+  - Execute the output file. **```(Note that the result is returned as an exit code, therefore platform restrictions on this value may apply)```**
+
+    ```
+    ./output.o
+    ```
 - **Test** it 
 
   ```
@@ -115,7 +127,7 @@ The expressions the compiler will recognize are the following:
 
    ```c
    int main() {
-     return 2 + 3; //addition (+), multiplication (*), division (/)
+     return 2 + 3; //addition (+), subtraction (-), multiplication (*), division (/)
    }
    ```
 
