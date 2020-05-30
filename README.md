@@ -40,7 +40,7 @@ Entire documentation:
   - Possible arguments:
     |Argument | Description|
     |------------ | -------------|
-    |<filepath> | Input c source file.|
+    |&ltfilepath&gt | Input c source file.|
     |-v | Enables verbose output.|
     |-o <filename> | Sets the name for the output file to <filename>. By default it's output.o|
   
