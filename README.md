@@ -35,13 +35,14 @@ Entire documentation:
 - **Learn** how to use it
   - Usage:
     ```
-    ./exc <filepath> <arguments>
+    ./exc <filepath> [-v] [-o <filename>]
     ```
   - Possible arguments:
     |Argument | Description|
     |------------ | -------------|
+    |<filepath> | Input c source file.|
     |-v | Enables verbose output.|
-    |-o <filename> | Sets the name for the output file. By default it's output.o|
+    |-o <filename> | Sets the name for the output file to <filename>. By default it's output.o|
   
 - **Run** it
     
