@@ -128,7 +128,7 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>program-root</class>
                 <asm>
-                    mov %:5, %:r
+                    movq %:5, %:r
                 </asm>
             </structure>
             <structure tag="int-data-type">
@@ -190,7 +190,7 @@ defmodule Helpers.LexerTester do
                 <class>operation</class>
                 <class>returner</class>
                 <asm>
-                mov %:1, %:r
+                movq %:1, %:r
                 </asm>
             </structure>
             <structure tag="return-word">
@@ -214,8 +214,8 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>high-evaluation</class>
                 <asm>
-                mov %:0, %:r
-                addl %:2, %:r
+                movq %:0, %:r
+                add %:2, %:r
                 </asm>
             </structure>
             <structure tag="minus-operation">
@@ -231,8 +231,8 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>high-evaluation</class>
                 <asm>
-                mov %:0, %:r
-                subl %:2, %:r
+                movq %:0, %:r
+                sub %:2, %:r
                 </asm>
             </structure>
             <structure tag="high-evaluation">
@@ -242,7 +242,7 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>high-evaluation</class>
                 <asm>
-                mov %:0, %:r
+                movq %:0, %:r
                 </asm>
             </structure>
             <structure tag="division-operation">
@@ -258,9 +258,10 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>mid-evaluation</class>
                 <asm>
-                mov %:0, %RAX
+                movq %:0, %rax
+                movq $0, %rdx
                 idiv %:2
-                mov %RAX, %:r
+                movq %rax, %:r
                 </asm>
             </structure>
             <structure tag="multiplication-operation">
@@ -276,7 +277,7 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>mid-evaluation</class>
                 <asm>
-                mov %:0, %:r
+                movq %:0, %:r
                 imul %:2, %:r
                 </asm>
             </structure>
@@ -287,7 +288,7 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>mid-evaluation</class>
                 <asm>
-                mov %:0, %:r
+                movq %:0, %:r
                 </asm>
             </structure>
             <structure tag="grouped-operation">
@@ -303,7 +304,7 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>low-evaluation</class>
                 <asm>
-                mov %:1, %:r
+                movq %:1, %:r
                 </asm>
             </structure>
             <structure tag="negative-operation">
@@ -317,7 +318,7 @@ defmodule Helpers.LexerTester do
                 <class>low-evaluation</class>
                 <asm>
                     neg %:1
-        mov %:1, %:r
+        movq %:1, %:r
                 </asm>
             </structure>
             <structure tag="complement-operation">
@@ -331,7 +332,7 @@ defmodule Helpers.LexerTester do
                 <class>low-evaluation</class>
                 <asm>
                     not %:1
-        mov %:1, %:r
+        movq %:1, %:r
                 </asm>
             </structure>
             <structure tag="negation-operation">
@@ -344,8 +345,8 @@ defmodule Helpers.LexerTester do
                 </substructure>
                 <class>low-evaluation</class>
                 <asm>
-                    notl %:1
-        mov %:1, %:r
+                    not %:1
+        movq %:1, %:r
                 </asm>
             </structure>
             <structure tag="literal">
@@ -354,7 +355,7 @@ defmodule Helpers.LexerTester do
                 </token>
                 <class>low-evaluation</class>
                 <asm>
-                    mov $:t, %:r
+                    movq $:t, %:r
                 </asm>
             </structure>
             <structure tag="semicolon">
