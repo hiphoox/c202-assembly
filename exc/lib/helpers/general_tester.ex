@@ -15,6 +15,21 @@ defmodule Helpers.GeneralTester do
         List.delete_at(output_token_list, index)
     end
     
+    def start_general_test_compilation(source_code_string) do
+    	general_abstract_syntax_tree = get_c_structures_content() 
+    	|> Reader._generate_general_ast()
+        general_token_list = get_c_tokens_content()
+        |> Reader._generate_general_token_list()
+        verbose = false
+        Lexer.tokenize({source_code_string, general_token_list})
+        |> Filter.filter_lexer_output("", verbose)
+        |> Parser.parse(general_abstract_syntax_tree)
+        |> Filter.filter_parser_output("", verbose)
+        |> CodeGenerator.generate_code(verbose)
+        |> Writer.write_file()
+        |> Invoker.invoke_gcc("")
+    end
+    
     def get_c_tokens_content() do
         """
         <?xml version="1.0"?>

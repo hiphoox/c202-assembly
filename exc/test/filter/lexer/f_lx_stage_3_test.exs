@@ -1,4 +1,4 @@
-defmodule StageOneFilterLexer do
+defmodule StageThreeFilterLexer do
   use ExUnit.Case
 
   # boilerplate code -> template
@@ -28,3 +28,5 @@ defmodule StageOneFilterLexer do
         ]
       ]}
     end
+    
+end
