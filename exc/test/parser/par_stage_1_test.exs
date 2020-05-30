@@ -54,19 +54,37 @@ defmodule StageOneParser do
 
   test "001_S1_Valid_Return0", context do
     # Test token
-    literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token = %Structs.Node{asm: "movq $:t, %:r", children: [], class: "low-evaluation", tag: "literal", token: %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}}
+    mid_evaluation_token = %Structs.Node{asm: "movq %:0, %:r", children: [literal_token], 
+      class: "mid-evaluation", tag: "mid-evaluation", token: nil}
+    high_evaluation_token = %Structs.Node{asm: "movq %:0, %:r", children:
+    [mid_evaluation_token], class: "high-evaluation", tag: "high-evaluation", token: nil}
 
     # Parser inputs (otl, gast)
+    new_literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
     output_token_list = Helpers.LexerTester.insert_token_list(
-      context[:output_token_list], [literal_token], 6
+      context[:output_token_list], [new_literal_token], 6
     )
     general_abstract_syntax_tree =  Helpers.LexerTester.get_c_structures_content()
                                     |> Reader._generate_general_ast()
     {status_token, oast, token_list, error_cause} = 
       Parser.parse(output_token_list, general_abstract_syntax_tree)
 
+    root = List.first(context[:oast])
+    program_root = List.first(root.children)
+    [int_node|[main_node|[opener|[closer|[open_function|[operation|[close_function|_tail]]]]]]] = program_root.children
+    
+    new_operation_children = Helpers.LexerTester.insert_token_list(operation.children, [high_evaluation_token], 1)
+    new_operation = %Structs.Node{asm: "movq %:1, %:r", children: new_operation_children, class: ["operation", "returner"], tag: "operation", token: nil}
+
+    new_program_root = %Structs.Node{asm: "movq %:5, %:r",
+      children: [
+        int_node, main_node, opener, closer, open_function, new_operation, close_function
+      ], class: "program-root", tag: "function", token: nil}
+    new_root = %Structs.Node{asm: "movq %:0, %rax", children: [new_program_root], class: :root, tag: :root, token: nil}
+
     # Parser outputs
-    assert {status_token, oast, token_list, error_cause} == {:ok, List.first(context[:oast]), [], nil}
+    assert {status_token, oast, token_list, error_cause} == {:ok, new_root, [], nil}
   end
 
 end
