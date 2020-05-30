@@ -14,4 +14,8 @@ defmodule Invoker do
         System.cmd("gcc", [assembly_source_code_path, "-o#{output_name}"])
         File.rm!(assembly_source_code_path)
     end
+
+    def invoke_test_output() do
+        "./output.o;echo $?" |> String.to_charlist |> :os.cmd        
+    end
 end
