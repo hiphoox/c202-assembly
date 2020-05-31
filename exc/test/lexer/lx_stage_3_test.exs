@@ -5,8 +5,18 @@ defmodule StageThreeLexer do
       {:ok,
        [output_token_list:
         [
-          %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
-          %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
+          %Structs.Token{
+            expression: "int", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "int"
+          },
+          %Structs.Token{
+            expression: "main", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "main"
+          },
           %Structs.Token{
             expression: "(",
             pos_x: nil,
@@ -19,16 +29,38 @@ defmodule StageThreeLexer do
             pos_y: nil,
             tag: "parenthesis-close"
           },
-          %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
-          %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
-          %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
-          %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
+          %Structs.Token{
+            expression: "{", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "bracket-open"
+          },
+          %Structs.Token{
+            expression: "return", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "return"
+          },
+          %Structs.Token{
+            expression: ";", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "semicolon"
+          },
+          %Structs.Token{
+            expression: "}", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "bracket-close"
+          }
         ]
       ]}
     end
 
   test "001_S3_Valid_Add", context do
-    gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+    gtl = Reader._generate_general_token_list(
+      Helpers.GeneralTester.get_c_tokens_content()
+    )
     scs = """
     int main() {
       return 4 + 7;

@@ -2,30 +2,60 @@ defmodule StageOneLexer do
     use ExUnit.Case
 
     setup_all do
-        {:ok,
-         [output_token_list:
-          [
-            %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
-            %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
-            %Structs.Token{
-              expression: "(",
-              pos_x: nil,
-              pos_y: nil,
-              tag: "parenthesis-open"
-            },
-            %Structs.Token{
-              expression: ")",
-              pos_x: nil,
-              pos_y: nil,
-              tag: "parenthesis-close"
-            },
-            %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
-            %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
-            %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
-            %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
-          ]
-        ]}
-      end
+      {:ok,
+       [output_token_list:
+        [
+          %Structs.Token{
+            expression: "int", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "int"
+          },
+          %Structs.Token{
+            expression: "main", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "main"
+          },
+          %Structs.Token{
+            expression: "(",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "parenthesis-open"
+          },
+          %Structs.Token{
+            expression: ")",
+            pos_x: nil,
+            pos_y: nil,
+            tag: "parenthesis-close"
+          },
+          %Structs.Token{
+            expression: "{", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "bracket-open"
+          },
+          %Structs.Token{
+            expression: "return", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "return"
+          },
+          %Structs.Token{
+            expression: ";", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "semicolon"
+          },
+          %Structs.Token{
+            expression: "}", 
+            pos_x: nil, 
+            pos_y: nil, 
+            tag: "bracket-close"
+          }
+        ]
+      ]}
+    end
 
     test "001_S1_Valid_Return0", context do
         general_token_list = Helpers.GeneralTester.get_c_tokens_content()
