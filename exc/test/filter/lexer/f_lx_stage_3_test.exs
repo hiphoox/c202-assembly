@@ -35,7 +35,7 @@ defmodule StageThreeFilterLexer do
 
   test "001_S3_Valid_Add", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -54,7 +54,7 @@ defmodule StageThreeFilterLexer do
       tag: "literal"}
     token_list = [literal_token1, plus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -63,7 +63,7 @@ defmodule StageThreeFilterLexer do
     
   test "002_S3_Valid_SubstractPositive", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -82,7 +82,7 @@ defmodule StageThreeFilterLexer do
       tag: "literal"}
     token_list = [literal_token1, minus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -91,7 +91,7 @@ defmodule StageThreeFilterLexer do
 
   test "003_S3_Valid_SubstractNegative", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -111,7 +111,7 @@ defmodule StageThreeFilterLexer do
     token_list = [minus_token, literal_token1, minus_token, minus_token, 
       literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -120,7 +120,7 @@ defmodule StageThreeFilterLexer do
 
   test "004_S3_Valid_DivPositive", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -139,7 +139,7 @@ defmodule StageThreeFilterLexer do
       tag: "literal"}
     token_list = [literal_token1, slant_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -148,7 +148,7 @@ defmodule StageThreeFilterLexer do
 
   test "005_S3_Valid_DivNegative", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -170,7 +170,7 @@ defmodule StageThreeFilterLexer do
     token_list = [minus_token, literal_token1, slant_token, minus_token, 
       literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -179,7 +179,7 @@ defmodule StageThreeFilterLexer do
 
   test "006_S3_Valid_MultPositive", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -198,7 +198,7 @@ defmodule StageThreeFilterLexer do
       tag: "literal"}
     token_list = [literal_token1, asterix_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -207,7 +207,7 @@ defmodule StageThreeFilterLexer do
 
   test "007_S3_Valid_MultNeg", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -228,7 +228,7 @@ defmodule StageThreeFilterLexer do
       tag: "literal"}
     token_list = [literal_token1, asterix_token, minus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -237,7 +237,7 @@ defmodule StageThreeFilterLexer do
 
   test "008_S3_Valid_Parenthesis", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -266,7 +266,7 @@ defmodule StageThreeFilterLexer do
       literal_token2, asterix_token, parenthesis_open_token, literal_token3, 
       minus_token, literal_token2, parenthesis_close_token, parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -275,7 +275,7 @@ defmodule StageThreeFilterLexer do
 
   test "009_S3_Valid_SimpleParenthesis", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -304,7 +304,7 @@ defmodule StageThreeFilterLexer do
       literal_token2, plus_token, literal_token3,
     parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -313,7 +313,7 @@ defmodule StageThreeFilterLexer do
 
 test "010_S3_Valid_Precedence", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -342,7 +342,7 @@ test "010_S3_Valid_Precedence", context do
     token_list = [literal_token1, asterix_token, literal_token2, plus_token, 
     literal_token3, slant_token, literal_token4]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -351,7 +351,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "011_S3_Valid_Bitwise_NoParenthesis", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -372,7 +372,7 @@ test "010_S3_Valid_Precedence", context do
       tag: "literal"}
     token_list = [complement_token, literal_token1, minus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -381,7 +381,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "012_S3_Valid_BItwise_Parenthesis", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -407,7 +407,7 @@ test "010_S3_Valid_Precedence", context do
     token_list = [complement_token, parenthesis_open_token, literal_token1, 
     minus_token, literal_token2, parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -416,7 +416,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "013_S3_Valid_Multiple Parenthesis", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -458,7 +458,7 @@ test "010_S3_Valid_Precedence", context do
     parenthesis_open_token, literal_token4, minus_token, literal_token5, 
     parenthesis_close_token, parenthesis_close_token, parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -467,7 +467,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "014_S3_Invalid_Div_Missing_Operator", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -484,7 +484,7 @@ test "010_S3_Valid_Precedence", context do
     
     token_list = [literal_token1, slant_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
         incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -493,7 +493,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "015_S3_Invalid_Sum_Missing_Operator", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -511,7 +511,7 @@ test "010_S3_Valid_Precedence", context do
     
     token_list = [literal_token1, plus_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
         incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -520,7 +520,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "016_S3_Invalid_Parenthesis_Middle_Operator", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -547,7 +547,7 @@ test "010_S3_Valid_Precedence", context do
     token_list = [parenthesis_open_token, literal_token1, plus_token, 
     literal_token2, parenthesis_close_token, literal_token3]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -556,7 +556,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "017_S3_Invalid_Neg_Missing_Operator", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -581,7 +581,7 @@ test "010_S3_Valid_Precedence", context do
     token_list = [parenthesis_open_token, literal_token1, plus_token, 
     literal_token2, parenthesis_close_token, minus_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
@@ -590,7 +590,7 @@ test "010_S3_Valid_Precedence", context do
 
   test "018_S3_Invalid_Missing_Parenthesis", context do
     test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  Helpers.GeneralTester.get_c_tokens_content() 
+    general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
@@ -620,7 +620,7 @@ test "010_S3_Valid_Precedence", context do
     plus_token, literal_token2, parenthesis_close_token, slant_token, 
     literal_token3]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(
+    output_token_list = GeneralTester.insert_token_list(
       incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 

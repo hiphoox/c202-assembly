@@ -58,7 +58,7 @@ defmodule StageOneLexer do
     end
 
     test "001_S1_Valid_Return0", context do
-        general_token_list = Helpers.GeneralTester.get_c_tokens_content()
+        general_token_list = GeneralTester.get_c_tokens_content()
         |> Reader._generate_general_token_list()
         source_code_string = """
         int main() {
@@ -69,12 +69,12 @@ defmodule StageOneLexer do
         left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
         new_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
         token_list = [new_token]
-        right_element = {Helpers.GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+        right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
         assert left_element == right_element
     end
 
     test "002_S1_Valid_Return7", context do
-      general_token_list = Helpers.GeneralTester.get_c_tokens_content()
+      general_token_list = GeneralTester.get_c_tokens_content()
       |> Reader._generate_general_token_list()
       source_code_string = """
       int main() {
@@ -85,23 +85,23 @@ defmodule StageOneLexer do
       left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
       new_token = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
       token_list = [new_token]
-      right_element = {Helpers.GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+      right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
       assert left_element == right_element
     end
 
     test "003_S1_Valid_ReturnMD130", context do
-        gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+        gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
         scs = """
         int main() {
           return 130;
         }
         """
         new_token = %Structs.Token{expression: "130", pos_x: nil, pos_y: nil, tag: "literal"}
-        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
+        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
     end
     
     test "004_S1_Valid_ReturnBlankSpaces", context do
-      general_token_list = Helpers.GeneralTester.get_c_tokens_content()
+      general_token_list = GeneralTester.get_c_tokens_content()
       |> Reader._generate_general_token_list()
       source_code_string = """
       int
@@ -118,21 +118,21 @@ defmodule StageOneLexer do
       left_element = {source_code_string, general_token_list} |> Lexer.tokenize()
       new_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, tag: "literal"}
       token_list = [new_token]
-      right_element = {Helpers.GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
+      right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
       assert left_element == right_element
     end
 
     test "005_S1_Valid_ReturnNoLineB", context do 
-        gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+        gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
         scs = """
         int main(){return 1;}
         """
         new_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, tag: "literal"}
-        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
+        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
     end
 
     test "006_S1_Valid_ReturnSpaceChars", context do 
-        gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+        gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
         scs = """
         int	main    () 	{
 
@@ -142,11 +142,11 @@ defmodule StageOneLexer do
           }
         """
         new_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, tag: "literal"}
-        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
+        assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
     end
 
      test "007_S1_Invalid_ReturnNull" do 
-         gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+         gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
          scs = """
          int main() {
            return;
@@ -157,7 +157,7 @@ defmodule StageOneLexer do
      end
 
     test "011_S1_Invalid_ReturnNoSpaces" do 
-        gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+        gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
         scs = """
         intmain() {
           return 44;
@@ -169,7 +169,7 @@ defmodule StageOneLexer do
     end
 
     test "012_S1_Invalid_ReturnComma" do 
-      gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+      gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
       scs = """
       int main() {
         return 2,
@@ -180,7 +180,7 @@ defmodule StageOneLexer do
     end
 
     test "013_S1_Invalid_ReturnCaps" do
-        gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+        gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
         scs = """
         Int main() {
           Return 2;
@@ -191,13 +191,13 @@ defmodule StageOneLexer do
     end
 
     test "014_S1_Valid_ReturnPrecZero", context do
-      gtl = Reader._generate_general_token_list(Helpers.GeneralTester.get_c_tokens_content())
+      gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
       scs = """
       int main() {
         return 007;
       }
       """
       new_token = %Structs.Token{expression: "007", pos_x: nil, pos_y: nil, tag: "literal"}
-      assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {Helpers.GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
+      assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == {GeneralTester.insert_token_list(context[:output_token_list], [new_token], 6), :ok}
     end
 end

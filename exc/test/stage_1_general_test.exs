@@ -7,7 +7,7 @@ defmodule StageOneGeneral do
     	return 0;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '0\n'
     end
@@ -18,7 +18,7 @@ defmodule StageOneGeneral do
     	return 7;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '7\n'
     end
@@ -29,7 +29,7 @@ defmodule StageOneGeneral do
         return 130;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '130\n'
     end
@@ -46,7 +46,7 @@ defmodule StageOneGeneral do
         ;
         }
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '1\n'
     end
@@ -55,7 +55,7 @@ defmodule StageOneGeneral do
     	"""
     	int main(){return 1;}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '1\n'
     end
@@ -69,7 +69,7 @@ defmodule StageOneGeneral do
         return       1       ;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '1\n'
     end
@@ -80,7 +80,7 @@ defmodule StageOneGeneral do
     #      return;
     #     }
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -91,7 +91,7 @@ defmodule StageOneGeneral do
     #         return 1;
     #     }
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -102,7 +102,7 @@ defmodule StageOneGeneral do
     #         return 1;
     #     }   
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -113,7 +113,7 @@ defmodule StageOneGeneral do
     #         return 13;
     #     }   
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -124,7 +124,7 @@ defmodule StageOneGeneral do
     #         return 44;
     #     }   
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -135,7 +135,7 @@ defmodule StageOneGeneral do
     #         return 25,
     #     }  
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -146,7 +146,7 @@ defmodule StageOneGeneral do
     #         Return 1;
     #     }  
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end
@@ -157,7 +157,7 @@ defmodule StageOneGeneral do
     #         return 007;
     #     }   
     #     """
-    #     |> Helpers.GeneralTester.start_general_test_compilation
+    #     |> GeneralTester.start_general_test_compilation
     #     exc_output = Invoker.invoke_test_output()
     #     assert exc_output == 'error message'
     # end

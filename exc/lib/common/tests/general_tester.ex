@@ -1,4 +1,4 @@
-defmodule Helpers.GeneralTester do
+defmodule GeneralTester do
   @moduledoc false
 
   def insert_token_list(output_token_list, [], _index)        do

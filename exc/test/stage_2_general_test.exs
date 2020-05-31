@@ -7,7 +7,7 @@ defmodule StageTwoGeneral do
     	return -7;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '249\n'
     end
@@ -18,7 +18,7 @@ defmodule StageTwoGeneral do
     	return ~7;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '248\n'
     end
@@ -29,7 +29,7 @@ defmodule StageTwoGeneral do
     	return ~0;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '255\n'
     end
@@ -40,7 +40,7 @@ defmodule StageTwoGeneral do
     	return !7;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '248\n'
     end
@@ -51,7 +51,7 @@ defmodule StageTwoGeneral do
     	return !0;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '255\n'
     end
@@ -62,7 +62,7 @@ defmodule StageTwoGeneral do
     	return -~7;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '8\n'
     end
@@ -73,7 +73,7 @@ defmodule StageTwoGeneral do
     	return !~0;
     	}
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '0\n'
     end

@@ -7,7 +7,7 @@ defmodule StageThreeGeneral do
             return 4 + 7;
         }
     	"""
-    	|> Helpers.GeneralTester.start_general_test_compilation
+    	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '11\n'
     end
@@ -18,7 +18,7 @@ defmodule StageThreeGeneral do
             return 4 - 17;
         }       
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '243\n'
     end
@@ -29,7 +29,7 @@ defmodule StageThreeGeneral do
             return -7 - -8;
         }       
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '1\n'
     end
@@ -40,7 +40,7 @@ defmodule StageThreeGeneral do
             return 18 / 3;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '6\n'
     end
@@ -51,7 +51,7 @@ defmodule StageThreeGeneral do
             return -8 / -4;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '2\n'
     end
@@ -62,7 +62,7 @@ defmodule StageThreeGeneral do
             return 11 * 17;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '187\n'
     end
@@ -73,7 +73,7 @@ defmodule StageThreeGeneral do
             return 5 * -13;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '191\n'
     end
@@ -84,7 +84,7 @@ defmodule StageThreeGeneral do
             return 7 * (5 * (8 - 5));
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '105\n'
     end
@@ -95,7 +95,7 @@ defmodule StageThreeGeneral do
             return 2 * (5 + 3);
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '16\n'
     end
@@ -106,7 +106,7 @@ defmodule StageThreeGeneral do
             return 2 * 5 + 21 / 9;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '12\n'
     end
@@ -117,7 +117,7 @@ defmodule StageThreeGeneral do
             return ~7 - 4;
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '244\n'
     end
@@ -128,7 +128,7 @@ defmodule StageThreeGeneral do
             return ~(7 + 4);
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '244\n'
     end
@@ -139,7 +139,7 @@ defmodule StageThreeGeneral do
             return ~((7 + 4) / (8 * (5 - 3)));
         }
         """
-        |> Helpers.GeneralTester.start_general_test_compilation
+        |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '255\n'
     end
