@@ -1,4 +1,4 @@
-defmodule StageThreeGeneral do 
+defmodule StageThreeGeneral do
     use ExUnit.Case
 	
     test "001_S1_Valid_Add" do 
