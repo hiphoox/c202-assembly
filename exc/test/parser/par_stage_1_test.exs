@@ -7,22 +7,20 @@ defmodule StageOneParser do
         [
           %Structs.Token{expression: "int", pos_x: nil, pos_y: nil, tag: "int"},
           %Structs.Token{expression: "main", pos_x: nil, pos_y: nil, tag: "main"},
-          %Structs.Token{
-            expression: "(",
-            pos_x: nil,
-            pos_y: nil,
+          %Structs.Token{expression: "(", pos_x: nil, pos_y: nil,
             tag: "parenthesis-open"
           },
-          %Structs.Token{
-            expression: ")",
-            pos_x: nil,
-            pos_y: nil,
+          %Structs.Token{expression: ")", pos_x: nil, pos_y: nil,
             tag: "parenthesis-close"
           },
-          %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
-          %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
-          %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
-          %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
+          %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, 
+            tag: "bracket-open"},
+          %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, 
+            tag: "return"},
+          %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, 
+            tag: "semicolon"},
+          %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, 
+            tag: "bracket-close"}
         ],
         oast:
         [
@@ -54,14 +52,31 @@ defmodule StageOneParser do
 
   test "001_S1_Valid_Return0", context do
     # Test token
-    literal_token = %Structs.Node{asm: "movq $:t, %:r", children: [], class: "low-evaluation", tag: "literal", token: %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}}
-    mid_evaluation_token = %Structs.Node{asm: "movq %:0, %:r", children: [literal_token], 
-      class: "mid-evaluation", tag: "mid-evaluation", token: nil}
-    high_evaluation_token = %Structs.Node{asm: "movq %:0, %:r", children:
-    [mid_evaluation_token], class: "high-evaluation", tag: "high-evaluation", token: nil}
+    literal_token = %Structs.Node{
+      asm: "movq $:t, %:r", 
+      children: [], 
+      class: "low-evaluation", 
+      tag: "literal", 
+      token: %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
+    }
+    mid_evaluation_token = %Structs.Node{
+      asm: "movq %:0, %:r", 
+      children: [literal_token], 
+      class: "mid-evaluation", 
+      tag: "mid-evaluation", 
+      token: nil
+    }
+    high_evaluation_token = %Structs.Node{
+      asm: "movq %:0, %:r", 
+      children: [mid_evaluation_token], 
+      class: "high-evaluation", 
+      tag: "high-evaluation", 
+      token: nil
+    }
 
     # Parser inputs (otl, gast)
-    new_literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
+    new_literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     output_token_list = Helpers.GeneralTester.insert_token_list(
       context[:output_token_list], [new_literal_token], 6
     )
@@ -72,16 +87,36 @@ defmodule StageOneParser do
 
     root = List.first(context[:oast])
     program_root = List.first(root.children)
-    [int_node|[main_node|[opener|[closer|[open_function|[operation|[close_function|_tail]]]]]]] = program_root.children
+    [int_node|[main_node|[opener|[closer|[open_function|[operation|
+      [close_function|_tail]]]]]]] = program_root.children
     
-    new_operation_children = Helpers.GeneralTester.insert_token_list(operation.children, [high_evaluation_token], 1)
-    new_operation = %Structs.Node{asm: "movq %:1, %:r", children: new_operation_children, class: ["operation", "returner"], tag: "operation", token: nil}
+    new_operation_children = Helpers.GeneralTester.insert_token_list(
+      operation.children, [high_evaluation_token], 1
+    )
+    new_operation = %Structs.Node{
+      asm: "movq %:1, %:r", 
+      children: new_operation_children, 
+      class: ["operation", "returner"], tag: "operation", 
+      token: nil
+    }
 
-    new_program_root = %Structs.Node{asm: "movq %:5, %:r",
+    new_program_root = %Structs.Node{
+      asm: "movq %:5, %:r",
       children: [
-        int_node, main_node, opener, closer, open_function, new_operation, close_function
-      ], class: "program-root", tag: "function", token: nil}
-    new_root = %Structs.Node{asm: "movq %:0, %rax", children: [new_program_root], class: :root, tag: :root, token: nil}
+        int_node, main_node, opener, closer, open_function, new_operation, 
+        close_function
+      ], 
+      class: "program-root", 
+      tag: "function", 
+      token: nil
+    }
+    new_root = %Structs.Node{
+      asm: "movq %:0, %rax", 
+      children: [new_program_root], 
+      class: :root, 
+      tag: :root, 
+      token: nil
+    }
 
     # Parser outputs
     assert {status_token, oast, token_list, error_cause} == {:ok, new_root, [], nil}

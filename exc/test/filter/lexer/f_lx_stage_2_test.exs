@@ -341,7 +341,8 @@ defmodule StageTwoFilterLexer do
     
     token_list = [negation_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side

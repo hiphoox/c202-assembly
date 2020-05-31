@@ -42,5 +42,4 @@ defmodule ModuleCompilator do
     |> CodeGenerator.generate_code(all_trace)
     |> IO.inspect(label: "Code generated")
   end
-  
 end

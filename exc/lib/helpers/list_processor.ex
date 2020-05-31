@@ -7,5 +7,4 @@ defmodule Helpers.TokenListProcessor do
     def generate_list_of_expressions(gtl) do
         proc_list(gtl)
     end
-    
 end

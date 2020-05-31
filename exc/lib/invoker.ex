@@ -10,7 +10,9 @@ defmodule Invoker do
 
     """
     def invoke_gcc(assembly_source_code_path, output_file_name) do
-        output_name = Filter.filter_output_file_name(assembly_source_code_path, output_file_name)
+        output_name = Filter.filter_output_file_name(
+            assembly_source_code_path, output_file_name
+        )
         System.cmd("gcc", [assembly_source_code_path, "-o#{output_name}"])
         File.rm!(assembly_source_code_path)
     end

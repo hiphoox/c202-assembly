@@ -7,7 +7,8 @@ defmodule Helpers.ErrorDetecter do
         reason_msg  = ""
         location_msg = "#{file_path}"
 
-        Helpers.Printer._print_error(class_msg, fault_element_msg, reason_msg, location_msg)
+        Helpers.Printer._print_error(class_msg, fault_element_msg, reason_msg, 
+            location_msg)
     end
 
     def parser_error(:token_missing_error, _, error_cause, file_path) do
@@ -27,5 +28,4 @@ defmodule Helpers.ErrorDetecter do
 
         Helpers.Printer._print_error(class_msg, fault_element, reason_msg, location)
     end
-
 end

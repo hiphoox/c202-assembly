@@ -7,14 +7,16 @@ defmodule Reader do
     Reads the source code from a file path and a general token list from an XML file. 
     ## Specs  
     ```source_code_path``` is the path to the file to be compiled.          
-    ```tokens_path``` is the path to an XML file containing the target language's valid token list.
+    ```tokens_path``` is the path to an XML file containing the target language's 
+        valid token list.
 
     Generates the following output:
     + Source Code String (SCS): source code contained in a string.
     + General Token List (GTL): list of target language valid tokens.
     
     ## Examples
-        iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c', "specification_files/c_tokens.xml")
+        iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c', 
+        "specification_files/c_tokens.xml")
     """
     def read_code_and_tokens(source_code_path, tokens_path, verbose \\ false) do
         scs = read_source_code_string(source_code_path)
@@ -93,16 +95,25 @@ defmodule Reader do
     end
 
     defp add_error_token(gtl)                               do
-        gtl ++ [%Structs.Token{tag: "error", expression: "\\S+", pos_y: nil, pos_x: nil}]
+        gtl ++ [%Structs.Token{
+                    tag: "error",
+                    expression: "\\S+",
+                    pos_y: nil,
+                    pos_x: nil
+                    }
+                ]
     end
 
     @doc """
-    Reads the structure of the target language's grammar production rules from an XML file.
+    Reads the structure of the target language's grammar production rules from 
+        an XML file.
     ## Specs  
-    ```grammar_prod_rules_path``` is the path to an XML file containing the target language's grammar production rules.
+    ```grammar_prod_rules_path``` is the path to an XML file containing the 
+        target language's grammar production rules.
 
     Generates the following output:
-    + General Abstract Syntax Treee (GAST): list containing the target language grammar production rules.
+    + General Abstract Syntax Treee (GAST): list containing the target language 
+        grammar production rules.
     
     ## Examples
         # iex> gast = Reader.read_general_ast(grammar_prod_rules_path)

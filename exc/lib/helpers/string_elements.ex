@@ -1,11 +1,11 @@
-defmodule Helpers.StringElements do 
+defmodule Helpers.StringElements do
     @moduledoc false
     
-    # Compiler general name modules 
-    def scs(), do: "SCS"        # Source Code String    
+    # Compiler general name modules
+    def scs(), do: "SCS"        # Source Code String
     def gtl(), do: "GTL"        # General Token List
     def otl(), do: "OTL"        # Output Token List
-    def rc(), do: "Raw Code" 
+    def rc(), do: "Raw Code"
     def oast(), do: "OAST"      # Output Abstract Syntax Tree
 
     # Output file names
