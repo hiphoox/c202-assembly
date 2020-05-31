@@ -39,7 +39,7 @@ defmodule Parser do
 
 	"""
 
-	def parse(otl, gast) do
+	def parse(otl, gast) 																							do
 		ps_m = generate_possible_structure_map(gast)
 		root_AST = generate_root_ast()
 		{result_token, oast, tl, error_cause} = my_structure_matches(root_AST, otl, ps_m)
@@ -54,7 +54,7 @@ defmodule Parser do
 		end
 	end
 
-	defp my_structure_matches(cs,tl,ps_m) do
+	defp my_structure_matches(cs,tl,ps_m) 														do
 		{result_token_1, tl_1, absorbed_token} = my_token_matches(cs,tl)
 		if result_token_1 === :ok do
 			{result_token_2, tl_2, children_list,error_cause} = 
@@ -76,16 +76,16 @@ defmodule Parser do
 		end
 	end
 	
-	defp my_children_match(cs,tl,ps_m) do
+	defp my_children_match(cs,tl,ps_m) 																do
 		children_list = cs.children
 		next_child_match(children_list,tl,[],ps_m)
 	end
 	
-	defp next_child_match([],tl,previous_children,_ps_m) do
+	defp next_child_match([],tl,previous_children,_ps_m) 							do
 		{:ok, tl, previous_children, nil}
 	end
 	
-	defp next_child_match(cl,tl,previous_children,ps_m) do
+	defp next_child_match(cl,tl,previous_children,ps_m) 							do
 		# IO.inspect(cl, label: "The list is: ") # Commented line to avoid printing
 		[child | cl_1] = cl
 		possible_structures = ps_m[child["class"]]
@@ -103,10 +103,11 @@ defmodule Parser do
 		end
 	end		
 	
-	defp check_ps([],tl,error_cause,_ps_m) do
+	defp check_ps([],tl,error_cause,_ps_m) 														do
 		{:error,nil,tl,error_cause}
 	end
-	defp check_ps(ps,tl,_error_cause,ps_m) do
+
+	defp check_ps(ps,tl,_error_cause,ps_m) 														do
 		[candidate_structure | ps_1] = ps
 		{result_token,current_candidate,tl_1,error_cause_1} = 
 			my_structure_matches(candidate_structure,tl,ps_m)
@@ -115,16 +116,17 @@ defmodule Parser do
 		else
 			check_ps(ps_1,tl,error_cause_1,ps_m)
 		end
-
 	end
-	defp my_token_matches(cs,[]) do
+
+	defp my_token_matches(cs,[]) 																			do
 		if cs.token === nil do
 			{:ok,[],nil}
 		else
 				{:error,[],nil}
 		end
 	end
-	defp my_token_matches(cs,tl) do
+
+	defp my_token_matches(cs,tl) 																			do
 		[absorbed_token | tl_1] = tl
 		if cs.token === nil do
 			{:ok,tl,nil}
@@ -134,10 +136,10 @@ defmodule Parser do
 			else
 				{:error,tl,absorbed_token}
 			end
-			
 		end
 	end
-	defp specifize_structure(cs,absorbed_token,children_list) do
+
+	defp specifize_structure(cs,absorbed_token,children_list) 				do
 		%Structs.Node{
 			class: cs.class, 
 			token: absorbed_token, 
@@ -146,7 +148,8 @@ defmodule Parser do
 			children: children_list
 		}
 	end
-	defp generate_possible_structure_map(gast) do
+
+	defp generate_possible_structure_map(gast) 												do
 		keys = (Enum.map(gast, fn x -> [x.class] end) |> List.flatten |> Enum.uniq)
 		Enum.map(
 			keys, fn k -> {
@@ -168,7 +171,8 @@ defmodule Parser do
 			)
 		|> Map.new
 	end
-	defp generate_root_ast() do
+
+	defp generate_root_ast() 																					do
 		%Structs.Node{
 			class: :root,
 			token: nil,
@@ -177,7 +181,8 @@ defmodule Parser do
 			asm: "movq %:0, %rax"
 		}
 	end
-	defp generate_null_ast(optional_class) do
+
+	defp generate_null_ast(optional_class) 														do
 		%Structs.Node{
 			class: String.replace(optional_class,"*",""),
 			token: nil,

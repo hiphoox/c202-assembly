@@ -3,14 +3,14 @@ defmodule ModuleCompilator do
   @c_tokens_path "./specification_files/c_tokens.xml"
   @c_structures_path "./specification_files/c_structures.xml"
 
-  def start_reader(file_path, _) do
+  def start_reader(file_path, _)                                do
     IO.puts("==============")
     IO.puts("Reader")
     IO.puts("==============")
     Reader.read_code_and_tokens(file_path, @c_tokens_path, true)
   end
 
-  def start_lexer(file_path, all_trace) do 
+  def start_lexer(file_path, all_trace)                         do 
     IO.puts("==============")
     IO.puts("Lexer")
     IO.puts("==============")
@@ -19,7 +19,7 @@ defmodule ModuleCompilator do
     |> IO.inspect(label: "OTL")
   end
 
-  def start_parser(file_path, all_trace) do
+  def start_parser(file_path, all_trace)                        do
     IO.puts("==============")
     IO.puts("Parser")
     IO.puts("==============")
@@ -30,7 +30,7 @@ defmodule ModuleCompilator do
     |> IO.inspect(label: "OAST")
   end
 
-  def start_code_generator(file_path, all_trace) do 
+  def start_code_generator(file_path, all_trace)                do 
     IO.puts("==============")
     IO.puts("Code Generator")
     IO.puts("==============")
