@@ -19,6 +19,6 @@ defmodule Writer do
     end
 
     defp build_path()                       do 
-        Helpers.StringElements.asm_generated_file()
+        Common.StringElements.asm_generated_file()
     end
 end

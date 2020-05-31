@@ -1,4 +1,4 @@
-defmodule Helpers.ASTTraveler do
+defmodule IO.ASTTraveler do
   @moduledoc """
   Travels through an Abstract Syntax Tree.
   """ 

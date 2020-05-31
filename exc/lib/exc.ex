@@ -94,13 +94,13 @@ defmodule ExC do
   defp start_module_compilation(file_path, module, all_trace)           do 
     case module do
       "r"
-        -> ModuleCompilator.start_reader(file_path, all_trace)
+        -> Common.ModuleCompilator.start_reader(file_path, all_trace)
       "l"
-        -> ModuleCompilator.start_lexer(file_path, all_trace)
+        -> Common.ModuleCompilator.start_lexer(file_path, all_trace)
       "p"
-        -> ModuleCompilator.start_parser(file_path, all_trace)
+        -> Common.ModuleCompilator.start_parser(file_path, all_trace)
       "c"
-        -> ModuleCompilator.start_code_generator(file_path, all_trace)
+        -> Common.ModuleCompilator.start_code_generator(file_path, all_trace)
     end
   end
 end

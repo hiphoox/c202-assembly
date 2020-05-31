@@ -1,4 +1,4 @@
-defmodule ModuleCompilator do 
+defmodule Common.ModuleCompilator do 
 
   @c_tokens_path "./specification_files/c_tokens.xml"
   @c_structures_path "./specification_files/c_structures.xml"

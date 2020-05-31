@@ -1,4 +1,4 @@
-defmodule Helpers.StringElements do
+defmodule Common.StringElements do
   @moduledoc false
     
   # Compiler general name modules

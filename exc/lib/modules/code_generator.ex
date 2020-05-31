@@ -150,8 +150,8 @@ defmodule CodeGenerator do
 
   defp check_for_verbose(assembly_code, verbose)                            do
     if verbose do
-      Helpers.Printer.print_element(
-        Helpers.StringElements.rc, assembly_code
+      IO.Printer.print_element(
+        Common.StringElements.rc, assembly_code
       )
     end
     assembly_code

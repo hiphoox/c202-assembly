@@ -19,14 +19,14 @@ defmodule Filter do
       of its steps.
   """
   def filter_lexer_output({otl, :error}, source_code_path, _)               do 
-    Helpers.ErrorDetecter.lexer_error(otl, source_code_path)
+    Error.ErrorDetecter.lexer_error(otl, source_code_path)
     System.halt(1)
   end
   def filter_lexer_output({otl, :ok}, _, verbose)                           do
     if verbose do
       inspect = true
-      Helpers.Printer.print_element(
-        Helpers.StringElements.otl, 
+      IO.Printer.print_element(
+        Common.StringElements.otl, 
         otl, 
         inspect
       )
@@ -53,7 +53,7 @@ defmodule Filter do
   """
   def filter_parser_output({:token_missing_error, _, token_list, error_cause}, 
     source_code_path, _)                                                  do
-    Helpers.ErrorDetecter.parser_error(
+    Error.ErrorDetecter.parser_error(
         :token_missing_error, token_list, error_cause, source_code_path
     )
     System.halt(1)
@@ -61,7 +61,7 @@ defmodule Filter do
 
   def filter_parser_output({:token_not_absorbed_error, _, 
     token_list, error_cause}, source_code_path, _)                        do
-    Helpers.ErrorDetecter.parser_error(
+    Error.ErrorDetecter.parser_error(
       :token_not_absorbed_error, token_list, error_cause, source_code_path
     )
     System.halt(1)
@@ -69,11 +69,11 @@ defmodule Filter do
 
   def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, verbose) do
     if verbose do
-      oast_string = Helpers.ASTTraveler.travel(
+      oast_string = IO.ASTTraveler.travel(
         output_abstract_syntax_tree, 0
       )
-      Helpers.Printer.print_element(
-        Helpers.StringElements.oast, 
+      IO.Printer.print_element(
+        Common.StringElements.oast, 
         oast_string
       )
     end

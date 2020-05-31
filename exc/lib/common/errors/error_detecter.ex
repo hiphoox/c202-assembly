@@ -1,4 +1,4 @@
-defmodule Helpers.ErrorDetecter do
+defmodule Error.ErrorDetecter do
   @moduledoc false
 
   def lexer_error(token, file_path)                                  do
@@ -6,7 +6,7 @@ defmodule Helpers.ErrorDetecter do
     fault_element_msg = "#{token.expression}"
     reason_msg  =       ""
     location_msg =      "#{file_path}"
-    Helpers.Printer._print_error(
+    IO.Printer._print_error(
         class_msg, fault_element_msg, reason_msg, location_msg
     )
   end
@@ -16,7 +16,7 @@ defmodule Helpers.ErrorDetecter do
     fault_element =     error_cause.tag
     reason_msg =        "is missing something"
     location =          file_path
-    Helpers.Printer._print_error(
+    IO.Printer._print_error(
         class_msg, fault_element, reason_msg, location
     )
   end
@@ -25,7 +25,7 @@ defmodule Helpers.ErrorDetecter do
     fault_element = Enum.at(tl, 0).expression
     reason_msg =    "was not accepted"
     location =      file_path
-    Helpers.Printer._print_error(
+    IO.Printer._print_error(
         class_msg, fault_element, reason_msg, location
     )
   end
