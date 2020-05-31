@@ -20,11 +20,15 @@ defmodule StageThreeFilterLexer do
             pos_y: nil,
             tag: "parenthesis-close"
           },
-          %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, tag: "bracket-open"},
-          %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, tag: "return"},
+          %Structs.Token{expression: "{", pos_x: nil, pos_y: nil, 
+            tag: "bracket-open"},
+          %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, 
+            tag: "return"},
           # here goes the body of the program
-          %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, tag: "semicolon"},
-          %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, tag: "bracket-close"}
+          %Structs.Token{expression: ";", pos_x: nil, pos_y: nil, 
+            tag: "semicolon"},
+          %Structs.Token{expression: "}", pos_x: nil, pos_y: nil, 
+            tag: "bracket-close"}
         ]
       ]}
     end
@@ -42,12 +46,16 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2= %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token2= %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     token_list = [literal_token1, plus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -66,12 +74,16 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token2= %Structs.Token{expression: "17", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token2= %Structs.Token{expression: "17", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     token_list = [literal_token1, minus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -90,12 +102,17 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    literal_token2= %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, tag: "literal"}
-    token_list = [minus_token, literal_token1, minus_token, minus_token, literal_token2]
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    literal_token2= %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    token_list = [minus_token, literal_token1, minus_token, minus_token, 
+      literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -114,12 +131,16 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "18", pos_x: nil, pos_y: nil, tag: "literal"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
-    literal_token2= %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "18", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, 
+      tag: "slant"}
+    literal_token2= %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     token_list = [literal_token1, slant_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -138,13 +159,19 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token1 = %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, tag: "literal"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
-    literal_token2= %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    token_list = [minus_token, literal_token1, slant_token, minus_token, literal_token2]
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token1 = %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, 
+      tag: "slant"}
+    literal_token2= %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    token_list = [minus_token, literal_token1, slant_token, minus_token, 
+      literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -163,12 +190,16 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "11", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    literal_token2= %Structs.Token{expression: "17", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "11", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, 
+      tag: "asterix"}
+    literal_token2= %Structs.Token{expression: "17", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     token_list = [literal_token1, asterix_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -187,13 +218,18 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token2= %Structs.Token{expression: "13", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, 
+      tag: "asterix"}
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token2= %Structs.Token{expression: "13", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     token_list = [literal_token1, asterix_token, minus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -212,18 +248,26 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token2= %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
-    literal_token3= %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    token_list = [literal_token1, asterix_token, parenthesis_open_token, literal_token2, asterix_token, 
-    parenthesis_open_token, literal_token3, minus_token, literal_token2, parenthesis_close_token, 
-    parenthesis_close_token]
+    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, 
+      tag: "asterix"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token2= %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    literal_token3= %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
+    token_list = [literal_token1, asterix_token, parenthesis_open_token, 
+      literal_token2, asterix_token, parenthesis_open_token, literal_token3, 
+      minus_token, literal_token2, parenthesis_close_token, parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -242,17 +286,26 @@ defmodule StageThreeFilterLexer do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2= %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
-    literal_token3= %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    token_list = [literal_token1, asterix_token, parenthesis_open_token, literal_token2, plus_token, literal_token3,
+    literal_token1 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, 
+      tag: "asterix"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token2= %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    literal_token3= %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
+    token_list = [literal_token1, asterix_token, parenthesis_open_token, 
+      literal_token2, plus_token, literal_token3,
     parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -271,18 +324,26 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    literal_token2 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token3 = %Structs.Token{expression: "21", pos_x: nil, pos_y: nil, tag: "literal"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
-    literal_token4 = %Structs.Token{expression: "9", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, 
+      tag: "asterix"}
+    literal_token2 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token3 = %Structs.Token{expression: "21", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, 
+      tag: "slant"}
+    literal_token4 = %Structs.Token{expression: "9", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     
-    token_list = [literal_token1, asterix_token, literal_token2, plus_token, literal_token3,
-    slant_token, literal_token4]
+    token_list = [literal_token1, asterix_token, literal_token2, plus_token, 
+    literal_token3, slant_token, literal_token4]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -301,13 +362,18 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, tag: "complement"}
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
+    complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
+      tag: "complement"}
+    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     token_list = [complement_token, literal_token1, minus_token, literal_token2]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -326,16 +392,23 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, tag: "complement"}
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    minus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    token_list = [complement_token, parenthesis_open_token, literal_token1, minus_token, literal_token2,
-    parenthesis_close_token]
+    complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
+      tag: "complement"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    minus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
+    token_list = [complement_token, parenthesis_open_token, literal_token1, 
+    minus_token, literal_token2, parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -354,25 +427,39 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, tag: "complement"}
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
-    literal_token3 = %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, tag: "literal"}
-    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, tag: "asterix"}
-    literal_token4 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, tag: "literal"}
-    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
-    literal_token5 = %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, tag: "literal"}
+    complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
+      tag: "complement"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
+    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, 
+      tag: "slant"}
+    literal_token3 = %Structs.Token{expression: "8", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    asterix_token = %Structs.Token{expression: "*", pos_x: nil, pos_y: nil, 
+      tag: "asterix"}
+    literal_token4 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
+      tag: "minus"}
+    literal_token5 = %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     
-    token_list = [complement_token, parenthesis_open_token, parenthesis_open_token, literal_token1,
-    plus_token, literal_token2, parenthesis_close_token, slant_token, parenthesis_open_token, literal_token3,
-    asterix_token, parenthesis_open_token, literal_token4, minus_token, literal_token5, parenthesis_close_token,
-    parenthesis_close_token, parenthesis_close_token]
+    token_list = [complement_token, parenthesis_open_token, parenthesis_open_token, 
+    literal_token1, plus_token, literal_token2, parenthesis_close_token, 
+    slant_token, parenthesis_open_token, literal_token3, asterix_token, 
+    parenthesis_open_token, literal_token4, minus_token, literal_token5, 
+    parenthesis_close_token, parenthesis_close_token, parenthesis_close_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -391,12 +478,14 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, tag: "literal"}
+    literal_token1 = %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
     
     token_list = [literal_token1, slant_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+        incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -415,12 +504,15 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
+    literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
     
     token_list = [literal_token1, plus_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+        incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -439,17 +531,24 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    literal_token3 = %Structs.Token{expression: "10", pos_x: nil, pos_y: nil, tag: "literal"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
+    literal_token3 = %Structs.Token{expression: "10", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
 
-    token_list = [parenthesis_open_token, literal_token1, plus_token, literal_token2, parenthesis_close_token,
-    literal_token3]
+    token_list = [parenthesis_open_token, literal_token1, plus_token, 
+    literal_token2, parenthesis_close_token, literal_token3]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -468,17 +567,22 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, tag: "literal"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
     plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
+    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, tag: "minus"}
 
-    token_list = [parenthesis_open_token, literal_token1, plus_token, literal_token2, parenthesis_close_token,
-    minus_token]
+    token_list = [parenthesis_open_token, literal_token1, plus_token, 
+    literal_token2, parenthesis_close_token, minus_token]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
@@ -497,18 +601,27 @@ test "010_S3_Valid_Precedence", context do
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
-    literal_token3 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, tag: "literal"}
+    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-open"}
+    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
+      tag: "plus"}
+    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
+    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
+      pos_y: nil, tag: "parenthesis-close"}
+    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, 
+      tag: "slant"}
+    literal_token3 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, 
+      tag: "literal"}
 
-    token_list = [parenthesis_open_token, parenthesis_open_token, literal_token1, plus_token,
-    literal_token2, parenthesis_close_token, slant_token, literal_token3]
+    token_list = [parenthesis_open_token, parenthesis_open_token, literal_token1,
+    plus_token, literal_token2, parenthesis_close_token, slant_token, 
+    literal_token3]
     incomplete_output_token_list = context[:output_token_list]
-    output_token_list = Helpers.GeneralTester.insert_token_list(incomplete_output_token_list, token_list, 6)
+    output_token_list = Helpers.GeneralTester.insert_token_list(
+      incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
 
     assert left_hand_side == right_hand_side
