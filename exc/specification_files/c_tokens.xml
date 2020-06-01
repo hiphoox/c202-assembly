@@ -75,4 +75,44 @@
             /
         </expression>
     </token>
+    <token tag="and">
+        <expression>
+            \&\&
+        </expression>
+    </token>
+    <token tag="or">
+        <expression>
+            \|\|
+        </expression>
+    </token>
+    <token tag="eq">
+        <expression>
+            ==
+        </expression>
+    </token>
+    <token tag="neq">
+        <expression>
+            !=
+        </expression>
+    </token>
+    <token tag="le">
+        <expression>
+            <
+        </expression>
+    </token>
+    <token tag="leq">
+        <expression>
+            <=
+        </expression>
+    </token>
+    <token tag="ge">
+        <expression>
+            >
+        </expression>
+    </token>
+    <token tag="geq">
+        <expression>
+            >=
+        </expression>
+    </token>
 </token-list>
