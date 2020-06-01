@@ -17,17 +17,27 @@ defmodule ExC do
     $ ./exc <file_to_compile>
   ``` 
   """
-  def main(argv)                                              do
-    OptionParser.parse(argv, switches: [help: :boolean, verbose: :boolean, module: :boolean], aliases: [h: :help, v: :verbose, m: :module])
+  def main(argv)                                                        do
+    OptionParser.parse(argv, switches: 
+    [help: :boolean, verbose: :boolean, module: :boolean, output: :boolean], 
+    aliases: [h: :help, v: :verbose, m: :module, o: :output])
     |> filter_args
   end
 
-  defp filter_args({[help: true],_,_})                        do
+  defp filter_args({[help: true],_,_})                                  do
     IO.puts "help"
   end
 
-  defp filter_args({[verbose: true],file_path,_})             do
-    start_compilation(file_path, true)
+  defp filter_args({[output: true, verbose: true],[file_path, output_file_name],_}) do
+    start_compilation(file_path, output_file_name, true)
+  end
+
+  defp filter_args({[verbose: true, output: true],[file_path, output_file_name],_}) do
+    start_compilation(file_path, output_file_name, true)
+  end
+
+  defp filter_args({[verbose: true],[file_path],_})                     do
+    start_compilation(file_path, "", true)
   end
 
   defp filter_args({[module: true], [file_path, module, all_trace], _}) do
@@ -42,8 +52,12 @@ defmodule ExC do
     end
   end
 
-  defp filter_args({_,file_path,_})                           do
-    start_compilation(file_path, false)
+  defp filter_args({[output: true],[file_path, output_file_name],_})    do
+    start_compilation(file_path, output_file_name, false)
+  end
+
+  defp filter_args({_,[file_path],_})                                   do
+    start_compilation(file_path, "", false)
   end
 
   
@@ -51,14 +65,15 @@ defmodule ExC do
   Starts the compilation process given an input path.
   ### Specs  
   ```file_path``` is the path to the file to be compiled.
-  ```verbose``` boolean to indicate if there should be a detailed output of each of the compiler's stages.
+  ```verbose``` boolean to indicate if there should be a detailed output of each 
+    of the compiler's stages.
   
   ### Examples
   ```
     $ ./exc examples/test.c
   ``` 
   """
-  def start_compilation(file_path, verbose)                   do
+  def start_compilation(file_path, output_file_name \\ "", verbose)     do
     Reader.read_code_and_tokens(file_path, @c_tokens_path, verbose)
     |> Lexer.tokenize()
     |> Filter.filter_lexer_output(file_path, verbose)
@@ -66,26 +81,26 @@ defmodule ExC do
     |> Filter.filter_parser_output(file_path, verbose)
     |> CodeGenerator.generate_code(verbose)
     |> Writer.write_file()
-    |> Invoker.invoke_gcc()
+    |> Invoker.invoke_gcc(output_file_name)
   end
 
-  def _test(file_path \\ "examples/test.c")                   do
-    otl = (Reader.read_code_and_tokens(file_path, @c_tokens_path) |> Lexer.tokenize())
+  def _test(file_path \\ "examples/test.c")                             do
+    otl = (Reader.read_code_and_tokens(file_path, @c_tokens_path) 
+          |> Lexer.tokenize())
     gast = Reader.read_general_ast(@c_structures_path)
     Parser.parse(otl,gast)
   end
 
-  defp start_module_compilation(file_path, module, all_trace) do 
+  defp start_module_compilation(file_path, module, all_trace)           do 
     case module do
       "r"
-        -> ModuleCompilator.start_reader(file_path, all_trace)
+        -> Common.ModuleCompilator.start_reader(file_path, all_trace)
       "l"
-        -> ModuleCompilator.start_lexer(file_path, all_trace)
+        -> Common.ModuleCompilator.start_lexer(file_path, all_trace)
       "p"
-        -> ModuleCompilator.start_parser(file_path, all_trace)
+        -> Common.ModuleCompilator.start_parser(file_path, all_trace)
       "c"
-        -> ModuleCompilator.start_code_generator(file_path, all_trace)
+        -> Common.ModuleCompilator.start_code_generator(file_path, all_trace)
     end
   end
-
 end
