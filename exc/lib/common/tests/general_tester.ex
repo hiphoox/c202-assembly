@@ -109,7 +109,47 @@ defmodule GeneralTester do
                 /
             </expression>
         </token>
-    </token-list>
+        <token tag="and">
+            <expression>
+                \\&\\&
+            </expression>
+        </token>
+        <token tag="or">
+            <expression>
+                \\|\\|
+            </expression>
+        </token>
+        <token tag="eq">
+            <expression>
+                ==
+            </expression>
+        </token>
+        <token tag="neq">
+            <expression>
+                !=
+            </expression>
+        </token>
+        <token tag="le">
+            <expression>
+                <
+            </expression>
+        </token>
+        <token tag="leq">
+            <expression>
+                <=
+            </expression>
+        </token>
+        <token tag="ge">
+            <expression>
+                >
+            </expression>
+        </token>
+        <token tag="geq">
+            <expression>
+                >=
+            </expression>
+        </token>
+    </token-list>  
     """
   end
 
@@ -197,7 +237,7 @@ defmodule GeneralTester do
                 <class>return-word</class>
             </substructure>
             <substructure tag="evaluation">
-                <class>high-evaluation</class>
+                <class>exp</class>
             </substructure>
             <substructure tag="semicolon">
                 <class>line-ender</class>
@@ -214,97 +254,295 @@ defmodule GeneralTester do
             </token>
             <class>return-word</class>
             <asm>
-            </asm>
+          </asm>
         </structure>
+        <structure tag="logical-or-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>logical-and-exp</class>
+          </substructure>
+          <substructure tag="logical-or-operator">
+            <class>logical-or-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>exp</class>
+          </substructure>
+          <class>
+            exp  
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        <structure tag="exp">
+          <token></token>
+          <substructure tag="value">
+            <class>logical-and-exp</class>
+          </substructure>
+          <class>
+            exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        <structure tag="logical-and-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>equality-exp</class>
+          </substructure>
+          <substructure tag="logical-and-operator">
+            <class>logical-and-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>logical-and-exp</class>
+          </substructure>
+          <class>
+            logical-and-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        <structure tag="logical-and-exp">
+          <token></token>
+          <substructure tag="value">
+            <class>equality-exp</class>
+          </substructure>
+          <class>
+            logical-and-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        <structure tag="not-equal-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>relational-exp</class>
+          </substructure>
+          <substructure tag="not-equal-operator">
+            <class>not-equal-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>equality-exp</class>
+          </substructure>
+          <class>
+            equality-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        <structure tag="equal-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>relational-exp</class>
+          </substructure>
+          <substructure tag="equal-operator">
+            <class>equal-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>equality-exp</class>
+          </substructure>
+          <class>
+            equality-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        <structure tag="equality-exp">
+          <token></token>
+          <substructure tag="value">
+            <class>relational-exp</class>
+          </substructure>
+          <class>
+            equality-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+
+        <structure tag="less-than-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>additive-exp</class>
+          </substructure>
+          <substructure tag="less-than-operator">
+            <class>le-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>relational-exp</class>
+          </substructure>
+          <class>
+            relational-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        
+        <structure tag="greater-than-opearation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>additive-exp</class>
+          </substructure>
+          <substructure tag="greater-than-operator">
+            <class>ge-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>relational-exp</class>
+          </substructure>
+          <class>
+            relational-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+
+        <structure tag="less-than-or-equal-to-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>additive-exp</class>
+          </substructure>
+          <substructure tag="less-than-or-equal-operator">
+            <class>leq-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>relational-exp</class>
+          </substructure>
+          <class>
+            relational-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+
+        <structure tag="greater-than-or-equal-to-operation">
+          <token></token>
+          <substructure tag="first-value">
+            <class>additive-exp</class>
+          </substructure>
+          <substructure tag="greater-than-or-equal-to-operator">
+            <class>geq-operator</class>
+          </substructure>
+          <substructure tag="second-value">
+            <class>relational-exp</class>
+          </substructure>
+          <class>
+            relational-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+        
+        <structure tag="relational-exp">
+          <token></token>
+          <substructure tag="value">
+            <class>additive-exp</class>
+          </substructure>
+          <class>
+            relational-exp
+          </class>
+          <asm>
+          <!--TODO-->
+          </asm>
+        </structure>
+
         <structure tag="sum-operation">
             <token></token>
             <substructure tag="first-value">
-                <class>mid-evaluation</class>
+                <class>term</class>
             </substructure>
             <substructure tag="sum-operator">
                 <class>sum-operator</class>
             </substructure>
             <substructure tag="second-value">
-                <class>high-evaluation</class>
+                <class>additive-exp</class>
             </substructure>
-            <class>high-evaluation</class>
+            <class>additive-exp</class>
             <asm>
             movq %:0, %:r
-            add %:2, %:r
-            </asm>
+          add %:2, %:r
+          </asm>
         </structure>
         <structure tag="minus-operation">
             <token></token>
             <substructure tag="first-value">
-                <class>mid-evaluation</class>
+                <class>term</class>
             </substructure>
-            <substructure tag="minus-operator">
+          <substructure tag="minus-operator">
                 <class>minus-operator</class>
             </substructure>
             <substructure tag="second-value">
-                <class>high-evaluation</class>
-            </substructure>
-            <class>high-evaluation</class>
+                <class>additive-exp</class>
+          </substructure>
+            <class>additive-exp</class>
             <asm>
             movq %:0, %:r
-            sub %:2, %:r
-            </asm>
+          sub %:2, %:r
+          </asm>
         </structure>
-        <structure tag="high-evaluation">
+        <structure tag="additive-exp">
             <token></token>
             <substructure tag="value">
-                <class>mid-evaluation</class>
+                <class>term</class>
             </substructure>
-            <class>high-evaluation</class>
+            <class>additive-exp</class>
             <asm>
-            movq %:0, %:r
-            </asm>
+          movq %:0, %:r
+          </asm>
         </structure>
         <structure tag="division-operation">
             <token></token>
             <substructure tag="first-value">
-                <class>low-evaluation</class>
+                <class>factor</class>
             </substructure>
             <substructure tag="division-operator">
                 <class>division-operator</class>
             </substructure>
             <substructure tag="second-value">
-                <class>mid-evaluation</class>
+                <class>term</class>
             </substructure>
-            <class>mid-evaluation</class>
+            <class>term</class>
             <asm>
             movq %:0, %rax
             movq $0, %rdx
             idiv %:2
             movq %rax, %:r
-            </asm>
+          </asm>
         </structure>
         <structure tag="multiplication-operation">
             <token></token>
             <substructure tag="first-value">
-                <class>low-evaluation</class>
+                <class>factor</class>
             </substructure>
             <substructure tag="multiplication-operator">
                 <class>multiplication-operator</class>
             </substructure>
             <substructure tag="second-value">
-                <class>mid-evaluation</class>
+                <class>term</class>
             </substructure>
-            <class>mid-evaluation</class>
+            <class>term</class>
             <asm>
             movq %:0, %:r
-            imul %:2, %:r
-            </asm>
+          imul %:2, %:r
+          </asm>
         </structure>
-        <structure tag="mid-evaluation">
+        <structure tag="term">
             <token></token>
             <substructure tag="value">
-                <class>low-evaluation</class>
+                <class>factor</class>
             </substructure>
-            <class>mid-evaluation</class>
+            <class>term</class>
             <asm>
-            movq %:0, %:r
-            </asm>
+          movq %:0, %:r
+          </asm>
         </structure>
         <structure tag="grouped-operation">
             <token></token>
@@ -312,66 +550,66 @@ defmodule GeneralTester do
                 <class>group-opener</class>
             </substructure>
             <substructure tag="evaluation">
-                <class>high-evaluation</class>
+                <class>additive-exp</class>
             </substructure>
             <substructure tag="group-close">
                 <class>group-closer</class>
             </substructure>
-            <class>low-evaluation</class>
+            <class>factor</class>
             <asm>
-            movq %:1, %:r
-            </asm>
+          movq %:1, %:r
+          </asm>
         </structure>
         <structure tag="negative-operation">
             <token></token>
-            <substructure tag="operator">
+          <substructure tag="operator">
                 <class>negative-operator</class>
             </substructure>
             <substructure tag="evaluation">
-                <class>low-evaluation</class>
+                <class>factor</class>
             </substructure>
-            <class>low-evaluation</class>
+            <class>factor</class>
             <asm>
-                neg %:1
+              neg %:1
     movq %:1, %:r
-            </asm>
+          </asm>
         </structure>
         <structure tag="complement-operation">
             <token></token>
-            <substructure tag="operator">
+          <substructure tag="operator">
                 <class>complement-operator</class>
             </substructure>
             <substructure tag="evaluation">
-                <class>low-evaluation</class>
+                <class>factor</class>
             </substructure>
-            <class>low-evaluation</class>
+            <class>factor</class>
             <asm>
-                not %:1
+              not %:1
     movq %:1, %:r
-            </asm>
+          </asm>
         </structure>
         <structure tag="negation-operation">
             <token></token>
-            <substructure tag="operator">
+          <substructure tag="operator">
                 <class>negation-operator</class>
             </substructure>
             <substructure tag="evaluation">
-                <class>low-evaluation</class>
+                <class>factor</class>
             </substructure>
-            <class>low-evaluation</class>
+            <class>factor</class>
             <asm>
-                not %:1
+              not %:1
     movq %:1, %:r
-            </asm>
+          </asm>
         </structure>
         <structure tag="literal">
             <token>
                 literal
             </token>
-            <class>low-evaluation</class>
+            <class>factor</class>
             <asm>
                 movq $:t, %:r
-            </asm>
+          </asm>
         </structure>
         <structure tag="semicolon">
             <token>
@@ -421,6 +659,62 @@ defmodule GeneralTester do
                 asterix
             </token>
             <class>multiplication-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="logical-or">
+            <token>
+                or
+            </token>
+            <class>logical-or-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="logical-and">
+            <token>
+                and
+            </token>
+            <class>logical-and-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="not-equal">
+            <token>
+                neq
+            </token>
+            <class>not-equal-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="equal">
+            <token>
+                eq
+            </token>
+            <class>equal-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="less-than">
+            <token>
+                le
+            </token>
+            <class>le-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="less-than-or-equal">
+            <token>
+                leq
+            </token>
+            <class>leq-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="greater-than">
+            <token>
+                ge
+            </token>
+            <class>ge-operator</class>
+            <asm></asm>
+        </structure>
+        <structure tag="greater-than-or-equal">
+            <token>
+                geq
+            </token>
+            <class>geq-operator</class>
             <asm></asm>
         </structure>
     </structure-list>
