@@ -184,22 +184,22 @@ defmodule StageOneParser do
     literal_token = %Structs.Node{
       asm: "movq $:t, %:r", 
       children: [], 
-      class: "low-evaluation", 
+      class: "factor", 
       tag: "literal", 
       token: %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, tag: "literal"}
     }
     mid_evaluation_token = %Structs.Node{
       asm: "movq %:0, %:r", 
       children: [literal_token], 
-      class: "mid-evaluation", 
-      tag: "mid-evaluation", 
+      class: "term", 
+      tag: "term", 
       token: nil
     }
     high_evaluation_token = %Structs.Node{
       asm: "movq %:0, %:r", 
       children: [mid_evaluation_token], 
-      class: "high-evaluation", 
-      tag: "high-evaluation", 
+      class: "exp", 
+      tag: "exp", 
       token: nil
     }
 
