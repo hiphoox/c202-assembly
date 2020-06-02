@@ -77,7 +77,7 @@
     </token>
     <token tag="and">
         <expression>
-            \&\&
+            \&amp;\&amp;
         </expression>
     </token>
     <token tag="or">
@@ -97,22 +97,22 @@
     </token>
     <token tag="le">
         <expression>
-            <
+            &lt;
         </expression>
     </token>
     <token tag="leq">
         <expression>
-            <=
+            &lt;=
         </expression>
     </token>
     <token tag="ge">
         <expression>
-            >
+            &gt;
         </expression>
     </token>
     <token tag="geq">
         <expression>
-            >=
+            &gt;=
         </expression>
     </token>
 </token-list>
