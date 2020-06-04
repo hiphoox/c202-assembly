@@ -42,7 +42,7 @@ defmodule StageTwoGeneral do
     	"""
     	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
-        assert exc_output == '248\n'
+        assert exc_output == '0\n'
     end
 
     test "005_S2_Valid_Not_0" do 
@@ -53,7 +53,7 @@ defmodule StageTwoGeneral do
     	"""
     	|> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
-        assert exc_output == '255\n'
+        assert exc_output == '1\n'
     end
 
     test "006_S2_Valid_Multiple_Ops_1" do 

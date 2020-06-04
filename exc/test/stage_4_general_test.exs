@@ -1,7 +1,7 @@
 defmodule StageFourGeneral do
   use ExUnit.Case
 
-  test "001_S1_Valid_And" do 
+  test "001_S1_Valid_And" do
     """
     int main(){
           return 4 && 7;

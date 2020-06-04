@@ -111,7 +111,7 @@ defmodule GeneralTester do
         </token>
         <token tag="and">
             <expression>
-                \\&\\&
+                \\&amp;\\&amp;
             </expression>
         </token>
         <token tag="or">
@@ -131,25 +131,25 @@ defmodule GeneralTester do
         </token>
         <token tag="le">
             <expression>
-                <
+                &lt;
             </expression>
         </token>
         <token tag="leq">
             <expression>
-                <=
+                &lt;=
             </expression>
         </token>
         <token tag="ge">
             <expression>
-                >
+                &gt;
             </expression>
         </token>
         <token tag="geq">
             <expression>
-                >=
+                &gt;=
             </expression>
         </token>
-    </token-list>  
+    </token-list>
     """
   end
 
@@ -271,7 +271,8 @@ defmodule GeneralTester do
             exp  
           </class>
           <asm>
-          <!--TODO-->
+          movq %:0, %:r
+          or %:2, %:r
           </asm>
         </structure>
         <structure tag="exp">
@@ -283,7 +284,7 @@ defmodule GeneralTester do
             exp
           </class>
           <asm>
-          <!--TODO-->
+          movq %:0, %:r
           </asm>
         </structure>
         <structure tag="logical-and-operation">
@@ -301,7 +302,8 @@ defmodule GeneralTester do
             logical-and-exp
           </class>
           <asm>
-          <!--TODO-->
+          movq %:0, %:r
+          and %:2, %:r
           </asm>
         </structure>
         <structure tag="logical-and-exp">
@@ -313,7 +315,7 @@ defmodule GeneralTester do
             logical-and-exp
           </class>
           <asm>
-          <!--TODO-->
+          movq %:0, %:r
           </asm>
         </structure>
         <structure tag="not-equal-operation">
@@ -361,7 +363,7 @@ defmodule GeneralTester do
             equality-exp
           </class>
           <asm>
-          <!--TODO-->
+          movq %:0, %:r
           </asm>
         </structure>
 
@@ -450,7 +452,7 @@ defmodule GeneralTester do
             relational-exp
           </class>
           <asm>
-          <!--TODO-->
+          movq %:0, %:r
           </asm>
         </structure>
 
@@ -598,8 +600,10 @@ defmodule GeneralTester do
             </substructure>
             <class>factor</class>
             <asm>
-              not %:1
-    movq %:1, %:r
+              cmp $0, %:1
+              movq $0, %rax
+              sete %al
+              movq %rax, %:r
           </asm>
         </structure>
         <structure tag="literal">

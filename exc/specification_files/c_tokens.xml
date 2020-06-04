@@ -50,11 +50,6 @@
             -
         </expression>
     </token>
-    <token tag="negation">
-        <expression>
-            !
-        </expression>
-    </token>
     <token tag="complement">
         <expression>
             ~
@@ -85,19 +80,19 @@
             \|\|
         </expression>
     </token>
-    <token tag="eq">
-        <expression>
-            ==
-        </expression>
-    </token>
     <token tag="neq">
         <expression>
             !=
         </expression>
     </token>
-    <token tag="le">
+    <token tag="negation">
         <expression>
-            &lt;
+            !
+        </expression>
+    </token>
+    <token tag="eq">
+        <expression>
+            ==
         </expression>
     </token>
     <token tag="leq">
@@ -105,14 +100,19 @@
             &lt;=
         </expression>
     </token>
-    <token tag="ge">
+    <token tag="le">
         <expression>
-            &gt;
+            &lt;
         </expression>
     </token>
     <token tag="geq">
         <expression>
             &gt;=
+        </expression>
+    </token>
+    <token tag="ge">
+        <expression>
+            &gt;
         </expression>
     </token>
 </token-list>

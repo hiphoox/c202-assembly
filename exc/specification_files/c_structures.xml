@@ -114,7 +114,8 @@
         exp  
       </class>
       <asm>
-      <!--TODO-->
+      movq %:0, %:r
+      or %:2, %:r
       </asm>
     </structure>
     <structure tag="exp">
@@ -126,7 +127,7 @@
         exp
       </class>
       <asm>
-      <!--TODO-->
+      movq %:0, %:r
       </asm>
     </structure>
     <structure tag="logical-and-operation">
@@ -144,7 +145,8 @@
         logical-and-exp
       </class>
       <asm>
-      <!--TODO-->
+      movq %:0, %:r
+      and %:2, %:r
       </asm>
     </structure>
     <structure tag="logical-and-exp">
@@ -156,7 +158,7 @@
         logical-and-exp
       </class>
       <asm>
-      <!--TODO-->
+      movq %:0, %:r
       </asm>
     </structure>
     <structure tag="not-equal-operation">
@@ -174,7 +176,10 @@
         equality-exp
       </class>
       <asm>
-      <!--TODO-->
+        cmp %:0, %:2
+        mov $0, %rax
+        setne %al
+        movq %rax, %:r
       </asm>
     </structure>
     <structure tag="equal-operation">
@@ -192,7 +197,10 @@
         equality-exp
       </class>
       <asm>
-      <!--TODO-->
+        cmp %:0, %:2
+        mov $0, %rax
+        sete %al
+        movq %rax, %:r
       </asm>
     </structure>
     <structure tag="equality-exp">
@@ -204,7 +212,7 @@
         equality-exp
       </class>
       <asm>
-      <!--TODO-->
+      movq %:0, %:r
       </asm>
     </structure>
 
@@ -223,7 +231,10 @@
         relational-exp
       </class>
       <asm>
-      <!--TODO-->
+        cmp %:2, %:0
+        mov $0, %rax
+        setl %al
+        movq %rax, %:r
       </asm>
     </structure>
     
@@ -242,7 +253,10 @@
         relational-exp
       </class>
       <asm>
-      <!--TODO-->
+        cmp %:2, %:0
+        mov $0, %rax
+        setg %al
+        movq %rax, %:r
       </asm>
     </structure>
 
@@ -261,7 +275,10 @@
         relational-exp
       </class>
       <asm>
-      <!--TODO-->
+        cmp %:2, %:0
+        mov $0, %rax
+        setle %al
+        movq %rax, %:r
       </asm>
     </structure>
 
@@ -280,7 +297,10 @@
         relational-exp
       </class>
       <asm>
-      <!--TODO-->
+        cmp %:2, %:0
+        mov $0, %rax
+        setge %al
+        movq %rax, %:r
       </asm>
     </structure>
     
@@ -293,7 +313,7 @@
         relational-exp
       </class>
       <asm>
-      <!--TODO-->
+      movq %:0, %:r
       </asm>
     </structure>
 
@@ -441,8 +461,10 @@ movq %:1, %:r
         </substructure>
         <class>factor</class>
         <asm>
-	        not %:1
-movq %:1, %:r
+          cmp $0, %:1
+          movq $0, %rax
+          sete %al
+          movq %rax, %:r
 	    </asm>
     </structure>
     <structure tag="literal">
