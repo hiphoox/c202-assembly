@@ -115,15 +115,15 @@
       </class>
       <asm>
         cmp $0, %:0
-        je :u_clause2
+        je _:uclause2
         movq $1, %:r
-        jmp :u_end
-    :u_clause2:
+        jmp _:uend
+    _:uclause2:
         cmp $0, %:2
         movq $0, %rax
         setne %al
         movq %rax, %:r
-    :u_end:
+    _:uend:
       </asm>
     </structure>
     <structure tag="exp">
@@ -154,15 +154,15 @@
       </class>
       <asm>
         cmp $0, %:0
-        jne :u_clause2
+        jne _:uclause2
         movq $0, %:r
-        jmp :u_end
-    :u_clause2:
+        jmp _:uend
+    _:uclause2:
         cmp $0, %:2
         movq $0, %rax
         setne %al
         movq %rax, %:r
-    :u_end:
+    _:uend:
       </asm>
     </structure>
     <structure tag="logical-and-exp">

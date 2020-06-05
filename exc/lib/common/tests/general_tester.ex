@@ -271,8 +271,16 @@ defmodule GeneralTester do
             exp  
           </class>
           <asm>
-          movq %:0, %:r
-          or %:2, %:r
+            cmp $0, %:0
+            je :u_clause2
+            movq $1, %:r
+            jmp :u_end
+        :u_clause2:
+            cmp $0, %:2
+            movq $0, %rax
+            setne %al
+            movq %rax, %:r
+        :u_end:
           </asm>
         </structure>
         <structure tag="exp">
@@ -302,8 +310,16 @@ defmodule GeneralTester do
             logical-and-exp
           </class>
           <asm>
-          movq %:0, %:r
-          and %:2, %:r
+            cmp $0, %:0
+            jne :u_clause2
+            movq $0, %:r
+            jmp :u_end
+        :u_clause2:
+            cmp $0, %:2
+            movq $0, %rax
+            setne %al
+            movq %rax, %:r
+        :u_end:
           </asm>
         </structure>
         <structure tag="logical-and-exp">
@@ -333,7 +349,10 @@ defmodule GeneralTester do
             equality-exp
           </class>
           <asm>
-          <!--TODO-->
+            cmp %:0, %:2
+            mov $0, %rax
+            setne %al
+            movq %rax, %:r
           </asm>
         </structure>
         <structure tag="equal-operation">
@@ -351,7 +370,10 @@ defmodule GeneralTester do
             equality-exp
           </class>
           <asm>
-          <!--TODO-->
+            cmp %:0, %:2
+            mov $0, %rax
+            sete %al
+            movq %rax, %:r
           </asm>
         </structure>
         <structure tag="equality-exp">
@@ -382,7 +404,10 @@ defmodule GeneralTester do
             relational-exp
           </class>
           <asm>
-          <!--TODO-->
+            cmp %:2, %:0
+            movq $0, %rax
+            setl %al
+            movq %rax, %:r
           </asm>
         </structure>
         
@@ -401,7 +426,10 @@ defmodule GeneralTester do
             relational-exp
           </class>
           <asm>
-          <!--TODO-->
+            cmp %:2, %:0
+            movq $0, %rax
+            setg %al
+            movq %rax, %:r
           </asm>
         </structure>
 
@@ -420,7 +448,10 @@ defmodule GeneralTester do
             relational-exp
           </class>
           <asm>
-          <!--TODO-->
+            cmp %:2, %:0
+            movq $0, %rax
+            setle %al
+            movq %rax, %:r
           </asm>
         </structure>
 
@@ -439,7 +470,10 @@ defmodule GeneralTester do
             relational-exp
           </class>
           <asm>
-          <!--TODO-->
+            cmp %:2, %:0
+            movq $0, %rax
+            setge %al
+            movq %rax, %:r
           </asm>
         </structure>
         
