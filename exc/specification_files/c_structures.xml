@@ -232,7 +232,7 @@
       </class>
       <asm>
         cmp %:2, %:0
-        mov $0, %rax
+        movq $0, %rax
         setl %al
         movq %rax, %:r
       </asm>
@@ -254,7 +254,7 @@
       </class>
       <asm>
         cmp %:2, %:0
-        mov $0, %rax
+        movq $0, %rax
         setg %al
         movq %rax, %:r
       </asm>
@@ -276,7 +276,7 @@
       </class>
       <asm>
         cmp %:2, %:0
-        mov $0, %rax
+        movq $0, %rax
         setle %al
         movq %rax, %:r
       </asm>
@@ -298,7 +298,7 @@
       </class>
       <asm>
         cmp %:2, %:0
-        mov $0, %rax
+        movq $0, %rax
         setge %al
         movq %rax, %:r
       </asm>
