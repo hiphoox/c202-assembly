@@ -4,6 +4,17 @@ defmodule StageFourGeneral do
   test "001_S1_Valid_And" do
     """
     int main(){
+          return 7 && 4;
+      }
+    """
+    |> GeneralTester.start_general_test_compilation
+      exc_output = Invoker.invoke_test_output()
+      assert exc_output == '1\n'
+  end
+
+  test "001_S1_Valid_And" do
+    """
+    int main(){
           return 4 && 7;
       }
     """
