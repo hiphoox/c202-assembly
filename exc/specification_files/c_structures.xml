@@ -489,12 +489,6 @@ movq %:1, %:r
         <substructure tag="group-close">
             <class>group-closer</class>
         </substructure>
-        <class>exp</class>
-        <class>logical-and-exp</class>
-        <class>equality-exp</class>
-        <class>relational-exp</class>
-        <class>additive-exp</class>
-        <class>term</class>
         <class>factor</class>
         <asm>
 	    movq %:1, %:r
