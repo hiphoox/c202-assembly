@@ -1,6 +1,8 @@
 defmodule Common.StringElements do
-  @moduledoc false
-    
+  @moduledoc """
+  Print the header of each output per screen
+  """
+
   # Compiler general name modules
   def scs(),  do: "SCS"        # Source Code String
   def gtl(),  do: "GTL"        # General Token List
