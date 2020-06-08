@@ -143,5 +143,60 @@ defmodule StageThreeGeneral do
         exc_output = Invoker.invoke_test_output()
         assert exc_output == '255\n'
     end
+
+    # test "014_S3_Invalid_Div_Missing_Operator" do 
+    # 	"""
+    # 	int main(){
+	#     return 3 / ;
+    #     }
+    # 	"""
+    # 	|> GeneralTester.start_general_test_compilation
+    #     exc_output = Invoker.invoke_test_output()
+    #     assert exc_output == '0\n'
+    # end
+
+    # test "015_S3_Invalid_Sum_Missing_Operator" do 
+    # 	"""
+    # 	int main(){
+	#     return 7 + ;
+    #     }
+    # 	"""
+    # 	|> GeneralTester.start_general_test_compilation
+    #     exc_output = Invoker.invoke_test_output()
+    #     assert exc_output == '0\n'
+    # end
+
+    # test "016_S3_Invalid_Parenthesis_Middle_Operator" do 
+    # 	"""
+    # 	int main(){
+	#     return (6 + 4) 10;
+    #     }
+    # 	"""
+    # 	|> GeneralTester.start_general_test_compilation
+    #     exc_output = Invoker.invoke_test_output()
+    #     assert exc_output == '0\n'
+    # end
+
+    # test "017_S3_Invalid_Neg_Missing_Operator" do 
+    # 	"""
+    # 	int main(){
+	#     return (6 + 4) -;
+    #     }
+    # 	"""
+    # 	|> GeneralTester.start_general_test_compilation
+    #     exc_output = Invoker.invoke_test_output()
+    #     assert exc_output == '0\n'
+    # end
+
+    # test "018_S3_Invalid_Missing_Parenthesis" do 
+    # 	"""
+    # 	int main(){
+	#     return ((6 + 4) / 2;
+    #     }
+    # 	"""
+    # 	|> GeneralTester.start_general_test_compilation
+    #     exc_output = Invoker.invoke_test_output()
+    #     assert exc_output == '0\n'
+    # end
     
 end

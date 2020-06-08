@@ -308,7 +308,7 @@ defmodule GeneralTester do
             movq $0, %rax
             setne %al
             movq %rax, %:r
-          _:uend:
+        _:uend:
           </asm>
         </structure>
 
@@ -564,28 +564,6 @@ defmodule GeneralTester do
               movq %rax, %:r
           </asm>
         </structure>
-        <structure tag="grouped-operation">
-            <token></token>
-            <substructure tag="group-open">
-                <class>group-opener</class>
-            </substructure>
-            <substructure tag="evaluation">
-                <class>exp</class>
-            </substructure>
-            <substructure tag="group-close">
-                <class>group-closer</class>
-            </substructure>
-            <class>exp</class>
-            <class>logical-and-exp</class>
-            <class>equality-exp</class>
-            <class>relational-exp</class>
-            <class>additive-exp</class>
-            <class>term</class>
-            <class>factor</class>
-            <asm>
-          movq %:1, %:r
-          </asm>
-        </structure>
 
 
         <structure tag="exp">
@@ -656,6 +634,25 @@ defmodule GeneralTester do
           movq %:0, %:r
           </asm>
         </structure>
+
+        <structure tag="grouped-operation">
+            <token></token>
+            <substructure tag="group-open">
+                <class>group-opener</class>
+            </substructure>
+            <substructure tag="evaluation">
+                <class>exp</class>
+            </substructure>
+            <substructure tag="group-close">
+                <class>group-closer</class>
+            </substructure>
+            <class>factor</class>
+            <asm>
+          movq %:1, %:r
+          </asm>
+        </structure>
+
+
         <structure tag="literal">
             <token>
                 literal
