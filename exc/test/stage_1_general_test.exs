@@ -74,27 +74,24 @@ defmodule StageOneGeneral do
         assert exc_output == '1\n'
     end
 
-    # test "007_S1_Invalid_ReturnNull" do 
-    #     """
-    #     int main() {
-    #      return;
-    #     }
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "007_S1_Invalid_ReturnNull" do 
+      msg = """
+        int main() {
+         return;
+        }
+        """|> GeneralTester.start_general_test_compilation
+      assert msg == "error in lexer"
+    end
 
-    # test "008_S1_Invalid_ReturnNoFuncName" do 
-    #     """
-    #     int () {
-    #         return 1;
-    #     }
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "008_S1_Invalid_ReturnNoFuncName" do
+        msg = """
+        int () {
+            return 1;
+        }
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert msg == "error in parser: token missing error"
+    end
 
     # test "009_S1_Invalid_ReturnNoParenth" do 
     #     """

@@ -20,15 +20,32 @@ defmodule GeneralTester do
     |> Reader._generate_general_ast()
     general_token_list = get_c_tokens_content()
     |> Reader._generate_general_token_list()
-    verbose = false
-    Lexer.tokenize({source_code_string, general_token_list})
-    |> Filter.filter_lexer_output("", verbose)
-    |> Parser.parse(general_abstract_syntax_tree)
-    |> Filter.filter_parser_output("", verbose)
-    |> CodeGenerator.generate_code(verbose)
+    {output_token_list, lexer_token} = 
+      Lexer.tokenize({source_code_string, general_token_list})
+
+    case lexer_token do
+      :error -> "error in lexer"
+      :ok -> evaluate_parser(output_token_list, general_abstract_syntax_tree)
+    end
+    
+  end
+
+  defp evaluate_parser(output_token_list, general_abstract_syntax_tree) do 
+    {parser_token,output_abstract_syntax_tree,_token_list,_error_cause} = 
+      Parser.parse(output_token_list, general_abstract_syntax_tree)
+    case parser_token do 
+      :token_missing_error -> "error in parser: token missing error"
+      :token_not_absorbed_error -> "error in parser: token_not_absorbed_error"
+      :ok -> continue_from_parser(output_abstract_syntax_tree)
+    end
+  end
+
+  defp continue_from_parser(output_abstract_syntax_tree) do 
+    CodeGenerator.generate_code(output_abstract_syntax_tree, false)
     |> Writer.write_file()
     |> Invoker.invoke_gcc("")
   end
+
   
   def get_c_tokens_content()                                  do
     """
