@@ -231,5 +231,49 @@ defmodule StageFourGeneral do
       exc_output = Invoker.invoke_test_output()
       assert exc_output == '0\n'
   end
+
+  # test "022_S4_Invalid_AND_First_Op_Missing" do
+  #   """
+  #   int main(){
+	#   return && 4;
+  #   }
+  #   """
+  #   |> GeneralTester.start_general_test_compilation
+  #     exc_output = Invoker.invoke_test_output()
+  #     assert exc_output == '0\n'
+  # end
+
+  # test "023_S4_Invalid_OR_Second_Op_Missing" do
+  #   """
+  #   int main(){
+	#   return 4 || ;
+  #   }
+  #   """
+  #   |> GeneralTester.start_general_test_compilation
+  #     exc_output = Invoker.invoke_test_output()
+  #     assert exc_output == '0\n'
+  # end
+
+  # test "024_S4_Invalid_Mid_Op_Missing" do
+  #   """
+  #   int main(){
+	#   return 4 < < 9;
+  #   }
+  #   """
+  #   |> GeneralTester.start_general_test_compilation
+  #     exc_output = Invoker.invoke_test_output()
+  #     assert exc_output == '0\n'
+  # end
+
+  # test "025_S4_Invalid_Semicolon" do
+  #   """
+  #   int main(){
+	#   return 1 <= 4
+  #   }
+  #   """
+  #   |> GeneralTester.start_general_test_compilation
+  #     exc_output = Invoker.invoke_test_output()
+  #     assert exc_output == '0\n'
+  # end
   
 end
