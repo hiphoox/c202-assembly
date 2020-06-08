@@ -36,7 +36,7 @@ defmodule GeneralTester do
     <token-list>
         <token tag="int">
             <expression>
-                int\\s+
+                int\s+
             </expression>
         </token>
         <token tag="main">
@@ -46,12 +46,12 @@ defmodule GeneralTester do
         </token>
         <token tag="parenthesis-open">
             <expression>
-                \\(
+                \(
             </expression>
         </token>
         <token tag="parenthesis-close">
             <expression>
-                \\)
+                \)
             </expression>
         </token>
         <token tag="bracket-open">
@@ -66,7 +66,7 @@ defmodule GeneralTester do
         </token>
         <token tag="return">
             <expression>
-                return\\s+
+                return\s+
             </expression>
         </token>
         <token tag="literal">
@@ -84,11 +84,6 @@ defmodule GeneralTester do
                 -
             </expression>
         </token>
-        <token tag="negation">
-            <expression>
-                !
-            </expression>
-        </token>
         <token tag="complement">
             <expression>
                 ~
@@ -96,12 +91,12 @@ defmodule GeneralTester do
         </token>
         <token tag="plus">
             <expression>
-                \\+
+                \+
             </expression>
         </token>
         <token tag="asterix">
             <expression>
-                \\*
+                \*
             </expression>
         </token>
         <token tag="slant">
@@ -111,17 +106,12 @@ defmodule GeneralTester do
         </token>
         <token tag="and">
             <expression>
-                \\&amp;\\&amp;
+                \&amp;\&amp;
             </expression>
         </token>
         <token tag="or">
             <expression>
-                \\|\\|
-            </expression>
-        </token>
-        <token tag="eq">
-            <expression>
-                ==
+                \|\|
             </expression>
         </token>
         <token tag="neq">
@@ -129,9 +119,14 @@ defmodule GeneralTester do
                 !=
             </expression>
         </token>
-        <token tag="le">
+        <token tag="negation">
             <expression>
-                &lt;
+                !
+            </expression>
+        </token>
+        <token tag="eq">
+            <expression>
+                ==
             </expression>
         </token>
         <token tag="leq">
@@ -139,14 +134,19 @@ defmodule GeneralTester do
                 &lt;=
             </expression>
         </token>
-        <token tag="ge">
+        <token tag="le">
             <expression>
-                &gt;
+                &lt;
             </expression>
         </token>
         <token tag="geq">
             <expression>
                 &gt;=
+            </expression>
+        </token>
+        <token tag="ge">
+            <expression>
+                &gt;
             </expression>
         </token>
     </token-list>
