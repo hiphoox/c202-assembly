@@ -26,7 +26,7 @@ defmodule CodeGenerator do
 
     {children_string, children_context, free_context, current_uid} = 
       print_next_children(
-        children_list, [], incoming_free_context, 0, start_string, uid
+        Enum.reverse(children_list), [], incoming_free_context, Enum.count(children_list)-1, start_string, uid
       )
 
     {return_string, return_my_context, return_free_context} = 
@@ -68,7 +68,7 @@ defmodule CodeGenerator do
       )
     print_next_children(tail, 
       return_siblings_context ++ incoming_siblings_context, 
-      return_free_context, sibling_number + 1, return_string, next_uid
+      return_free_context, sibling_number - 1, return_string, next_uid
     )
   end
 
