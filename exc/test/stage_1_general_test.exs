@@ -144,13 +144,13 @@ defmodule StageOneGeneral do
     end
 
     test "014_S1_Valid_ReturnPrecZero" do
-        msg = """
+        """
         int main() {
             return 007;
         }   
         """
         |> GeneralTester.start_general_test_compilation
         exc_output = Invoker.invoke_test_output()
-        assert exc_output == '0\n'
+        assert exc_output == '7\n'
     end
 end

@@ -249,7 +249,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-      assert msg = "lexer error: token missing error"
+    assert msg = "lexer error: token missing error"
   end
 
   test "024_S4_Invalid_Mid_Op_Missing" do
@@ -259,7 +259,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-      assert msg == "error in parser: token missing error"
+    assert msg == "error in parser: token missing error"
   end
 
   test "025_S4_Invalid_Semicolon" do
@@ -269,7 +269,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-       assert msg = "lexer error: token missing error"
+    assert msg = "lexer error: token missing error"
   end
   
 end
