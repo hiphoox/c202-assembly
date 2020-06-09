@@ -3,98 +3,123 @@ defmodule CodeOptimizer do
     def optimize(code) do
         code |>
         String.split("\n") |>
-        optimize_movq |>
+        optimize_downwards |>
         Enum.join("\n")
     end
 
-    defp optimize_movq(code) do
+    defp optimize_downwards([]) do
+        []
+    end
+
+    defp optimize_downwards(code) do
         [head | tail] = code
         if tail == [] do
             []
         else
-            if is_movq?(head) == false do
-                [head] ++ optimize_movq(tail)
-            else
-                [reg_a, reg_b] = get_registers(head)
-                if reg_a == reg_b do
-                    optimize_movq(tail)
-                else
-                    if is_exclusive_register?(reg_b) == false do
-                   {new_reg_b, new_tail} = seek_next_movq(reg_b, tail)
-                   new_head = "    movq " <> reg_a <> ", " <> new_reg_b
-                    if new_reg_b == reg_b do#no hicimos nada al final
-                        [new_head] ++ optimize_movq(new_tail)
+            if instruction_frees?(head) do #Instruction frees memory
+                [reg_a, reg_b] = get_registers(head) #All memory freeing instructions have 2 operands.
+                if instruction_frees_all?(head) do #cmp frees all
+                    [head] ++ optimize_downwards(tail)
+                else#movq, imul, idiv, add, sub
+                    if is_exclusive_register?(reg_b) and is_movq?(head) do
+                        [head] ++ optimize_downwards(tail)
                     else
-                        optimize_movq([new_head] ++ new_tail)
+                        #IO.puts("OPTIMIZANDO")
+                        #IO.puts(head)
+                        {new_reg, new_tail} = seek_down(reg_b, tail)
+                        #IO.puts("OPT - DONE")
+                        
+                        if new_reg == reg_b or reg_a == new_reg do
+                            if is_movq?(head) and reg_a == new_reg do
+                                #IO.puts("Eliminanting redundant movq.")
+                                optimize_downwards(new_tail)
+                            else
+                                #IO.puts("a=b, not advancing in...")
+                                #IO.puts(head)
+                                if reg_a == new_reg do
+                                    [head] ++ optimize_downwards(tail)
+                                else
+                                    [head] ++ optimize_downwards(new_tail)
+                                end
+                            end
+                        else
+                            #IO.puts("Optimized register is ...")
+                            #IO.puts(String.replace(head, reg_b, new_reg))
+                            optimize_downwards([String.replace(head, reg_b, new_reg)] ++ new_tail)
+                            
+                        end
                     end
-                else#el registro mueve e rax, y eso es importante por lo que no lo podemos optimizar 
-                    [head] ++ optimize_movq(tail)
                 end
-                end
+            else
+                [head] ++ optimize_downwards(tail)
             end
         end
     end
 
-    defp optimize_exclusive_registers(code) do
-        2
-    end
-
-    defp seek_next_movq(reg_b, []) do
+    defp seek_down(reg_b, []) do
         {reg_b, []}
     end
-    
-    defp seek_next_movq(reg_b, code) do
+
+    defp seek_down(reg_b, code) do
         [head | tail] = code
+        #IO.puts("EVALUATING")
+        #IO.puts(head)
         registers = get_registers(head)
         if Enum.member?(registers, reg_b) do
-            if is_movq?(head) do
-                [_cand_a, cand_b] = registers
-                if cand_b == reg_b do
-                    {reg_b, code}
-                else
-                    if is_exclusive_register?(cand_b) do
-                        {reg_b, code}
+            if instruction_frees?(head) do
+                [a, b] = registers
+                if is_movq?(head) do
+                    if a == reg_b do
+                        #IO.puts("MOVQ REPLACED")
+                        {b, tail}
                     else
-                        {cand_b, tail}
+                        #IO.puts("MOVQ KILLED ME")
+                        #IO.puts(reg_b)
+                        {reg_b, code}
+                    end
+                else
+                    if is_cmp?(head) do
+                        #IO.puts("COMPARISON FOUND")
+                        {reg_b,code}
+                    else
+                        if a == reg_b do
+                            #IO.puts("REGISTRY DYING")
+                            #IO.puts(reg_b)
+                            {reg_b,code}
+                        else
+                            {new_reg, new_tail} = seek_down(reg_b, tail)
+                            if a == new_reg do
+                                #IO.puts("CASCADING REGISTRY FAILED. CORRECTING.")
+                                {reg_b, code}
+                            else    
+                                #IO.puts("REGISTRY REPLACED")
+                                {new_reg, [String.replace(head, b, new_reg)] ++ new_tail}
+                            end
+                            
+                        end
                     end
                 end
             else
-                if instruction_has_side_effects?(head)do
+                {new_reg, new_tail} = seek_down(reg_b, tail)
+                {new_reg, [String.replace(head, reg_b, new_reg)] ++ new_tail}
+            end
+        else
+            if is_end_tag?(head) do
+                {reg_b, code}
+            else
+                {new_reg, new_tail} = seek_down(reg_b, tail)
+                if Enum.member?(registers, new_reg) do
                     {reg_b, code}
                 else
-                    {new_reg_b, new_tail} = seek_next_movq(reg_b, tail)
-                    {new_reg_b, [String.replace(head,reg_b, new_reg_b)] ++ new_tail}
+                    {new_reg, [head] ++ new_tail}
                 end
             end
-        else
-            {new_reg_b, new_tail} = seek_next_movq(reg_b, tail)
-            if instruction_has_side_effects?(head) and Enum.member?(registers, new_reg_b) do
-                    #{reg_b, code}
-                    {reg_b, [head] ++ fix_involvement(reg_b,new_reg_b,tail)}#untested
-                else
-                    {new_reg_b, [head] ++ new_tail}
-            end
         end
-
     end
 
-    defp fix_involvement(_old_reg, _new_reg, []) do
-        []
-    end
 
-    defp fix_involvement(old_reg, new_reg, code) do
-        [head | tail] = code
-        registers = get_registers(head)
-        if instruction_has_side_effects?(head) and Enum.member?(registers, new_reg) do
-            [a, _b]=registers
-            if a == new_reg do
-                [String.replace(head, new_reg, old_reg)] ++ tail
-            else
-                [String.replace(head, new_reg, old_reg)] ++ fix_involvement(old_reg, new_reg, tail)
-            end
-        else
-            [String.replace(head, new_reg, old_reg)] ++ fix_involvement(old_reg, new_reg, tail)
-        end
+    defp is_end_tag?(line) do
+        String.match?(line, ~r/end:/)
     end
 
     defp is_movq?(line) do
@@ -113,8 +138,28 @@ defmodule CodeOptimizer do
         String.match?(line, ~r/add|sub|imul|idiv/)
     end
 
+    defp instruction_frees?(line) do
+        String.match?(line, ~r/add|sub|imul|idiv|cmp|movq/)
+    end
+
+    defp instruction_frees_left?(line) do
+        String.match?(line, ~r/add|sub|imul|idiv|movq/)
+    end
+
+    defp instruction_frees_all?(line) do
+        String.match?(line, ~r/cmp/)
+    end
+
+    defp is_cmp?(line) do
+        String.match?(line, ~r/cmp/)
+    end
+
     defp get_registers(line) do
         Regex.scan(~r/[%|$]\w*/, line) |> List.flatten
+    end
+
+    defp get_available_registers() do
+    ["r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"]
     end
 
 end
