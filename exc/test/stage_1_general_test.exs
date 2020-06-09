@@ -93,69 +93,64 @@ defmodule StageOneGeneral do
         assert msg == "error in parser: token missing error"
     end
 
-    # test "009_S1_Invalid_ReturnNoParenth" do 
-    #     """
-    #     int main) {
-    #         return 1;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "009_S1_Invalid_ReturnNoParenth" do 
+        msg = """
+        int main) {
+            return 1;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert msg == "error in parser: token missing error"
+    end
 
-    # test "010_S1_Invalid_ReturnNoBrack" do 
-    #     """
-    #     int main() 
-    #         return 13;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "010_S1_Invalid_ReturnNoBrack" do 
+        msg = """
+        int main() 
+            return 13;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert msg == "error in parser: token missing error"
+    end
 
-    # test "011_S1_Invalid_ReturnNoSpaces" do
-    #     """
-    #     intmain() {
-    #         return 44;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "011_S1_Invalid_ReturnNoSpaces" do
+        msg = """
+        intmain() {
+            return 44;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert msg == "error in lexer"
+    end
 
-    # test "012_S1_Invalid_ReturnComma" do
-    #     """
-    #     int main() {
-    #         return 25,
-    #     }  
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "012_S1_Invalid_ReturnComma" do
+        msg = """
+        int main() {
+            return 25,
+        }  
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert msg == "error in lexer"
+    end
 
-    # test "013_S1_Invalid_ReturnCaps" do
-    #     """
-    #     Int main() {
-    #         Return 1;
-    #     }  
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "013_S1_Invalid_ReturnCaps" do
+        msg = """
+        Int main() {
+            Return 1;
+        }  
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert msg == "error in lexer"
+    end
 
-    # test "014_S1_Invalid_ReturnPrecZero" do
-    #     """
-    #     int main() {
-    #         return 007;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "014_S1_Valid_ReturnPrecZero" do
+        msg = """
+        int main() {
+            return 007;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        exc_output = Invoker.invoke_test_output()
+        assert exc_output == '0\n'
+    end
 end
