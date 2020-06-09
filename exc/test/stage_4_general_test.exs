@@ -199,81 +199,77 @@ defmodule StageFourGeneral do
       assert exc_output == '0\n'
   end
 
-#   test "019_S4_Valid_Precedence" do
-#     """
-#     int main(){
-# 	    return (4 || 1) && 4;
-#     }
-#     """
-#     |> GeneralTester.start_general_test_compilation
-#       exc_output = Invoker.invoke_test_output()
-#       assert exc_output == '1\n'
-#   end
+  test "019_S4_Valid_Precedence" do
+    """
+    int main(){
+	    return (4 || 1) && 4;
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+      exc_output = Invoker.invoke_test_output()
+      assert exc_output == '1\n'
+  end
 
-#   test "020_S4_Valid_Precedence" do
-#     """
-#     int main(){
-# 	    return 1 && 4 || 1;
-#     }
-#     """
-#     |> GeneralTester.start_general_test_compilation
-#       exc_output = Invoker.invoke_test_output()
-#       assert exc_output == '1\n'
-#   end
+  test "020_S4_Valid_Precedence" do
+    """
+    int main(){
+	    return 1 && 4 || 1;
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+      exc_output = Invoker.invoke_test_output()
+      assert exc_output == '1\n'
+  end
 
-#   test "021_S4_Valid_Precedence" do
-#     """
-#     int main(){
-# 	    return (4 || 1) >= 2;
-#     }
-#     """
-#     |> GeneralTester.start_general_test_compilation
-#       exc_output = Invoker.invoke_test_output()
-#       assert exc_output == '0\n'
-#   end
+  test "021_S4_Valid_Precedence" do
+    """
+    int main(){
+	    return (4 || 1) >= 2;
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+      exc_output = Invoker.invoke_test_output()
+      assert exc_output == '0\n'
+  end
 
-#   # test "022_S4_Invalid_AND_First_Op_Missing" do
-#   #   """
-#   #   int main(){
-# 	#   return && 4;
-#   #   }
-#   #   """
-#   #   |> GeneralTester.start_general_test_compilation
-#   #     exc_output = Invoker.invoke_test_output()
-#   #     assert exc_output == '0\n'
-#   # end
+  test "022_S4_Invalid_AND_First_Op_Missing" do
+    msg = """
+    int main(){
+      return && 4;
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+      assert msg = "lexer error: token missing error"
+  end
 
-#   # test "023_S4_Invalid_OR_Second_Op_Missing" do
-#   #   """
-#   #   int main(){
-# 	#   return 4 || ;
-#   #   }
-#   #   """
-#   #   |> GeneralTester.start_general_test_compilation
-#   #     exc_output = Invoker.invoke_test_output()
-#   #     assert exc_output == '0\n'
-#   # end
+  test "023_S4_Invalid_OR_Second_Op_Missing" do
+    msg = """
+    int main(){
+      return 4 || ;
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+      assert msg = "lexer error: token missing error"
+  end
 
-#   # test "024_S4_Invalid_Mid_Op_Missing" do
-#   #   """
-#   #   int main(){
-# 	#   return 4 < < 9;
-#   #   }
-#   #   """
-#   #   |> GeneralTester.start_general_test_compilation
-#   #     exc_output = Invoker.invoke_test_output()
-#   #     assert exc_output == '0\n'
-#   # end
+  test "024_S4_Invalid_Mid_Op_Missing" do
+    msg = """
+    int main(){
+      return 4 < < 9;
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+      assert msg == "error in parser: token missing error"
+  end
 
-#   # test "025_S4_Invalid_Semicolon" do
-#   #   """
-#   #   int main(){
-# 	#   return 1 <= 4
-#   #   }
-#   #   """
-#   #   |> GeneralTester.start_general_test_compilation
-#   #     exc_output = Invoker.invoke_test_output()
-#   #     assert exc_output == '0\n'
-#   # end
+  test "025_S4_Invalid_Semicolon" do
+    msg = """
+    int main(){
+      return 1 <= 4
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+       assert msg = "lexer error: token missing error"
+  end
   
 end

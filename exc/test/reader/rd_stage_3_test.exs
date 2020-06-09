@@ -135,14 +135,5 @@ defmodule StageThreeReader do
       """
       assert Reader._generate_source_code_string(scs) == "int main() {  return (6 + 4) -; }"
   end
-  
-   test "016_S3_Invalid_Missing_Parenthesis" do
-      scs = """
-      int main() {
-      \treturn ((6 + 4) / 2;
-      }
-      """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return ((6 + 4) / 2; }"
-  end
 
 end

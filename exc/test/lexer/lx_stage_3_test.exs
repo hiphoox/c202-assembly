@@ -347,26 +347,4 @@ defmodule StageThreeLexer do
     assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
   end
   
-  test "016_S3_Invalid_Missing_Parenthesis", context do
-    gtl = Reader._generate_general_token_list(GeneralTester.get_c_tokens_content())
-    scs = """
-    int main() {
-      return ((6 + 4) / 2;
-    }
-    """
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, pos_y: nil, tag: "parenthesis-close"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, tag: "slant"}
-    literal_token3 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, tag: "literal"}
-
-    token_list = [parenthesis_open_token, parenthesis_open_token, literal_token1, plus_token, literal_token2, parenthesis_close_token, slant_token, literal_token3]
-
-    right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
-
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
-  end
-  
 end
