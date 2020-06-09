@@ -499,43 +499,4 @@ test "009_S3_Valid_Precedence", context do
     assert left_hand_side == right_hand_side
   end
 
-  test "016_S3_Invalid_Missing_Parenthesis", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
-    general_token_list =  GeneralTester.get_c_tokens_content() 
-                          |> Reader._generate_general_token_list()
-    source_code_string = """
-    int main(){
-    return ((6 + 4) / 2;
-    }
-    """
-    |> Reader._generate_source_code_string()
-    left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
-
-    parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
-      pos_y: nil, tag: "parenthesis-open"}
-    literal_token1 = %Structs.Token{expression: "6", pos_x: nil, pos_y: nil, 
-      tag: "literal"}
-    plus_token = %Structs.Token{expression: "+", pos_x: nil, pos_y: nil, 
-      tag: "plus"}
-    literal_token2 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
-      tag: "literal"}
-    parenthesis_close_token = %Structs.Token{expression: ")", pos_x: nil, 
-      pos_y: nil, tag: "parenthesis-close"}
-    slant_token = %Structs.Token{expression: "/", pos_x: nil, pos_y: nil, 
-      tag: "slant"}
-    literal_token3 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, 
-      tag: "literal"}
-
-    token_list = [parenthesis_open_token, parenthesis_open_token, literal_token1,
-    plus_token, literal_token2, parenthesis_close_token, slant_token, 
-    literal_token3]
-    incomplete_output_token_list = context[:output_token_list]
-    output_token_list = GeneralTester.insert_token_list(
-      incomplete_output_token_list, token_list, 6)
-    right_hand_side = output_token_list
-
-    assert left_hand_side == right_hand_side
-  end
-
 end
