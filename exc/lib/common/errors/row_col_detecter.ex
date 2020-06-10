@@ -1,13 +1,7 @@
 defmodule Error.RowColDetecter do
 
-  def find_row_col(token, source_code_string, _read=false) do
-    {num_row, row} = find_row(token, source_code_string)
-    num_col = find_col(token, row)
-    {num_row + 1, num_col + 1}
-  end
-
-  def find_row_col(token, source_code_path, _read=true) do
-    {num_row, row} = find_row(token, File.read!(source_code_path))
+  def find_row_col(token, raw_source_code_string) do
+    {num_row, row} = find_row(token, raw_source_code_string)
     num_col = find_col(token, row)
     {num_row + 1, num_col + 1}
   end
