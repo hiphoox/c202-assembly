@@ -76,9 +76,10 @@ defmodule ExC do
   def start_compilation(file_path, output_file_name \\ "", verbose)     do
     # Note: if you add another module, remember to update GeneralTester's 
     # start_general_test_compilation method
-    Reader.read_code_and_tokens(file_path, @c_tokens_path, verbose)
+    raw_source_code_string = File.read!(file_path)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, verbose)
     |> Lexer.tokenize()
-    |> Filter.filter_lexer_output(file_path, verbose)
+    |> Filter.filter_lexer_output(file_path, raw_source_code_string, verbose)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
     |> Filter.filter_parser_output(file_path, verbose)
     |> CodeGenerator.generate_code(verbose)
