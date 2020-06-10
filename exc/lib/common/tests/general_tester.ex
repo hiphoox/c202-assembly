@@ -17,12 +17,14 @@ defmodule GeneralTester do
   
   def start_general_test_compilation(source_code_string)      do
     general_abstract_syntax_tree = get_c_structures_content() 
-    |> Reader._generate_general_ast()
+      |> Reader._generate_general_ast()
     general_token_list = get_c_tokens_content()
-    |> Reader._generate_general_token_list()
+      |> Reader._generate_general_token_list()
+    # -------------------------
+    # start compilation process
+    # -------------------------
     {output_token_list, lexer_token} = 
       Lexer.tokenize({source_code_string, general_token_list})
-
     case lexer_token do
       :error -> Common.StringElements.lexer_error_invalid_token()
       :ok -> evaluate_parser(output_token_list, general_abstract_syntax_tree)
