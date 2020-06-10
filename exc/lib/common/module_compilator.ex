@@ -25,7 +25,7 @@ defmodule Common.ModuleCompilator do
     IO.puts("==============")
     Reader.read_code_and_tokens(file_path, @c_tokens_path, all_trace)
     |> Lexer.tokenize()
-    |> Filter.filter_lexer_output(file_path, all_trace)
+    |> Filter.filter_lexer_output(file_path, "", all_trace)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
     |> IO.inspect(label: "OAST")
   end
@@ -36,7 +36,7 @@ defmodule Common.ModuleCompilator do
     IO.puts("==============")
     Reader.read_code_and_tokens(file_path, @c_tokens_path, all_trace)
     |> Lexer.tokenize()
-    |> Filter.filter_lexer_output(file_path, all_trace)
+    |> Filter.filter_lexer_output(file_path, "", all_trace)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
     |> Filter.filter_parser_output(file_path, all_trace)
     |> CodeGenerator.generate_code(all_trace)

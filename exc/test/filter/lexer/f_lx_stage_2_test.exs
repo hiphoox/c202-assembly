@@ -36,7 +36,7 @@ defmodule StageTwoFilterLexer do
     """
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
       tag: "minus"}
@@ -63,7 +63,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
       tag: "complement"}
@@ -90,7 +90,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
       tag: "complement"}
@@ -116,7 +116,7 @@ defmodule StageTwoFilterLexer do
     """
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}
@@ -142,7 +142,7 @@ defmodule StageTwoFilterLexer do
     """
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     complement_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}
@@ -168,7 +168,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
       tag: "minus"}
@@ -196,7 +196,7 @@ defmodule StageTwoFilterLexer do
     """
 	|> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}
@@ -224,7 +224,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}
@@ -252,7 +252,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}
@@ -280,7 +280,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
       tag: "minus"}
@@ -309,7 +309,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -334,7 +334,7 @@ defmodule StageTwoFilterLexer do
     """
 	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}
@@ -359,7 +359,7 @@ defmodule StageTwoFilterLexer do
     """
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     negation_token = %Structs.Token{expression: "!", pos_x: nil, pos_y: nil, 
       tag: "negation"}

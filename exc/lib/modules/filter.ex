@@ -24,7 +24,7 @@ defmodule Filter do
       raw_source_code_string)
     System.halt(1)
   end
-  def filter_lexer_output({otl, :ok}, _, verbose)                          do
+  def filter_lexer_output({otl, :ok}, _, _, verbose)                          do
     if verbose do
       inspect = true
       IO.Printer.print_element(

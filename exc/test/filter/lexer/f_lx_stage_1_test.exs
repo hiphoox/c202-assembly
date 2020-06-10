@@ -44,7 +44,7 @@ defmodule StageOneFilterLexer do
     """ 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "0", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -68,7 +68,7 @@ defmodule StageOneFilterLexer do
     """ 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
     tag: "literal"}
@@ -92,7 +92,7 @@ defmodule StageOneFilterLexer do
     """ 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "130", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -122,7 +122,7 @@ defmodule StageOneFilterLexer do
 	""" 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -144,7 +144,7 @@ defmodule StageOneFilterLexer do
     """ 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -171,7 +171,7 @@ defmodule StageOneFilterLexer do
 	""" 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "1", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -195,7 +195,7 @@ defmodule StageOneFilterLexer do
 	""" 
     |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token = %Structs.Token{expression: "007", pos_x: nil, pos_y: nil, 
       tag: "literal"}
