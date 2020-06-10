@@ -20,15 +20,31 @@ defmodule GeneralTester do
     |> Reader._generate_general_ast()
     general_token_list = get_c_tokens_content()
     |> Reader._generate_general_token_list()
-    verbose = false
-    Lexer.tokenize({source_code_string, general_token_list})
-    |> Filter.filter_lexer_output("", verbose)
-    |> Parser.parse(general_abstract_syntax_tree)
-    |> Filter.filter_parser_output("", verbose)
-    |> CodeGenerator.generate_code(verbose)
+    {output_token_list, lexer_token} = 
+      Lexer.tokenize({source_code_string, general_token_list})
+
+    case lexer_token do
+      :error -> Common.StringElements.lexer_error_invalid_token()
+      :ok -> evaluate_parser(output_token_list, general_abstract_syntax_tree)
+    end
+  end
+
+  defp evaluate_parser(output_token_list, general_abstract_syntax_tree) do 
+    {parser_token,output_abstract_syntax_tree,_token_list,_error_cause} = 
+      Parser.parse(output_token_list, general_abstract_syntax_tree)
+    case parser_token do 
+      :token_missing_error -> Common.StringElements.parser_error_missing_token()
+      :token_not_absorbed_error -> Common.StringElements.parser_error_token_not_absorbed()
+      :ok -> continue_from_parser(output_abstract_syntax_tree)
+    end
+  end
+
+  defp continue_from_parser(output_abstract_syntax_tree) do 
+    CodeGenerator.generate_code(output_abstract_syntax_tree, false)
     |> Writer.write_file()
     |> Invoker.invoke_gcc("")
   end
+
   
   def get_c_tokens_content()                                  do
     """
@@ -84,11 +100,6 @@ defmodule GeneralTester do
                 -
             </expression>
         </token>
-        <token tag="negation">
-            <expression>
-                !
-            </expression>
-        </token>
         <token tag="complement">
             <expression>
                 ~
@@ -119,19 +130,19 @@ defmodule GeneralTester do
                 \\|\\|
             </expression>
         </token>
-        <token tag="eq">
-            <expression>
-                ==
-            </expression>
-        </token>
         <token tag="neq">
             <expression>
                 !=
             </expression>
         </token>
-        <token tag="le">
+        <token tag="negation">
             <expression>
-                &lt;
+                !
+            </expression>
+        </token>
+        <token tag="eq">
+            <expression>
+                ==
             </expression>
         </token>
         <token tag="leq">
@@ -139,14 +150,19 @@ defmodule GeneralTester do
                 &lt;=
             </expression>
         </token>
-        <token tag="ge">
+        <token tag="le">
             <expression>
-                &gt;
+                &lt;
             </expression>
         </token>
         <token tag="geq">
             <expression>
                 &gt;=
+            </expression>
+        </token>
+        <token tag="ge">
+            <expression>
+                &gt;
             </expression>
         </token>
     </token-list>
@@ -272,29 +288,18 @@ defmodule GeneralTester do
           </class>
           <asm>
             cmp $0, %:0
-            je :u_clause2
+            je _:uclause2
             movq $1, %:r
-            jmp :u_end
-        :u_clause2:
+            jmp _:uend
+        _:uclause2:
             cmp $0, %:2
             movq $0, %rax
             setne %al
             movq %rax, %:r
-        :u_end:
+        _:uend:
           </asm>
         </structure>
-        <structure tag="exp">
-          <token></token>
-          <substructure tag="value">
-            <class>logical-and-exp</class>
-          </substructure>
-          <class>
-            exp
-          </class>
-          <asm>
-          movq %:0, %:r
-          </asm>
-        </structure>
+
         <structure tag="logical-and-operation">
           <token></token>
           <substructure tag="first-value">
@@ -311,29 +316,19 @@ defmodule GeneralTester do
           </class>
           <asm>
             cmp $0, %:0
-            jne :u_clause2
+            jne _:uclause2
             movq $0, %:r
-            jmp :u_end
-        :u_clause2:
+            jmp _:uend
+        _:uclause2:
             cmp $0, %:2
             movq $0, %rax
             setne %al
             movq %rax, %:r
-        :u_end:
+        _:uend:
           </asm>
         </structure>
-        <structure tag="logical-and-exp">
-          <token></token>
-          <substructure tag="value">
-            <class>equality-exp</class>
-          </substructure>
-          <class>
-            logical-and-exp
-          </class>
-          <asm>
-          movq %:0, %:r
-          </asm>
-        </structure>
+
+
         <structure tag="not-equal-operation">
           <token></token>
           <substructure tag="first-value">
@@ -376,18 +371,7 @@ defmodule GeneralTester do
             movq %rax, %:r
           </asm>
         </structure>
-        <structure tag="equality-exp">
-          <token></token>
-          <substructure tag="value">
-            <class>relational-exp</class>
-          </substructure>
-          <class>
-            equality-exp
-          </class>
-          <asm>
-          movq %:0, %:r
-          </asm>
-        </structure>
+
 
         <structure tag="less-than-operation">
           <token></token>
@@ -477,18 +461,6 @@ defmodule GeneralTester do
           </asm>
         </structure>
         
-        <structure tag="relational-exp">
-          <token></token>
-          <substructure tag="value">
-            <class>additive-exp</class>
-          </substructure>
-          <class>
-            relational-exp
-          </class>
-          <asm>
-          movq %:0, %:r
-          </asm>
-        </structure>
 
         <structure tag="sum-operation">
             <token></token>
@@ -524,16 +496,8 @@ defmodule GeneralTester do
           sub %:2, %:r
           </asm>
         </structure>
-        <structure tag="additive-exp">
-            <token></token>
-            <substructure tag="value">
-                <class>term</class>
-            </substructure>
-            <class>additive-exp</class>
-            <asm>
-          movq %:0, %:r
-          </asm>
-        </structure>
+
+
         <structure tag="division-operation">
             <token></token>
             <substructure tag="first-value">
@@ -570,32 +534,8 @@ defmodule GeneralTester do
           imul %:2, %:r
           </asm>
         </structure>
-        <structure tag="term">
-            <token></token>
-            <substructure tag="value">
-                <class>factor</class>
-            </substructure>
-            <class>term</class>
-            <asm>
-          movq %:0, %:r
-          </asm>
-        </structure>
-        <structure tag="grouped-operation">
-            <token></token>
-            <substructure tag="group-open">
-                <class>group-opener</class>
-            </substructure>
-            <substructure tag="evaluation">
-                <class>additive-exp</class>
-            </substructure>
-            <substructure tag="group-close">
-                <class>group-closer</class>
-            </substructure>
-            <class>factor</class>
-            <asm>
-          movq %:1, %:r
-          </asm>
-        </structure>
+
+
         <structure tag="negative-operation">
             <token></token>
           <substructure tag="operator">
@@ -640,6 +580,95 @@ defmodule GeneralTester do
               movq %rax, %:r
           </asm>
         </structure>
+
+
+        <structure tag="exp">
+          <token></token>
+          <substructure tag="value">
+            <class>logical-and-exp</class>
+          </substructure>
+          <class>
+            exp
+          </class>
+          <asm>
+          movq %:0, %:r
+          </asm>
+        </structure>
+        <structure tag="logical-and-exp">
+          <token></token>
+          <substructure tag="value">
+            <class>equality-exp</class>
+          </substructure>
+          <class>
+            logical-and-exp
+          </class>
+          <asm>
+          movq %:0, %:r
+          </asm>
+        </structure>
+        <structure tag="equality-exp">
+          <token></token>
+          <substructure tag="value">
+            <class>relational-exp</class>
+          </substructure>
+          <class>
+            equality-exp
+          </class>
+          <asm>
+          movq %:0, %:r
+          </asm>
+        </structure>
+        <structure tag="relational-exp">
+          <token></token>
+          <substructure tag="value">
+            <class>additive-exp</class>
+          </substructure>
+          <class>
+            relational-exp
+          </class>
+          <asm>
+          movq %:0, %:r
+          </asm>
+        </structure>
+        <structure tag="additive-exp">
+            <token></token>
+            <substructure tag="value">
+                <class>term</class>
+            </substructure>
+            <class>additive-exp</class>
+            <asm>
+          movq %:0, %:r
+          </asm>
+        </structure>
+        <structure tag="term">
+            <token></token>
+            <substructure tag="value">
+                <class>factor</class>
+            </substructure>
+            <class>term</class>
+            <asm>
+          movq %:0, %:r
+          </asm>
+        </structure>
+
+        <structure tag="grouped-operation">
+            <token></token>
+            <substructure tag="group-open">
+                <class>group-opener</class>
+            </substructure>
+            <substructure tag="evaluation">
+                <class>exp</class>
+            </substructure>
+            <substructure tag="group-close">
+                <class>group-closer</class>
+            </substructure>
+            <class>factor</class>
+            <asm>
+          movq %:1, %:r
+          </asm>
+        </structure>
+
+
         <structure tag="literal">
             <token>
                 literal
