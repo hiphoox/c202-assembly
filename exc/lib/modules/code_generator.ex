@@ -135,6 +135,12 @@ defmodule CodeGenerator do
   defp cleanup(raw_asm_code)                                                do
     s1 = Regex.replace(~r/\n+/, raw_asm_code, "\n")
     s2 = Regex.replace(~r/[\t\r ]{2,}/, s1, "")
-    String.split(s2, "\n") |> Enum.map(fn line -> if String.contains?(line, ":") do line else "    "<>line end end) |> Enum.join("\n")
+    String.split(s2, "\n") 
+      |> Enum.map(
+          fn line -> 
+            if String.contains?(line, ":") do line 
+            else "    "<>line end 
+          end) 
+      |> Enum.join("\n")
   end
 end

@@ -5,7 +5,7 @@ defmodule CodeOptimizer do
           |> String.split("\n") 
           |> optimize_downwards 
           |> Enum.join("\n")
-          |> check_for_verbose(verbose)
+          |> IO.Printer.check_for_verbose(verbose)
     end
 
     defp optimize_downwards([]) do
@@ -157,14 +157,5 @@ defmodule CodeOptimizer do
 
     defp get_registers(line) do
         Regex.scan(~r/[%|$]\w*/, line) |> List.flatten
-    end
-
-    defp check_for_verbose(assembly_code, verbose)                            do
-      if verbose do
-        IO.Printer.print_element(
-          Common.StringElements.rc, assembly_code
-        )
-      end
-      assembly_code
     end
 end
