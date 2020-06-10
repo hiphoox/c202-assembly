@@ -1,7 +1,7 @@
 defmodule Error.ErrorDetecter do
   @moduledoc false
   def lexer_error(token, file_path)                                  do
-    {row, col} = Error.RowColDetecter.find_row_col(token, file_path)
+    {row, col} = Error.RowColDetecter.find_row_col(token, file_path, _read=true)
     class_msg =         "** (Lexer Error) invalid token"
     fault_element_msg = "#{token.expression}"
     reason_msg  =       ""

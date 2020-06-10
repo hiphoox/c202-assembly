@@ -75,12 +75,12 @@ defmodule StageOneGeneral do
     end
 
     test "007_S1_Invalid_ReturnNull" do 
-      msg = """
+      {row, col} = """
         int main() {
          return;
         }
         """|> GeneralTester.start_general_test_compilation
-      assert msg == Common.StringElements.lexer_error_invalid_token()
+      assert {row, col} == {2,2}
     end
 
     test "008_S1_Invalid_ReturnNoFuncName" do
@@ -114,33 +114,33 @@ defmodule StageOneGeneral do
     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do
-        msg = """
+      {row, col} = """
         intmain() {
             return 44;
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.lexer_error_invalid_token()
+        assert {row, col} == {1,1}
     end
 
     test "012_S1_Invalid_ReturnComma" do
-        msg = """
+      {row, col} = """
         int main() {
             return 25,
         }  
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.lexer_error_invalid_token()
+        assert {row, col} == {2,12}
     end
 
     test "013_S1_Invalid_ReturnCaps" do
-        msg = """
+      {row, col} = """
         Int main() {
             Return 1;
         }  
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.lexer_error_invalid_token()
+        assert {row, col} == {1,1}
     end
 
     test "014_S1_Valid_ReturnPrecZero" do
