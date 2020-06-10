@@ -12,13 +12,9 @@ defmodule Common.StringElements do
 
   # Output file names
   def asm_generated_file(), do: "output.o.s"
-<<<<<<< HEAD
-end
-=======
 
   #General tests strings
   def lexer_error_invalid_token(), do: "Lexer error: invalid token"
   def parser_error_missing_token(), do: "Parser error: missing token"
   def parser_error_token_not_absorbed(), do: "Parser error: token not absorbed"
 end
->>>>>>> Testing

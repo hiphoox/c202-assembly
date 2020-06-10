@@ -1,5 +1,13 @@
-defmodule CodeConnector do 
-  def connect(code, verbose) do 
+defmodule CodeConnector do
+  @moduledoc """
+  Connect the generated assembly code with the header.
+  """
+
+  @doc """
+  ```code```  code generated with output CodeOptimizer.optimize/2.
+  ```verbose``` a boolean value indicating if the compiler should output all of its steps.
+  """
+  def connect(code, verbose) do
     code
       |> assembly()
       |> IO.Printer.check_for_verbose(verbose)
