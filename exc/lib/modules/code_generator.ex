@@ -16,7 +16,7 @@ defmodule CodeGenerator do
       generate_raw_string_code(abstract_syntax_tree)
     assembly_code
       |> cleanup()
-      |> check_for_verbose(verbose)
+      |> IO.Printer.check_for_verbose(verbose)   
   end
 
   defp generate_raw_string_code(abstract_syntax_tree, incoming_free_context \\ 
@@ -136,14 +136,5 @@ defmodule CodeGenerator do
     s1 = Regex.replace(~r/\n+/, raw_asm_code, "\n")
     s2 = Regex.replace(~r/[\t\r ]{2,}/, s1, "")
     String.split(s2, "\n") |> Enum.map(fn line -> if String.contains?(line, ":") do line else "    "<>line end end) |> Enum.join("\n")
-  end
-  
-  defp check_for_verbose(assembly_code, verbose)                            do
-    if verbose do
-      IO.Printer.print_element(
-        Common.StringElements.rc, assembly_code
-      )
-    end
-    assembly_code
   end
 end

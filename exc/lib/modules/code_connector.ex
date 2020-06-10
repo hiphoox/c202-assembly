@@ -2,7 +2,7 @@ defmodule CodeConnector do
   def connect(code, verbose) do 
     code
       |> assembly()
-      |> check_for_verbose(verbose)
+      |> IO.Printer.check_for_verbose(verbose)
   end
   defp assembly(cleaned_asm_code)                                           do
     base_header = """
@@ -16,13 +16,5 @@ defmodule CodeConnector do
         ret
     """
     base_header <> main_header
-  end
-  defp check_for_verbose(assembly_code, verbose)                            do
-    if verbose do
-      IO.Printer.print_element(
-        Common.StringElements.rc, assembly_code
-      )
-    end
-    assembly_code
   end
 end
