@@ -27,7 +27,7 @@ defmodule GeneralTester do
       Lexer.tokenize({source_code_string, general_token_list})
     case lexer_token do
       :error -> Error.RowColDetecter.find_row_col(
-        output_token_list, source_code_string, _read=false
+        output_token_list, source_code_string
       )
       :ok -> evaluate_parser(output_token_list, general_abstract_syntax_tree)
     end
