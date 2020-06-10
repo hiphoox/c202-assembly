@@ -13,14 +13,14 @@ defmodule IO.Printer do
       :red        => "#{@unicode_start}31#{@unicode_finish}"
     }
 
-    def print_element(label, element, inspect \\ false)             do 
+    def print_element(label, element, inspect \\ false)               do 
       IO.puts(label)
       if inspect,
         do:   element |> IO.inspect(),
         else: IO.puts(element)
     end
 
-    def _print_error(class, fault_element, reason, location)        do
+    def _print_error(class, fault_element, reason, location, row_col) do
       IO.puts(
         @colors[:red] 
         <> class 
@@ -33,6 +33,7 @@ defmodule IO.Printer do
         <> @styles[:underline]
         <> "#{location}"
         <> @styles[:reset]
+        <> "#{row_col}"
       )
     end
     def check_for_verbose(code, true) do
