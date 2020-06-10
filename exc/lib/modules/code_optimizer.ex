@@ -1,10 +1,11 @@
 defmodule CodeOptimizer do
 
-    def optimize(code) do
-        code |>
-        String.split("\n") |>
-        optimize_downwards |>
-        Enum.join("\n")
+    def optimize(code, verbose) do
+        code 
+          |> String.split("\n") 
+          |> optimize_downwards 
+          |> Enum.join("\n")
+          |> check_for_verbose(verbose)
     end
 
     defp optimize_downwards([]) do
@@ -129,21 +130,9 @@ defmodule CodeOptimizer do
     defp is_exclusive_register?(reg) do
         Enum.member?(["%rax"], reg)
     end
-
-    defp is_number?(reg) do
-        String.match?(reg, ~r/$\w*/)
-    end
-
-    defp instruction_has_side_effects?(line) do
-        String.match?(line, ~r/add|sub|imul|idiv/)
-    end
-
+    
     defp instruction_frees?(line) do
         String.match?(line, ~r/add|sub|imul|idiv|cmp|movq/)
-    end
-
-    defp instruction_frees_left?(line) do
-        String.match?(line, ~r/add|sub|imul|idiv|movq/)
     end
 
     defp instruction_frees_all?(line) do
@@ -158,8 +147,12 @@ defmodule CodeOptimizer do
         Regex.scan(~r/[%|$]\w*/, line) |> List.flatten
     end
 
-    defp get_available_registers() do
-    ["r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"]
+    defp check_for_verbose(assembly_code, verbose)                            do
+      if verbose do
+        IO.Printer.print_element(
+          Common.StringElements.rc, assembly_code
+        )
+      end
+      assembly_code
     end
-
 end
