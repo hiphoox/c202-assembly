@@ -18,8 +18,8 @@ defmodule Reader do
       iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c', 
       "specification_files/c_tokens.xml")
   """
-  def read_code_and_tokens(source_code_path, tokens_path, verbose \\ false) do
-    scs = read_source_code_string(source_code_path)
+  def read_code_and_tokens(raw_source_code_string, tokens_path, verbose \\ false) do
+    scs = clean_source_code_string(raw_source_code_string)
     gtl = read_general_token_list(tokens_path)
     if verbose do
       IO.Printer.print_element(Common.StringElements.scs, scs)
@@ -30,31 +30,23 @@ defmodule Reader do
   end
 
   @doc """
-  Reads the source code as a string.
+  Cleans the source code as a string.
   ## Specs
-  ```source_code_path``` is the path to the file to be compiled.  
+  ```raw_source_code_string``` is source code without any format coming from 
+    File.read!(path)
 
   Generates the following output:
   + Source Code String (SCS): String.
   
   ## Examples
   ```
-      iex> scs = Reader.read_source_code_string("examples/test_s2.c")
+      iex> scs = Reader.clean_source_code_string(File.read!("examples/test_s2.c"))
       "int main(){  return -7; }
       
       "
   ``` 
-  """
-  def read_source_code_string(source_code_path)           do 
-    File.read!(source_code_path)
-    |> _generate_source_code_string()
-  end
-
-  def _generate_source_code_string(file_content)          do
-    clean_source_code_string(file_content)
-  end
-
-  defp clean_source_code_string(file_content)             do
+  """  
+  def clean_source_code_string(file_content)             do
     String.trim(file_content)
     |> String.replace("\n", " ")
     |> String.replace("\t", " ")
