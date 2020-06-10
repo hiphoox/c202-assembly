@@ -18,11 +18,13 @@ defmodule Filter do
   ```verbose``` a boolean value indicating if the compiler should output all 
       of its steps.
   """
-  def filter_lexer_output({otl, :error}, source_code_path, _)               do 
-    Error.ErrorDetecter.lexer_error(otl, source_code_path)
+  def filter_lexer_output({error_token, :error}, source_code_path, 
+    raw_source_code_string, _)               do 
+    Error.ErrorDetecter.lexer_error(error_token, source_code_path, 
+      raw_source_code_string)
     System.halt(1)
   end
-  def filter_lexer_output({otl, :ok}, _, verbose)                           do
+  def filter_lexer_output({otl, :ok}, _, _, verbose)                          do
     if verbose do
       inspect = true
       IO.Printer.print_element(

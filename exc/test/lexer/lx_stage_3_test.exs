@@ -74,7 +74,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "002_S3_Valid_SubstractPositive", context do
@@ -92,7 +92,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "003_S3_Valid_SubstractNegative", context do
@@ -110,7 +110,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
 
 	test "004_S3_Valid_DivPositive", context do
@@ -128,7 +128,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "005_S3_Valid_DivNegative", context do
@@ -147,7 +147,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
 
 	test "006_S3_Valid_MultPositive", context do
@@ -165,7 +165,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "007_S3_Valid_MultNeg", context do
@@ -184,7 +184,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "008_S3_Valid_SimpleParenthesis", context do
@@ -206,7 +206,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "009_S3_Valid_Precedence", context do
@@ -228,7 +228,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "010_S3_Valid_Bitwise_NoParenthesis", context do
@@ -247,7 +247,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
 	
 	test "011_S3_Valid_Bitwise_Parenthesis", context do
@@ -268,7 +268,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "012_S3_Invalid_Div_Missing_Operator", context do
@@ -285,7 +285,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "013_S3_Invalid_Sum_Missing_Operator", context do
@@ -302,7 +302,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "014_S3_Invalid_Parenthesis_Middle_Operator", context do
@@ -323,7 +323,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "015_S3_Invalid_Neg_Missing_Operator", context do
@@ -344,7 +344,7 @@ defmodule StageThreeLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
 end

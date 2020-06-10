@@ -42,9 +42,9 @@ defmodule StageThreeFilterLexer do
     return 4 + 7;
     }
     """
-	|> Reader._generate_source_code_string()
+	|> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -70,9 +70,9 @@ defmodule StageThreeFilterLexer do
     return 4 - 17;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "4", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -98,9 +98,9 @@ defmodule StageThreeFilterLexer do
     return -7 - -8;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
       tag: "minus"}
@@ -127,9 +127,9 @@ defmodule StageThreeFilterLexer do
     return 18 / 3;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "18", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -155,9 +155,9 @@ defmodule StageThreeFilterLexer do
     return -8 / -4;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     minus_token = %Structs.Token{expression: "-", pos_x: nil, pos_y: nil, 
       tag: "minus"}
@@ -186,9 +186,9 @@ defmodule StageThreeFilterLexer do
     return 11 * 17;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "11", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -214,9 +214,9 @@ defmodule StageThreeFilterLexer do
     return 5 * -13;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "5", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -244,9 +244,9 @@ defmodule StageThreeFilterLexer do
     return 2 * (5 + 3);
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -282,9 +282,9 @@ test "009_S3_Valid_Precedence", context do
     return 2 * 5 + 21 / 9;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "2", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -320,9 +320,9 @@ test "009_S3_Valid_Precedence", context do
     return ~7 - 4;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
       tag: "complement"}
@@ -350,9 +350,9 @@ test "009_S3_Valid_Precedence", context do
     return ~(7 + 4);
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     complement_token = %Structs.Token{expression: "~", pos_x: nil, pos_y: nil, 
       tag: "complement"}
@@ -385,9 +385,9 @@ test "009_S3_Valid_Precedence", context do
     return 3 / ;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "3", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -411,9 +411,9 @@ test "009_S3_Valid_Precedence", context do
     return 7 + ;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     literal_token1 = %Structs.Token{expression: "7", pos_x: nil, pos_y: nil, 
       tag: "literal"}
@@ -438,9 +438,9 @@ test "009_S3_Valid_Precedence", context do
     return (6 + 4) 10;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
       pos_y: nil, tag: "parenthesis-open"}
@@ -474,9 +474,9 @@ test "009_S3_Valid_Precedence", context do
     return (6 + 4) -;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
-                      |> Filter.filter_lexer_output(test_path, false)
+                      |> Filter.filter_lexer_output(test_path, "", false)
 
     parenthesis_open_token = %Structs.Token{expression: "(", pos_x: nil, 
       pos_y: nil, tag: "parenthesis-open"}

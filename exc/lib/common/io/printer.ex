@@ -37,7 +37,7 @@ defmodule IO.Printer do
     ```location``` Place of failure.
     """
 
-    def _print_error(class, fault_element, reason, location)        do
+    def _print_error(class, fault_element, reason, location, row_col) do
       IO.puts(
         @colors[:red]
         <> class
@@ -50,6 +50,7 @@ defmodule IO.Printer do
         <> @styles[:underline]
         <> "#{location}"
         <> @styles[:reset]
+        <> "#{row_col}"
       )
     end
     def check_for_verbose(code, true) do

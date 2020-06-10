@@ -71,7 +71,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
 
   test "002_S2_Valid_Bitwise", context do
@@ -88,7 +88,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "003_S2_Valid_Bitwise_0", context do
@@ -105,7 +105,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "004_S2_Valid_Not_7", context do
@@ -122,7 +122,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "005_S2_Valid_Not_0", context do
@@ -139,7 +139,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "006_S2_Valid_Multiple_Ops_1", context do
@@ -157,7 +157,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "007_S2_Valid_Multiple_Ops_2", context do
@@ -175,7 +175,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "008_S2_Valid_Multiple_Ops_3", context do
@@ -193,7 +193,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
 
 	@doc """
@@ -213,7 +213,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   @doc """
@@ -234,7 +234,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   @doc """
@@ -253,7 +253,7 @@ defmodule StageTwoLexer do
     
     right_element = {GeneralTester.insert_token_list(temp_list, [literal_token], 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "012_S2_Invalid_Not_Missing_Const", context do
@@ -268,7 +268,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], [negation_token], 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
   test "013_S2_Invalid_Not_Bitwise_Const", context do
@@ -285,7 +285,7 @@ defmodule StageTwoLexer do
 
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
-    assert Lexer.tokenize({scs |> Reader._generate_source_code_string(), gtl}) == right_element
+    assert Lexer.tokenize({scs |> Reader.clean_source_code_string(), gtl}) == right_element
   end
   
 end

@@ -7,7 +7,7 @@ defmodule StageOneReader do
       \treturn 0;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return 0; }"
+      assert Reader.clean_source_code_string(scs) == "int main() {  return 0; }"
   end
   
   test "002_S1_Valid_Return7" do
@@ -16,7 +16,7 @@ defmodule StageOneReader do
       \treturn 7;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return 7; }"
+      assert Reader.clean_source_code_string(scs) == "int main() {  return 7; }"
   end
   
   test "003_S1_Valid_ReturnMD130" do
@@ -25,7 +25,7 @@ defmodule StageOneReader do
       \treturn 130;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return 130; }"
+      assert Reader.clean_source_code_string(scs) == "int main() {  return 130; }"
   end
   
   test "004_S1_Valid_ReturnBlankSpaces" do
@@ -40,14 +40,14 @@ defmodule StageOneReader do
       ;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main ( ) { return 1 ; }"
+      assert Reader.clean_source_code_string(scs) == "int main ( ) { return 1 ; }"
   end
   
   test "005_S1_Valid_ReturnNoLineB" do
       scs = """
       int main(){return 1;}
       """
-      assert Reader._generate_source_code_string(scs) == "int main(){return 1;}"
+      assert Reader.clean_source_code_string(scs) == "int main(){return 1;}"
   end
   
   test "006_S1_Valid_ReturnSpaceChars" do
@@ -59,7 +59,7 @@ defmodule StageOneReader do
       return       1 	 	 ;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main    ()  {    return       1     ; }" 
+      assert Reader.clean_source_code_string(scs) == "int main    ()  {    return       1     ; }" 
   end
   
   test "007_S1_Invalid_ReturnNull" do
@@ -68,7 +68,7 @@ defmodule StageOneReader do
       return;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() { return; }"
+      assert Reader.clean_source_code_string(scs) == "int main() { return; }"
   end
   
   test "008_S1_Invalid_ReturnNoFuncName" do
@@ -77,7 +77,7 @@ defmodule StageOneReader do
       return 1;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int () { return 1; }"
+      assert Reader.clean_source_code_string(scs) == "int () { return 1; }"
   end
   
   test "009_S1_Invalid_ReturnNoParenth" do
@@ -86,7 +86,7 @@ defmodule StageOneReader do
       return 1;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main) { return 1; }"
+      assert Reader.clean_source_code_string(scs) == "int main) { return 1; }"
   end
   
   test "010_S1_Invalid_ReturnNoBrack" do
@@ -95,7 +95,7 @@ defmodule StageOneReader do
       return 13;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main()  return 13; }"
+      assert Reader.clean_source_code_string(scs) == "int main()  return 13; }"
   end
   
   test "011_S1_Invalid_ReturnNoSpaces" do
@@ -104,7 +104,7 @@ defmodule StageOneReader do
       return 44;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "intmain() { return 44; }"
+      assert Reader.clean_source_code_string(scs) == "intmain() { return 44; }"
   end
 
 	test "012_S1_Invalid_ReturnComma" do
@@ -113,7 +113,7 @@ defmodule StageOneReader do
       return 25,
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() { return 25, }"
+      assert Reader.clean_source_code_string(scs) == "int main() { return 25, }"
   end
   
   test "013_S1_Invalid_ReturnCaps" do
@@ -122,7 +122,7 @@ defmodule StageOneReader do
       Return 1;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "Int main() { Return 1; }"
+      assert Reader.clean_source_code_string(scs) == "Int main() { Return 1; }"
   end
   
   test "014_S1_Valid_ReturnPrecZero" do
@@ -131,7 +131,7 @@ defmodule StageOneReader do
       return 007;
       }
       """
-      assert Reader._generate_source_code_string(scs) == "int main() { return 007; }"
+      assert Reader.clean_source_code_string(scs) == "int main() { return 007; }"
   end
   
 end
