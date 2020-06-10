@@ -80,6 +80,8 @@ defmodule ExC do
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
     |> Filter.filter_parser_output(file_path, verbose)
     |> CodeGenerator.generate_code(verbose)
+    |> CodeOptimizer.optimize(verbose)
+    |> CodeConnector.connect(verbose)
     |> Writer.write_file()
     |> Invoker.invoke_gcc(output_file_name)
   end

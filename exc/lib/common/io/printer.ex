@@ -52,4 +52,15 @@ defmodule IO.Printer do
         <> @styles[:reset]
       )
     end
+<<<<<<< HEAD
 end
+=======
+    def check_for_verbose(code, true) do
+      IO.Printer.print_element(Common.StringElements.rc, code)
+      code
+    end
+    def check_for_verbose(code, false) do
+      code
+    end
+end
+>>>>>>> Testing

@@ -12,21 +12,20 @@ defmodule CodeGenerator do
 
   """
   def generate_code(abstract_syntax_tree, verbose)                          do
-    {assembly_code, _result_my_context, _result_free_context} = 
+    {assembly_code, _result_my_context, _result_free_context, _result_uid} = 
       generate_raw_string_code(abstract_syntax_tree)
     assembly_code
       |> cleanup()
-      |> assembly()
-      |> check_for_verbose(verbose)
+      |> IO.Printer.check_for_verbose(verbose)   
   end
 
   defp generate_raw_string_code(abstract_syntax_tree, incoming_free_context \\ 
-    get_available_registers(), sibling_number \\ 0, start_string \\ "")     do
+    get_available_registers(), sibling_number \\ 0, start_string \\ "", uid \\ 0)     do
     children_list = abstract_syntax_tree.children
 
-    {children_string, children_context, free_context} = 
+    {children_string, children_context, free_context, current_uid} = 
       print_next_children(
-        children_list, [], incoming_free_context, 0, start_string
+        Enum.reverse(children_list), [], incoming_free_context, Enum.count(children_list)-1, start_string, uid
       )
 
     {return_string, return_my_context, return_free_context} = 
@@ -36,35 +35,39 @@ defmodule CodeGenerator do
 
     if abstract_syntax_tree.token == nil do
       { children_string 
-        <> return_string 
-        <> "\n", return_my_context, return_free_context
+        <> String.replace(
+              return_string, ":u", Integer.to_string(current_uid)
+            ) 
+        <> "\n", return_my_context, return_free_context, current_uid+1
       }
     else
       { children_string
-        <> String.replace(
-              return_string, ":t", abstract_syntax_tree.token.expression
-            ) 
-        <> "\n", return_my_context, return_free_context
+        <> (String.replace(
+              return_string, ":u", Integer.to_string(current_uid+1)
+            ) |>
+           String.replace(":t", abstract_syntax_tree.token.expression
+            ))
+        <> "\n", return_my_context, return_free_context, current_uid+1
       }
     end
   end
 
   defp print_next_children([], incoming_siblings_context, incoming_free_context, 
-    _sibling_number, incoming_string)                                       do
-    {incoming_string, incoming_siblings_context, incoming_free_context}
+    _sibling_number, incoming_string, incoming_uid)                                       do
+    {incoming_string, incoming_siblings_context, incoming_free_context, incoming_uid}
   end
 
   defp print_next_children(children_list, incoming_siblings_context, 
-    incoming_free_context, sibling_number, incoming_string)                 do
+    incoming_free_context, sibling_number, incoming_string, incoming_uid)                 do
     [head | tail] = children_list
-    {return_string, return_siblings_context, return_free_context} = 
+    {return_string, return_siblings_context, return_free_context, next_uid} = 
       generate_raw_string_code(
         head, incoming_free_context, sibling_number, 
-        incoming_string
+        incoming_string, incoming_uid
       )
     print_next_children(tail, 
       return_siblings_context ++ incoming_siblings_context, 
-      return_free_context, sibling_number + 1, return_string
+      return_free_context, sibling_number - 1, return_string, next_uid
     )
   end
 
@@ -130,30 +133,14 @@ defmodule CodeGenerator do
   end
 
   defp cleanup(raw_asm_code)                                                do
-    Regex.replace(~r/\n+/, raw_asm_code, "\n")
-  end
-
-  defp assembly(cleaned_asm_code)                                           do
-    base_header = """
-        .section        __TEXT,__text,regular,pure_instructions
-        .p2align        4, 0x90
-    """
-    main_header = """
-        .globl _main
-      _main:
-                #{cleaned_asm_code}
-        ret
-    """
-
-    base_header <> main_header
-  end
-
-  defp check_for_verbose(assembly_code, verbose)                            do
-    if verbose do
-      IO.Printer.print_element(
-        Common.StringElements.rc, assembly_code
-      )
-    end
-    assembly_code
+    s1 = Regex.replace(~r/\n+/, raw_asm_code, "\n")
+    s2 = Regex.replace(~r/[\t\r ]{2,}/, s1, "")
+    String.split(s2, "\n") 
+      |> Enum.map(
+          fn line -> 
+            if String.contains?(line, ":") do line 
+            else "    "<>line end 
+          end) 
+      |> Enum.join("\n")
   end
 end

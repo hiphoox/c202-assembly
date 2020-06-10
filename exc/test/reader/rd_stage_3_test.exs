@@ -64,16 +64,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return 5 * -13; }"
   end
   
-   test "008_S3_Valid_Parenthesis" do
-      scs = """
-      int main() {
-      \treturn 7 * (5 * (8 - 5));
-      }
-      """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return 7 * (5 * (8 - 5)); }"
-  end
-  
-  test "009_S3_Valid_SimpleParenthesis" do
+  test "008_S3_Valid_SimpleParenthesis" do
       scs = """
       int main() {
       \treturn 2 * (5 + 3);
@@ -82,7 +73,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return 2 * (5 + 3); }"
   end
   
-  test "010_S3_Valid_Precedence" do
+  test "009_S3_Valid_Precedence" do
       scs = """
       int main() {
       \treturn 2 * 5 + 21 / 9;
@@ -91,7 +82,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return 2 * 5 + 21 / 9; }"
   end
   
-  test "011_S3_Valid_Bitwise_NoParenthesis" do
+  test "010_S3_Valid_Bitwise_NoParenthesis" do
       scs = """
       int main() {
       \treturn ~7 - 4;
@@ -100,7 +91,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return ~7 - 4; }"
   end
   
-  test "012_S3_Valid_BItwise_Parenthesis" do
+  test "011_S3_Valid_Bitwise_Parenthesis" do
       scs = """
       int main() {
       \treturn ~(7 + 4);
@@ -109,16 +100,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return ~(7 + 4); }"
   end
   
-  test "013_S3_Valid_Multiple Parenthesis" do
-      scs = """
-      int main() {
-      \treturn ~((7 + 4) / (8 * (5 - 3)));
-      }
-      """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return ~((7 + 4) / (8 * (5 - 3))); }"
-  end
-  
-  test "014_S3_Invalid_Div_Missing_Operator" do
+  test "012_S3_Invalid_Div_Missing_Operator" do
       scs = """
       int main() {
       \treturn 3 / ;
@@ -127,7 +109,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return 3 / ; }"
   end
   
-  test "015_S3_Invalid_Sum_Missing_Operator" do
+  test "013_S3_Invalid_Sum_Missing_Operator" do
       scs = """
       int main() {
       \treturn 7 + ;
@@ -136,7 +118,7 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return 7 + ; }"
   end
   
-  test "016_S3_Invalid_Parenthesis_Middle_Operator" do
+  test "014_S3_Invalid_Parenthesis_Middle_Operator" do
       scs = """
       int main() {
       \treturn (6 + 4) 10;
@@ -145,22 +127,13 @@ defmodule StageThreeReader do
       assert Reader._generate_source_code_string(scs) == "int main() {  return (6 + 4) 10; }"
   end
   
-  test "017_S3_Invalid_Neg_Missing_Operator" do
+  test "015_S3_Invalid_Neg_Missing_Operator" do
       scs = """
       int main() {
       \treturn (6 + 4) -;
       }
       """
       assert Reader._generate_source_code_string(scs) == "int main() {  return (6 + 4) -; }"
-  end
-  
-   test "018_S3_Invalid_Missing_Parenthesis" do
-      scs = """
-      int main() {
-      \treturn ((6 + 4) / 2;
-      }
-      """
-      assert Reader._generate_source_code_string(scs) == "int main() {  return ((6 + 4) / 2; }"
   end
 
 end
