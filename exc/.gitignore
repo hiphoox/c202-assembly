@@ -27,3 +27,4 @@ exc
 # Ignore compiler result file
 exc_o
 output.o
+examples/*
