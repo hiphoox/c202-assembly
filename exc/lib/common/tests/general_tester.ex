@@ -24,18 +24,17 @@ defmodule GeneralTester do
       Lexer.tokenize({source_code_string, general_token_list})
 
     case lexer_token do
-      :error -> "error in lexer"
+      :error -> Common.StringElements.lexer_error_invalid_token()
       :ok -> evaluate_parser(output_token_list, general_abstract_syntax_tree)
     end
-    
   end
 
   defp evaluate_parser(output_token_list, general_abstract_syntax_tree) do 
     {parser_token,output_abstract_syntax_tree,_token_list,_error_cause} = 
       Parser.parse(output_token_list, general_abstract_syntax_tree)
     case parser_token do 
-      :token_missing_error -> "error in parser: token missing error"
-      :token_not_absorbed_error -> "error in parser: token_not_absorbed_error"
+      :token_missing_error -> Common.StringElements.parser_error_missing_token()
+      :token_not_absorbed_error -> Common.StringElements.parser_error_token_not_absorbed()
       :ok -> continue_from_parser(output_abstract_syntax_tree)
     end
   end

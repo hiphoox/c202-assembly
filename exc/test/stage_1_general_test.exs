@@ -80,7 +80,7 @@ defmodule StageOneGeneral do
          return;
         }
         """|> GeneralTester.start_general_test_compilation
-      assert msg == "error in lexer"
+      assert msg == Common.StringElements.lexer_error_invalid_token()
     end
 
     test "008_S1_Invalid_ReturnNoFuncName" do
@@ -90,7 +90,7 @@ defmodule StageOneGeneral do
         }
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
 
     test "009_S1_Invalid_ReturnNoParenth" do 
@@ -100,7 +100,7 @@ defmodule StageOneGeneral do
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
 
     test "010_S1_Invalid_ReturnNoBrack" do 
@@ -110,7 +110,7 @@ defmodule StageOneGeneral do
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do
@@ -120,7 +120,7 @@ defmodule StageOneGeneral do
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == "error in lexer"
+        assert msg == Common.StringElements.lexer_error_invalid_token()
     end
 
     test "012_S1_Invalid_ReturnComma" do
@@ -130,7 +130,7 @@ defmodule StageOneGeneral do
         }  
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == "error in lexer"
+        assert msg == Common.StringElements.lexer_error_invalid_token()
     end
 
     test "013_S1_Invalid_ReturnCaps" do
@@ -140,7 +140,7 @@ defmodule StageOneGeneral do
         }  
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == "error in lexer"
+        assert msg == Common.StringElements.lexer_error_invalid_token()
     end
 
     test "014_S1_Valid_ReturnPrecZero" do

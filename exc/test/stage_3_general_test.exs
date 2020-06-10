@@ -129,7 +129,7 @@ defmodule StageThreeGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
 
     test "013_S3_Invalid_Sum_Missing_Operator" do 
@@ -139,7 +139,7 @@ defmodule StageThreeGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
 
     test "014_S3_Invalid_Parenthesis_Middle_Operator" do 
@@ -149,7 +149,7 @@ defmodule StageThreeGeneral do
         }
     	"""
     	|> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
 
     test "015_S3_Invalid_Neg_Missing_Operator" do 
@@ -159,7 +159,7 @@ defmodule StageThreeGeneral do
         }
     	"""
     	|> GeneralTester.start_general_test_compilation
-        assert msg == "error in parser: token missing error"
+        assert msg == Common.StringElements.parser_error_missing_token()
     end
     
 end
