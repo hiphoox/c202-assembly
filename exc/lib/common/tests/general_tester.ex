@@ -41,11 +41,12 @@ defmodule GeneralTester do
 
   defp continue_from_parser(output_abstract_syntax_tree) do 
     CodeGenerator.generate_code(output_abstract_syntax_tree, false)
+    |> CodeOptimizer.optimize(false)
+    |> CodeConnector.connect(false)
     |> Writer.write_file()
     |> Invoker.invoke_gcc("")
   end
 
-  
   def get_c_tokens_content()                                  do
     """
     <?xml version="1.0"?>

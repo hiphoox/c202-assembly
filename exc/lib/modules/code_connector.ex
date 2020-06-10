@@ -1,8 +1,8 @@
 defmodule CodeConnector do 
   def connect(code, verbose) do 
-      code
-        |> assembly()
-        |> check_for_verbose(verbose)
+    code
+      |> assembly()
+      |> check_for_verbose(verbose)
   end
   defp assembly(cleaned_asm_code)                                           do
     base_header = """
