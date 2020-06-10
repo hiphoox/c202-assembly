@@ -15,35 +15,37 @@ defmodule Lexer do
           "specification_files/c_tokens.xml")
       iex> Lexer.tokenize(source)
   """
-  def tokenize({source_code_string, general_token_list})                  do
-      lex(source_code_string, general_token_list, [])
+  def tokenize({source_code_string, general_token_list})                do
+    lex(source_code_string, general_token_list, [])
   end
 
-  defp lex("", _, output_token_list)                                      do
-    err = Enum.find(output_token_list, fn x -> x.tag == "error" end)
-    if err == nil do
+  defp lex("", _, output_token_list)                                    do
+    error_token = Enum.find(output_token_list, fn x -> x.tag == "error" end)
+    if error_token == nil do
       {output_token_list, :ok}
     else
-      {err, :error}
+      {error_token, :error}
     end
   end
 
-  defp lex(source_code_string, general_token_list, output_token_list)     do
+  defp lex(source_code_string, general_token_list, output_token_list)   do
+    # source_code_string = source code without '\n' and '\t' chars.
     {token, match} = Enum.reduce_while(
-      general_token_list, 
-      {"",""}, 
-      fn x, _ -> 
-        if (regex_match = 
-          Regex.run(~r/^\s*#{x.expression}\s*/, source_code_string)
-        ) == nil, 
-        do: {:cont, {x, :error}}, 
-        else: {:halt, {x, Enum.at(regex_match,0)}} 
+      general_token_list,
+      {"",""},
+      fn token, _ ->
+        if (regex_matches =
+          Regex.run(~r/^\s*#{token.expression}\s*/, source_code_string)
+        ) == nil,
+        do:   {:cont, {token, :error}},
+        else: {:halt, {token, Enum.at(regex_matches,0)}}
       end
     )
     t = %{token | expression: String.trim(match)}
     lex(
-      String.replace_prefix(source_code_string, match, ""), 
-      general_token_list, 
+      #remove from source_code_string the matched token
+      String.replace_prefix(source_code_string, match, ""),
+      general_token_list,
       output_token_list ++ [t]
     )
   end

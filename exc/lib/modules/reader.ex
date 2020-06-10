@@ -31,7 +31,7 @@ defmodule Reader do
 
   @doc """
   Reads the source code as a string.
-  ## Specs  
+  ## Specs
   ```source_code_path``` is the path to the file to be compiled.  
 
   Generates the following output:
@@ -46,7 +46,7 @@ defmodule Reader do
   ``` 
   """
   def read_source_code_string(source_code_path)           do 
-    File.read!(source_code_path) 
+    File.read!(source_code_path)
     |> _generate_source_code_string()
   end
 
