@@ -42,7 +42,7 @@ defmodule StageThreeFilterLexer do
     return 4 + 7;
     }
     """
-	|> Reader._generate_source_code_string()
+	|> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -70,7 +70,7 @@ defmodule StageThreeFilterLexer do
     return 4 - 17;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -98,7 +98,7 @@ defmodule StageThreeFilterLexer do
     return -7 - -8;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -127,7 +127,7 @@ defmodule StageThreeFilterLexer do
     return 18 / 3;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -155,7 +155,7 @@ defmodule StageThreeFilterLexer do
     return -8 / -4;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -186,7 +186,7 @@ defmodule StageThreeFilterLexer do
     return 11 * 17;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -214,7 +214,7 @@ defmodule StageThreeFilterLexer do
     return 5 * -13;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -244,7 +244,7 @@ defmodule StageThreeFilterLexer do
     return 2 * (5 + 3);
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -282,7 +282,7 @@ test "009_S3_Valid_Precedence", context do
     return 2 * 5 + 21 / 9;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -320,7 +320,7 @@ test "009_S3_Valid_Precedence", context do
     return ~7 - 4;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -350,7 +350,7 @@ test "009_S3_Valid_Precedence", context do
     return ~(7 + 4);
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -385,7 +385,7 @@ test "009_S3_Valid_Precedence", context do
     return 3 / ;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -411,7 +411,7 @@ test "009_S3_Valid_Precedence", context do
     return 7 + ;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -438,7 +438,7 @@ test "009_S3_Valid_Precedence", context do
     return (6 + 4) 10;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -474,7 +474,7 @@ test "009_S3_Valid_Precedence", context do
     return (6 + 4) -;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 

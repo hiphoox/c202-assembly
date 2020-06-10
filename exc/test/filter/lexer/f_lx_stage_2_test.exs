@@ -34,7 +34,7 @@ defmodule StageTwoFilterLexer do
     return -7;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -61,7 +61,7 @@ defmodule StageTwoFilterLexer do
     return ~7;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -88,7 +88,7 @@ defmodule StageTwoFilterLexer do
     return ~0;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -114,7 +114,7 @@ defmodule StageTwoFilterLexer do
     return !7;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -140,7 +140,7 @@ defmodule StageTwoFilterLexer do
     return !7;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -166,7 +166,7 @@ defmodule StageTwoFilterLexer do
     return -~7;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -194,7 +194,7 @@ defmodule StageTwoFilterLexer do
     return !-4;
     }
     """
-	|> Reader._generate_source_code_string()
+	|> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -222,7 +222,7 @@ defmodule StageTwoFilterLexer do
     return !~0;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -250,7 +250,7 @@ defmodule StageTwoFilterLexer do
     return !~0;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -278,7 +278,7 @@ defmodule StageTwoFilterLexer do
     return -5~;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -307,7 +307,7 @@ defmodule StageTwoFilterLexer do
     return 0
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -332,7 +332,7 @@ defmodule StageTwoFilterLexer do
     return !;
     }
     """
-	  |> Reader._generate_source_code_string()
+	  |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
@@ -357,7 +357,7 @@ defmodule StageTwoFilterLexer do
     return !~;
     }
     """
-    |> Reader._generate_source_code_string()
+    |> Reader.clean_source_code_string()
     left_hand_side =  Lexer.tokenize({source_code_string, general_token_list})
                       |> Filter.filter_lexer_output(test_path, false)
 
