@@ -44,12 +44,12 @@ defmodule Parser do
 		root_AST = generate_root_ast()
 		{result_token, oast, tl, error_cause} = my_structure_matches(root_AST, otl, ps_m)
 		if result_token === :ok and tl === [] do
-			{:ok,oast,tl,error_cause}
+			{:ok,oast,tl,error_cause, otl}
 		else
 			if result_token === :error do
-				{:token_missing_error,oast,tl,error_cause}
+				{:token_missing_error,oast,tl,error_cause, otl}
 			else
-				{:token_not_absorbed_error,oast,tl,{nil, tl}}
+				{:token_not_absorbed_error,oast,tl,{nil, tl}, otl}
 			end
 		end
 	end

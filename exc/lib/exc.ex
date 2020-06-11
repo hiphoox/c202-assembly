@@ -78,7 +78,7 @@ defmodule ExC do
     |> Lexer.tokenize()
     |> Filter.filter_lexer_output(file_path, raw_source_code_string, verbose)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
-    |> Filter.filter_parser_output(file_path, verbose)
+    |> Filter.filter_parser_output(file_path, raw_source_code_string, verbose)
     |> CodeGenerator.generate_code(verbose)
     |> CodeOptimizer.optimize(verbose)
     |> CodeConnector.connect(verbose)
