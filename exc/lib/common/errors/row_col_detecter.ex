@@ -7,9 +7,9 @@ defmodule Error.RowColDetecter do
   Given a token and a source code string, it will return a tuple containing the row and column of the token inside the source code.
   As a side note, the source code string must be raw, which means it should contain the newline and tabs special characters.
   ## Specs
-  ```token``` fault token identified in the `Lexer` output.
+    ```token``` fault token identified in the `Lexer` output.
 
-  ```raw_source_code_string``` contains the source code string with special characters removals like newline or tabs.
+    ```raw_source_code_string``` contains the source code string with special characters removals like newline or tabs.
   """
   def find_row_col(token, raw_source_code_string) do
     {num_row, row} = find_row(token, raw_source_code_string)

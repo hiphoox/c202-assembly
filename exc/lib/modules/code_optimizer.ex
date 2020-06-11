@@ -5,6 +5,7 @@ defmodule CodeOptimizer do
 
     @doc """
     ```code```  exit code of `CodeGenerator.generate_code/2`.
+    
     ```verbose```  a boolean value indicating if the compiler should output all of its steps.
     """
     def optimize(code, verbose) do

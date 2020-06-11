@@ -106,7 +106,7 @@ defmodule Reader do
     grammar production rules.
 
   ## Examples
-    iex> gast = Reader.read_general_ast(grammar_prod_rules_path)
+      iex> gast = Reader.read_general_ast(grammar_prod_rules_path)
   """
   def read_general_ast(grammar_prod_rules_path)           do
     File.read!(grammar_prod_rules_path)
