@@ -1,11 +1,15 @@
 defmodule Common.StringElements do
-  @moduledoc false
-    
+  @moduledoc """
+  Print the header of each output per screen
+  """
+
   # Compiler general name modules
   def scs(),  do: "SCS"        # Source Code String
   def gtl(),  do: "GTL"        # General Token List
   def otl(),  do: "OTL"        # Output Token List
-  def rc(),   do: "Raw Code"
+  def code_generated(),     do: "Code generated"
+  def code_optimized(),     do: "Code optimized"
+  def code_connected(),     do: "Code connected"
   def oast(), do: "OAST"      # Output Abstract Syntax Tree
 
   # Output file names

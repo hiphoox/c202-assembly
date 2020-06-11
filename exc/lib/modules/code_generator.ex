@@ -16,7 +16,8 @@ defmodule CodeGenerator do
       generate_raw_string_code(abstract_syntax_tree)
     assembly_code
       |> cleanup()
-      |> IO.Printer.check_for_verbose(verbose)   
+      |> IO.Printer.check_for_verbose(Common.StringElements.code_generated(), 
+        verbose)   
   end
 
   defp generate_raw_string_code(abstract_syntax_tree, incoming_free_context \\ 

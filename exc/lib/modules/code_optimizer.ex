@@ -1,11 +1,19 @@
 defmodule CodeOptimizer do
+    @moduledoc """
+    Generate the code that will be shown on the screen.
+    """
 
+    @doc """
+    ```code```  exit code of `CodeGenerator.generate_code/2`.
+    ```verbose```  a boolean value indicating if the compiler should output all of its steps.
+    """
     def optimize(code, verbose) do
-        code 
-          |> String.split("\n") 
-          |> optimize_downwards 
+        code
+          |> String.split("\n")
+          |> optimize_downwards
           |> Enum.join("\n")
-          |> IO.Printer.check_for_verbose(verbose)
+          |> IO.Printer.check_for_verbose(Common.StringElements.code_optimized(),
+            verbose)
     end
 
     defp optimize_downwards([]) do
@@ -32,7 +40,7 @@ defmodule CodeOptimizer do
                             #IO.puts(head)
                             {new_reg, new_tail} = seek_down(reg_b, tail)
                             #IO.puts("OPT - DONE")
-                            
+
                             if new_reg == reg_b or reg_a == new_reg do
                                 if is_movq?(head) and reg_a == new_reg do
                                     #IO.puts("Eliminanting redundant movq.")
@@ -50,7 +58,7 @@ defmodule CodeOptimizer do
                                 #IO.puts("Optimized register is ...")
                                 #IO.puts(String.replace(head, reg_b, new_reg))
                                 optimize_downwards([String.replace(head, reg_b, new_reg)] ++ new_tail)
-                                
+
                             end
                         end
                     end
@@ -99,11 +107,11 @@ defmodule CodeOptimizer do
                                 if a == new_reg do
                                     #IO.puts("CASCADING REGISTRY FAILED. CORRECTING.")
                                     {reg_b, code}
-                                else    
+                                else
                                     #IO.puts("REGISTRY REPLACED")
                                     {new_reg, [String.replace(head, b, new_reg)] ++ new_tail}
                                 end
-                                
+
                             end
                         end
                     end
@@ -138,7 +146,7 @@ defmodule CodeOptimizer do
     defp is_exclusive_register?(reg) do
         Enum.member?(["%rax", "%rdx"], reg)
     end
-    
+
     defp instruction_frees?(line) do
         String.match?(line, ~r/add|sub|imul|idiv|cmp|movq/)
     end

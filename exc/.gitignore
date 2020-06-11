@@ -27,4 +27,9 @@ exc
 # Ignore compiler result file
 exc_o
 output.o
+<<<<<<< HEAD
+=======
+
+#Ignore examples dir
+>>>>>>> a346e556f7f053b3b472409cb60d2e7b55e3ade1
 examples/*

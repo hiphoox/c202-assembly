@@ -24,22 +24,27 @@ defmodule ExC do
     |> filter_args
   end
 
+  # ./exc -h (--help)
   defp filter_args({[help: true],_,_})                                  do
     IO.puts "help"
   end
 
+  #./exc <file-path> -o <my-output-file> -v
   defp filter_args({[output: true, verbose: true],[file_path, output_file_name],_}) do
     start_compilation(file_path, output_file_name, true)
   end
 
+  #./exc <file-path> -v -o <my-output-file>
   defp filter_args({[verbose: true, output: true],[file_path, output_file_name],_}) do
     start_compilation(file_path, output_file_name, true)
   end
 
+  #./exc <file-path> -v
   defp filter_args({[verbose: true],[file_path],_})                     do
     start_compilation(file_path, "", true)
   end
 
+  #./exc <file-path>
   defp filter_args({[module: true], [file_path, module, all_trace], _}) do
     # all_trace is a flag to indicate if the ouput should contain
     # only the module output or the whole compilation process trace up until that
@@ -52,28 +57,20 @@ defmodule ExC do
     end
   end
 
+  #./exc <file-path> -o <my-output-file>
+  #./myoutputfile
   defp filter_args({[output: true],[file_path, output_file_name],_})    do
     start_compilation(file_path, output_file_name, false)
   end
 
+  #./exc <file-path>
+  # in this case, the executable will be found at output.o
+  # therefore, you should run ./output.o
   defp filter_args({_,[file_path],_})                                   do
     start_compilation(file_path, "", false)
   end
 
-  
-  @doc """
-  Starts the compilation process given an input path.
-  ### Specs  
-  ```file_path``` is the path to the file to be compiled.
-  ```verbose``` boolean to indicate if there should be a detailed output of each 
-    of the compiler's stages.
-  
-  ### Examples
-  ```
-    $ ./exc examples/test.c
-  ``` 
-  """
-  def start_compilation(file_path, output_file_name \\ "", verbose)     do
+  defp start_compilation(file_path, output_file_name, verbose)     do
     # Note: if you add another module, remember to update GeneralTester's 
     # start_general_test_compilation method
     raw_source_code_string = File.read!(file_path)
@@ -97,13 +94,20 @@ defmodule ExC do
   end
 
   defp start_module_compilation(file_path, module, all_trace)           do 
+    # all_trace is either 0 or 1
+    # 0 -> only module's output
+    # 1 -> module's output and previous module's output
     case module do
+      #reader
       "r"
         -> Common.ModuleCompilator.start_reader(file_path, all_trace)
+      #lexer
       "l"
         -> Common.ModuleCompilator.start_lexer(file_path, all_trace)
+      #parser
       "p"
         -> Common.ModuleCompilator.start_parser(file_path, all_trace)
+      #code-generator
       "c"
         -> Common.ModuleCompilator.start_code_generator(file_path, all_trace)
     end

@@ -1,5 +1,7 @@
 defmodule GeneralTester do
-  @moduledoc false
+  @moduledoc """
+  Module used to perform general tests.
+  """
 
   def insert_token_list(output_token_list, [], _index)        do
     output_token_list
@@ -10,13 +12,13 @@ defmodule GeneralTester do
     otl = List.insert_at(output_token_list, index, token)
     insert_token_list(otl, list, index + 1)
   end
-  
+
   def delete_token_from_otl(output_token_list, index)         do
     List.delete_at(output_token_list, index)
   end
-  
+
   def start_general_test_compilation(source_code_string)      do
-    general_abstract_syntax_tree = get_c_structures_content() 
+    general_abstract_syntax_tree = get_c_structures_content()
       |> Reader._generate_general_ast()
     general_token_list = get_c_tokens_content()
       |> Reader._generate_general_token_list()
@@ -174,7 +176,7 @@ defmodule GeneralTester do
     """
   end
 
-  def get_c_structures_content()                             do 
+  def get_c_structures_content()                             do
     """
     <?xml version="1.0"?>
     <structure-list>
@@ -791,5 +793,5 @@ defmodule GeneralTester do
         </structure>
     </structure-list>
     """
-  end    
+  end
 end
