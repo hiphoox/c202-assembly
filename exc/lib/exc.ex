@@ -6,45 +6,44 @@ defmodule ExC do
   @c_structures_path "./specification_files/c_structures.xml"
   @doc """
   Filters command line arguments.
-  ## Specs  
+  ## Specs
   ```argv``` can take any of the following values:
     + **-h** or **--help**     : displays help regarding the use of the compiler
     + **-v** or **--verbose**  : executes the compiler with logs on each step
-    + **-v** or **--verbose**  : executes the compiler with logs on each step
-  
   ## Examples
   ```
-    $ ./exc <file_to_compile>
-  ``` 
+    $ ./exc <file-path>
+    $ ./exc -h (--help)
+    $ ./exc <file-path> -o <my-output-file> -v
+    $ ./exc <file-path> -v -o <my-output-file>
+    $ ./exc <file-path> -v
+    $ ./exc <file-path> -o <my-output-file>
+  ```
   """
   def main(argv)                                                        do
-    OptionParser.parse(argv, switches: 
-    [help: :boolean, verbose: :boolean, module: :boolean, output: :boolean], 
+    OptionParser.parse(argv, switches:
+    [help: :boolean, verbose: :boolean, module: :boolean, output: :boolean],
     aliases: [h: :help, v: :verbose, m: :module, o: :output])
     |> filter_args
   end
 
-  # ./exc -h (--help)
   defp filter_args({[help: true],_,_})                                  do
     IO.puts "help"
   end
 
-  #./exc <file-path> -o <my-output-file> -v
   defp filter_args({[output: true, verbose: true],[file_path, output_file_name],_}) do
     start_compilation(file_path, output_file_name, true)
   end
 
-  #./exc <file-path> -v -o <my-output-file>
   defp filter_args({[verbose: true, output: true],[file_path, output_file_name],_}) do
     start_compilation(file_path, output_file_name, true)
   end
 
-  #./exc <file-path> -v
+
   defp filter_args({[verbose: true],[file_path],_})                     do
     start_compilation(file_path, "", true)
   end
 
-  #./exc <file-path>
   defp filter_args({[module: true], [file_path, module, all_trace], _}) do
     # all_trace is a flag to indicate if the ouput should contain
     # only the module output or the whole compilation process trace up until that
@@ -57,8 +56,7 @@ defmodule ExC do
     end
   end
 
-  #./exc <file-path> -o <my-output-file>
-  #./myoutputfile
+
   defp filter_args({[output: true],[file_path, output_file_name],_})    do
     start_compilation(file_path, output_file_name, false)
   end
@@ -71,7 +69,7 @@ defmodule ExC do
   end
 
   defp start_compilation(file_path, output_file_name, verbose)     do
-    # Note: if you add another module, remember to update GeneralTester's 
+    # Note: if you add another module, remember to update GeneralTester's
     # start_general_test_compilation method
     raw_source_code_string = File.read!(file_path)
     Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, verbose)
@@ -87,13 +85,13 @@ defmodule ExC do
   end
 
   def _test(file_path \\ "examples/test.c")                             do
-    otl = (Reader.read_code_and_tokens(file_path, @c_tokens_path) 
+    otl = (Reader.read_code_and_tokens(file_path, @c_tokens_path)
           |> Lexer.tokenize())
     gast = Reader.read_general_ast(@c_structures_path)
     Parser.parse(otl,gast)
   end
 
-  defp start_module_compilation(file_path, module, all_trace)           do 
+  defp start_module_compilation(file_path, module, all_trace)           do
     # all_trace is either 0 or 1
     # 0 -> only module's output
     # 1 -> module's output and previous module's output

@@ -1,5 +1,14 @@
 defmodule Error.RowColDetecter do
 
+  @moduledoc """
+  Identifies the row and column where the errors are found.
+  """
+
+  @doc """
+  ## Specs
+  ```token``` list of all the tokens found in the source code.
+  ```raw_source_code_string``` source code with the error.
+  """
   def find_row_col(token, raw_source_code_string) do
     {num_row, row} = find_row(token, raw_source_code_string)
     num_col = find_col(token, row)
