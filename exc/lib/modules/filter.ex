@@ -53,23 +53,16 @@ defmodule Filter do
   ```verbose``` a boolean value indicating if the compiler should output all of
       its steps.
   """
-  def filter_parser_output({:token_missing_error, _, token_list, error_cause}, 
-    source_code_path, _)                                                  do
+  def filter_parser_output({error_token, _, token_list, 
+    error_cause}, source_code_path, _) do
     Error.ErrorDetecter.parser_error(
-        :token_missing_error, token_list, error_cause, source_code_path
+      error_token, token_list, error_cause, source_code_path
     )
     System.halt(1)
   end
 
-  def filter_parser_output({:token_not_absorbed_error, _, 
-    token_list, error_cause}, source_code_path, _)                        do
-    Error.ErrorDetecter.parser_error(
-      :token_not_absorbed_error, token_list, error_cause, source_code_path
-    )
-    System.halt(1)
-  end
-
-  def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, verbose) do
+  def filter_parser_output({_,output_abstract_syntax_tree,_,_, _}, _, 
+    _raw_source_code_string, verbose) do
     if verbose do
       oast_string = IO.ASTTraveler.travel(
         output_abstract_syntax_tree, 0
