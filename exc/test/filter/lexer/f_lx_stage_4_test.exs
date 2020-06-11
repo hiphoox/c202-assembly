@@ -34,7 +34,7 @@ defmodule StageFourFilterLexer do
     end
 
   test "001_S4_Valid_AND_Boolean_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -63,7 +63,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "002_S4_Valid_AND_Boolean_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -92,7 +92,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "003_S4_Valid_GE_Relational_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -122,7 +122,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "004_S4_Valid_GE_Relational_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -152,7 +152,7 @@ defmodule StageFourFilterLexer do
   end
     
   test "005_S4_Valid_EQ_Relational_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -182,7 +182,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "006_S4_Valid_EQ_Relational_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -210,7 +210,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "007_S4_Valid_GT_Relation_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -240,7 +240,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "008_S4_Valid_GT_Relational_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -270,7 +270,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "009_S4_Valid_LE_Relational_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -300,7 +300,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "010_S4_Valid_LE_Relational_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -328,7 +328,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "011_S4_Valid_LT_Relational_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -358,7 +358,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "012_S4_Valid_LT_Relational_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -388,7 +388,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "013_S4_Valid_NE_Relational_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -416,7 +416,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "014_S4_Valid_NE_Relational_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -446,7 +446,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "015_S4_Valid_OR_Boolean_False", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -475,7 +475,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "016_S4_Valid_OR_Boolean_True", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -506,7 +506,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "017_S4_Valid_Precedence", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -540,7 +540,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "018_S4_Valid_Precedence", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -572,7 +572,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "019_S4_Valid_Precedence", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -609,7 +609,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "020_S4_Valid_Precedence", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -640,7 +640,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "021_S4_Valid_Precedence", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -679,7 +679,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "022_S4_Invalid_AND_First_Op_Missing", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -706,7 +706,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "023_S4_Invalid_OR_Second_Op_Missing", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -733,7 +733,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "024_S4_Invalid_Mid_Op_Missing", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -762,12 +762,12 @@ defmodule StageFourFilterLexer do
   end
 
   test "025_S4_Invalid_Semicolon", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
     int main(){
-    return 1 <= 4;
+    return 1 <= 4
     }
     """
     |> Reader.clean_source_code_string()
@@ -792,7 +792,7 @@ defmodule StageFourFilterLexer do
   end
 
   test "026_S4_Invalid_Return_Token_Not_Absorbed", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_4_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """

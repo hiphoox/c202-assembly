@@ -25,7 +25,7 @@ defmodule StageTwoFilterLexer do
     end
 
   test "001_S2_Valid_Negative", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = 
@@ -52,7 +52,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "002_S2_Valid_Bitwise", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = 
@@ -79,7 +79,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "003_S2_Valid_Bitwise_0", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = 
@@ -106,7 +106,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "004_S2_Valid_Not_7", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -132,7 +132,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "005_S2_Valid_Not_0", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -158,7 +158,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "006_S2_Valid_Multiple_Ops_1", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -186,7 +186,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "007_S2_Valid_Multiple_Ops_2", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -214,7 +214,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "008_S2_Valid_Multiple_Ops_3", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -242,7 +242,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "009_S2_Invalid_Wrong_Order_Negative", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -270,7 +270,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "010_S2_Invalid_Correct_Neg_Wrong_Bitwise_Order", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -299,7 +299,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "011_S2_Invalid_Bitwise_No_Semicolon", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -324,7 +324,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "012_S2_Invalid_Not_Missing_Const", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -349,7 +349,7 @@ defmodule StageTwoFilterLexer do
   end
   
   test "013_S2_Invalid_Not_Bitwise_Const", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_2_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
