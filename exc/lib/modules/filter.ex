@@ -54,10 +54,17 @@ defmodule Filter do
       its steps.
   """
   def filter_parser_output({_,output_abstract_syntax_tree,_,_,_}, _, _, 
+    _verbose=true) do
+    oast_string = IO.ASTTraveler.travel(output_abstract_syntax_tree, 0)
+    IO.Printer.print_element(Common.StringElements.oast, oast_string)
+    output_abstract_syntax_tree
+  end
+
+  def filter_parser_output({_,output_abstract_syntax_tree,_,_,_}, _, _, 
     _verbose=false) do
     output_abstract_syntax_tree
   end
-  
+
   def filter_parser_output({error_token, _, token_list, 
     error_cause, otl}, source_code_path,raw_scs, _) do
     {ast_not_matched, error_token_list} = error_cause
@@ -65,13 +72,6 @@ defmodule Filter do
     Error.ErrorDetecter.parser_error(error_token, token_list, ast_not_matched, 
       source_code_path, position_tuple)
     System.halt(1)
-  end
-
-  def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, _, 
-    _verbose=true) do
-    oast_string = IO.ASTTraveler.travel(output_abstract_syntax_tree, 0)
-    IO.Printer.print_element(Common.StringElements.oast, oast_string)
-    output_abstract_syntax_tree
   end
 
   def filter_output_file_name(file_path, "")                              do
