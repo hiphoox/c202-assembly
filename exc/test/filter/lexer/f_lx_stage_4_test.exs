@@ -783,7 +783,8 @@ defmodule StageFourFilterLexer do
       tag: "leq"}
     
     token_list = [literal_token1, leq_token, literal_token2]
-    incomplete_output_token_list = context[:output_token_list]
+    temp_list = GeneralTester.delete_token_from_otl(context[:output_token_list], 6)
+    incomplete_output_token_list = temp_list
     output_token_list = GeneralTester.insert_token_list(
         incomplete_output_token_list, token_list, 6)
     right_hand_side = output_token_list
