@@ -4,13 +4,13 @@ defmodule CodeConnector do
   """
 
   @doc """
-  ```code```  code generated with output CodeOptimizer.optimize/2.
+  ```code```  code generated with output `CodeOptimizer.optimize/2`.
   ```verbose``` a boolean value indicating if the compiler should output all of its steps.
   """
   def connect(code, verbose) do
     code
       |> assembly()
-      |> IO.Printer.check_for_verbose(Common.StringElements.code_connected(), 
+      |> IO.Printer.check_for_verbose(Common.StringElements.code_connected(),
         verbose)
   end
   defp assembly(cleaned_asm_code)                                           do

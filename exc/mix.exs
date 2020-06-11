@@ -4,15 +4,26 @@ defmodule Assembly.MixProject do
   def project do
     [
       app: :exc,
-      version: "0.4.0",
+      version: "0.4.1",
       escript: escript_config(),
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
-      deps: deps(), 
+      deps: deps(),
       name: "ExC",
       source_url: "https://github.com/hiphoox/c202-assembly",
       description: description(),
-      package: package()
+      package: package(),
+      docs: [main: "ExC",
+            groups_for_modules: [
+            "Common": [Common.ModuleCompilator, Common.StringElements],
+            "Structs": [Structs.Token, Structs.Node],
+            "Errors": [Error.ErrorDetecter, Error.RowColDetecter],
+            "Input/Output": [IO.Printer, IO.ASTTraveler],
+            "Tests": [GeneralTester],
+            "General Modules": [CodeConnector, CodeGenerator, CodeOptimizer,
+                                Filter, Invoker, Lexer, Parser, Reader, Writer]
+            ]
+      ]
     ]
   end
 
@@ -31,15 +42,15 @@ defmodule Assembly.MixProject do
     ]
   end
 
-  defp escript_config do 
+  defp escript_config do
     [
       main_module: ExC
     ]
   end
 
-  defp description do 
+  defp description do
       """
-      C compiler built with Elixir. This library will only allow you to compile basic C programs. 
+      C compiler built with Elixir. This library will only allow you to compile basic C programs.
       """
   end
 

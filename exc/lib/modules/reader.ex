@@ -1,21 +1,21 @@
 defmodule Reader do
   @moduledoc """
-  Reads all the files the compiler needs. 
+  Reads all the files the compiler needs.
   """
-  
+
   @doc """
-  Reads the source code from a file path and a general token list from an XML file. 
-  ## Specs  
-  ```source_code_path``` is the path to the file to be compiled.          
-  ```tokens_path``` is the path to an XML file containing the target language's 
-      valid token list.
+  Reads the source code from a file path and a general token list from an XML file.
+  ## Specs
+  ```raw_source_code_string``` is source code without any format coming from ```File.read!(path)```
+  ```tokens_path``` is the path to an XML file containing the target language's valid token list.
+  ```verbose``` a boolean value indicating if the compiler should output all of its steps.
 
   Generates the following output:
   + Source Code String (SCS): source code contained in a string.
   + General Token List (GTL): list of target language valid tokens.
-  
+
   ## Examples
-      iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c', 
+      iex> {scs, gtl} = Reader.read_code_and_tokens('examples/test.c',
       "specification_files/c_tokens.xml")
   """
   def read_code_and_tokens(raw_source_code_string, tokens_path, verbose \\ false) do
@@ -32,20 +32,19 @@ defmodule Reader do
   @doc """
   Cleans the source code as a string.
   ## Specs
-  ```raw_source_code_string``` is source code without any format coming from 
-    File.read!(path)
+  ```file_content``` is the path to the file to be compiled.
 
   Generates the following output:
   + Source Code String (SCS): String.
-  
+
   ## Examples
   ```
       iex> scs = Reader.clean_source_code_string(File.read!("examples/test_s2.c"))
-      "int main(){  return -7; }
-      
-      "
-  ``` 
-  """  
+      "int main(){
+       return -7;
+       }"
+  ```
+  """
   def clean_source_code_string(file_content)             do
     String.trim(file_content)
     |> String.replace("\n", " ")
@@ -54,17 +53,17 @@ defmodule Reader do
 
   @doc """
   Reads the structure of the target language's valid tokens as a General Token List (GTL).
-  ## Specs  
-  ```tokens_path``` is the path to an XML file containing the target language's valid token list. 
+  ## Specs
+  ```tokens_path``` is the path to an XML file containing the target language's valid token list.
 
   Generates the following output:
   + General Token List (GTL): list of target language's valid tokens.
-  
+
   ## Examples
       iex> gtl = Reader.read_general_token_list("specification_files/c_tokens.xml")
   """
   def read_general_token_list(tokens_path)                do
-    File.read!(tokens_path) 
+    File.read!(tokens_path)
     |> _generate_general_token_list()
   end
 
@@ -76,7 +75,7 @@ defmodule Reader do
   end
 
   defp parse_to_token_list(list)                          do
-    Enum.map list, fn(token) -> 
+    Enum.map list, fn(token) ->
       %Structs.Token{
         tag:        token["tag"],
         expression: token["expression"],
@@ -98,26 +97,24 @@ defmodule Reader do
   end
 
   @doc """
-  Reads the structure of the target language's grammar production rules from 
-      an XML file.
-  ## Specs  
-  ```grammar_prod_rules_path``` is the path to an XML file containing the 
-      target language's grammar production rules.
+  Reads the structure of the target language's grammar production rules from an XML file.
+  ## Specs
+  ```grammar_prod_rules_path``` is the path to an XML file containing the target language's grammar production rules.
 
   Generates the following output:
-  + General Abstract Syntax Treee (GAST): list containing the target language 
-      grammar production rules.
-  
+  + General Abstract Syntax Treee (GAST): list containing the target language
+    grammar production rules.
+
   ## Examples
       # iex> gast = Reader.read_general_ast(grammar_prod_rules_path)
   """
-  def read_general_ast(grammar_prod_rules_path)           do 
-    File.read!(grammar_prod_rules_path) 
+  def read_general_ast(grammar_prod_rules_path)           do
+    File.read!(grammar_prod_rules_path)
     |> _generate_general_ast()
   end
 
   def _generate_general_ast(file_content)                 do
-    XmlToMap.naive_map(file_content) 
+    XmlToMap.naive_map(file_content)
     |> generate_useful_list()
     |> parse_to_node_list()
   end
@@ -129,7 +126,7 @@ defmodule Reader do
   end
 
   defp parse_to_node_list(list)                           do
-    Enum.map list, fn(node) -> 
+    Enum.map list, fn(node) ->
       %Structs.Node{
         tag:      node["tag"],
         token:    get_t(node),
@@ -140,15 +137,15 @@ defmodule Reader do
     end
   end
 
-  defp get_c(node)                                        do 
+  defp get_c(node)                                        do
     if node["substructure"] == nil, do: [], else: node["substructure"]
   end
 
-  defp get_t(node)                                        do 
+  defp get_t(node)                                        do
     if node["token"] == %{}, do: nil, else: node["token"]
   end
 
-  defp get_asm(node)                                      do 
+  defp get_asm(node)                                      do
     if node["asm"] == %{}, do: "", else: node["asm"]
   end
 end
