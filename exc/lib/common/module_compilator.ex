@@ -17,7 +17,7 @@ defmodule Common.ModuleCompilator do
     IO.puts("Lexer")
     IO.puts("==============")
     raw_source_code_string = File.read!(file_path)
-    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, true)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, all_trace)
     |> Lexer.tokenize()
     |> IO.inspect(label: "OTL")
   end
