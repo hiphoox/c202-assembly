@@ -46,7 +46,7 @@ defmodule Filter do
   + **output_abstract_syntax_tree**: Abstract Syntax Tree (OAST) generated 
       given Output Token List (OTL).
   + **token_list**: list of all the bad tokens found in the source code
-  + **error_cause**: string containing the cause of the bad tokens.
+  + **error_cause**: tuple containing the cause of the bad tokens.
   
   ```source_code_path``` is the path to the file to be compiled. 
 
@@ -55,19 +55,19 @@ defmodule Filter do
   """
   def filter_parser_output({:token_missing_error, _, token_list, 
     error_cause, otl}, source_code_path,raw_scs, _) do
-    {ast_not_matched, position_tuple} = 
-      get_position_tuple(raw_scs, otl, error_cause)
-    Error.ErrorDetecter.parser_error(:token_missing_error, token_list, 
-      ast_not_matched, source_code_path, position_tuple)
+    {ast_not_matched, error_token_list, expected_structure} = error_cause
+    position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
+    Error.ErrorDetecter.parser_error(:token_missing_error, error_token_list, 
+      ast_not_matched, expected_structure, source_code_path, position_tuple)
     System.halt(1)
   end
 
   def filter_parser_output({:token_not_absorbed_error, _, token_list, 
     error_cause, otl}, source_code_path,raw_scs, _) do
-    {ast_not_matched, position_tuple} = 
-      get_position_tuple(raw_scs, otl, error_cause)
-    Error.ErrorDetecter.parser_error(:token_not_absorbed_error, token_list, 
-      ast_not_matched, source_code_path, position_tuple)
+    {ast_not_matched, error_token_list, expected_structure} = error_cause
+    position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
+    Error.ErrorDetecter.parser_error(:token_not_absorbed_error, error_token_list, 
+      ast_not_matched, expected_structure, source_code_path, position_tuple)
     System.halt(1)
   end
   
@@ -89,12 +89,5 @@ defmodule Filter do
 
   def filter_output_file_name(_file_path, output_file_name)               do 
     output_file_name
-  end
-
-  defp get_position_tuple(raw_scs, output_token_list, error_cause) do
-    {ast_not_matched, error_token_list} = error_cause
-    IO.inspect(error_token_list)
-    {Lexer.find_error_position(raw_scs, output_token_list, error_token_list), 
-      ast_not_matched}
   end
 end
