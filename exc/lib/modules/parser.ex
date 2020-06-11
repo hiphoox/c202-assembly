@@ -49,7 +49,7 @@ defmodule Parser do
 			if result_token === :error do
 				{:token_missing_error,oast,tl,error_cause}
 			else
-				{:token_not_absorbed_error,oast,tl,error_cause}
+				{:token_not_absorbed_error,oast,tl,{nil, List.first(tl)}}
 			end
 		end
 	end
@@ -64,15 +64,16 @@ defmodule Parser do
 				{:ok,d_cs,tl_2,nil}
 			else
 				#there was no if
-				if error_cause === nil do
-					{:error,cs,tl,cs}
+				{broken_structure,bad_token} = error_cause
+				if broken_structure == nil do
+					{:error,cs,tl,{cs,bad_token}}#Changed, it returned cs, now it returns cs and the token that caused the catastrophic failure.
 				else
 					{:error,cs,tl,error_cause}
 				end
 				#{:error,cs,tl,incoming_error} #:structure-does-not-match-expectation
 			end
 		else
-			{:error,cs,tl,nil} #:Could not absorb token of structure
+			{:error,cs,tl,{nil,List.first(tl)}} #:Could not absorb token of structure
 		end
 	end
 	
