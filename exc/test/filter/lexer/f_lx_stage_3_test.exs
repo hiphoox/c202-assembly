@@ -34,7 +34,7 @@ defmodule StageThreeFilterLexer do
     end
 
   test "001_S3_Valid_Add", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -62,7 +62,7 @@ defmodule StageThreeFilterLexer do
   end
     
   test "002_S3_Valid_SubstractPositive", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -90,7 +90,7 @@ defmodule StageThreeFilterLexer do
   end
 
   test "003_S3_Valid_SubstractNegative", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -119,7 +119,7 @@ defmodule StageThreeFilterLexer do
   end
 
   test "004_S3_Valid_DivPositive", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -147,7 +147,7 @@ defmodule StageThreeFilterLexer do
   end
 
   test "005_S3_Valid_DivNegative", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -178,7 +178,7 @@ defmodule StageThreeFilterLexer do
   end
 
   test "006_S3_Valid_MultPositive", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -206,7 +206,7 @@ defmodule StageThreeFilterLexer do
   end
 
   test "007_S3_Valid_MultNeg", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -236,7 +236,7 @@ defmodule StageThreeFilterLexer do
   end
 
   test "008_S3_Valid_SimpleParenthesis", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -274,7 +274,7 @@ defmodule StageThreeFilterLexer do
   end
 
 test "009_S3_Valid_Precedence", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -312,7 +312,7 @@ test "009_S3_Valid_Precedence", context do
   end
 
   test "010_S3_Valid_Bitwise_NoParenthesis", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -342,7 +342,7 @@ test "009_S3_Valid_Precedence", context do
   end
 
   test "011_S3_Valid_Bitwise_Parenthesis", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -377,7 +377,7 @@ test "009_S3_Valid_Precedence", context do
   end
 
   test "012_S3_Invalid_Div_Missing_Operator", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -403,7 +403,7 @@ test "009_S3_Valid_Precedence", context do
   end
 
   test "013_S3_Invalid_Sum_Missing_Operator", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -430,7 +430,7 @@ test "009_S3_Valid_Precedence", context do
   end
 
   test "014_S3_Invalid_Parenthesis_Middle_Operator", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """
@@ -466,7 +466,7 @@ test "009_S3_Valid_Precedence", context do
   end
 
   test "015_S3_Invalid_Neg_Missing_Operator", context do
-    test_path = "test/filter/lexer/f_lx_stage_1_test.exs"
+    test_path = "test/filter/lexer/f_lx_stage_3_test.exs"
     general_token_list =  GeneralTester.get_c_tokens_content() 
                           |> Reader._generate_general_token_list()
     source_code_string = """

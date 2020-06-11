@@ -14,8 +14,7 @@
 /.fetch
 
 # If the VM crashes, it generates a dump, let's ignore it too.
-erl_crash.dump
-
+erl_crash.dumps
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
@@ -28,6 +27,9 @@ exc
 # Ignore compiler result file
 exc_o
 output.o
+<<<<<<< HEAD
+=======
 
 #Ignore examples dir
+>>>>>>> a346e556f7f053b3b472409cb60d2e7b55e3ade1
 examples/*

@@ -225,5 +225,14 @@ defmodule StageFourReader do
       """
       assert Reader.clean_source_code_string(scs) == "int main() {  return 1 <= 4 }"
   end
+
+  test "026_S4_Invalid_Return_Token_Not_Absorbed" do
+      scs = """
+      int main() {
+      \treturn 4; return 7
+      }
+      """
+      assert Reader.clean_source_code_string(scs) == "int main() {  return 4; return 7 }"
+  end
   
 end

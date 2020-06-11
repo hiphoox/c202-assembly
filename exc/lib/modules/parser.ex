@@ -59,7 +59,7 @@ defmodule Parser do
 			{result_token_2, tl_2, children_list,error_cause} =
 				my_children_match(cs,tl_1,ps_m)
 			if result_token_2 === :ok do
-				d_cs = specifize_structure(cs,absorbed_token,children_list)
+				d_cs = specify_structure(cs,absorbed_token,children_list)
 				{:ok,d_cs,tl_2,nil}
 			else
 				#there was no if
@@ -139,7 +139,7 @@ defmodule Parser do
 		end
 	end
 
-	defp specifize_structure(cs,absorbed_token,children_list) 				do
+	defp specify_structure(cs,absorbed_token,children_list) 				do
 		%Structs.Node{
 			class: cs.class,
 			token: absorbed_token,

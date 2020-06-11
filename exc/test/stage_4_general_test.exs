@@ -271,5 +271,15 @@ defmodule StageFourGeneral do
     |> GeneralTester.start_general_test_compilation
     assert msg == {3,1}
   end
+
+  test "026_S4_Invalid_Return_Token_Not_Absorbed" do
+    msg = """
+    int main(){
+      return 4; return 7
+    }
+    """
+    |> GeneralTester.start_general_test_compilation
+    assert msg == {2, 13}
+  end
   
 end
