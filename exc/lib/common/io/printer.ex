@@ -30,13 +30,15 @@ defmodule IO.Printer do
     end
 
         @doc """
-    ## Specs
-    ```class``` Class where the error occurred.
-    ```fault_element``` Fault element.
-    ```reason``` Fault indicator.
-    ```location``` Place of failure.
-    """
+        Method that handles the pretty printing process.s
 
+    ## Specs
+    ```class``` class where the error occurred.
+    ```fault_element``` fault token that produced the error.
+    ```reason``` message that indicating the reason for the error.
+    ```location``` path the the file containing the error.
+    ```row_col``` string that containts the row and col of the error.
+    """
     def _print_error(class, fault_element, reason, location, row_col) do
       IO.puts(
         @colors[:red]
@@ -53,6 +55,16 @@ defmodule IO.Printer do
         <> "#{row_col}"
       )
     end
+
+    @doc """
+      Method that helps ExC modules to check if the output should be verbosed or not. 
+      The modules that call this method are `CodeGenerator`, `CodeOptimizer` and `CodeConnector`. 
+
+      ## Specs
+      ```code```  assembly code to be printed.
+      ```module_str``` string that identifies the calling method. To use this correctly, use the module `Common.StringElements` and call the appropiate method for the desired module.
+      ```verbose``` Boolean indicating if the output should be shown.
+    """
     def check_for_verbose(code, module_str, true) do
       IO.Printer.print_element(module_str, code)
       code

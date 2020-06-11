@@ -1,13 +1,5 @@
 defmodule Common.ModuleCompilator do
-  @moduledoc """
-  Module in charge of show specific parts of the compilation.
-  """
-
-  @doc """
-  ## Specs
-  ```filepath``` is the path to the file to be compiled.
-  ```all_trace``` every trace that has traveled.
-  """
+  @moduledoc false
 
   @c_tokens_path "./specification_files/c_tokens.xml"
   @c_structures_path "./specification_files/c_structures.xml"
@@ -25,7 +17,7 @@ defmodule Common.ModuleCompilator do
     IO.puts("Lexer")
     IO.puts("==============")
     raw_source_code_string = File.read!(file_path)
-    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, true)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, all_trace)
     |> Lexer.tokenize()
     |> IO.inspect(label: "OTL")
   end
