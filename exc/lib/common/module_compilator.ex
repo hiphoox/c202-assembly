@@ -12,7 +12,7 @@ defmodule Common.ModuleCompilator do
     Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, true)
   end
 
-  def start_lexer(file_path, _)                         do
+  def start_lexer(file_path, all_trace)                         do
     IO.puts("==============")
     IO.puts("Lexer")
     IO.puts("==============")
