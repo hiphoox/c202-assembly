@@ -31,17 +31,17 @@ defmodule ExC do
 
   #./exc <file-path> -o <my-output-file> -v
   defp filter_args({[output: true, verbose: true],[file_path, output_file_name],_}) do
-    _start_compilation(file_path, output_file_name, true)
+    start_compilation(file_path, output_file_name, true)
   end
 
   #./exc <file-path> -v -o <my-output-file>
   defp filter_args({[verbose: true, output: true],[file_path, output_file_name],_}) do
-    _start_compilation(file_path, output_file_name, true)
+    start_compilation(file_path, output_file_name, true)
   end
 
   #./exc <file-path> -v
   defp filter_args({[verbose: true],[file_path],_})                     do
-    _start_compilation(file_path, "", true)
+    start_compilation(file_path, "", true)
   end
 
   #./exc <file-path>
@@ -60,17 +60,17 @@ defmodule ExC do
   #./exc <file-path> -o <my-output-file>
   #./myoutputfile
   defp filter_args({[output: true],[file_path, output_file_name],_})    do
-    _start_compilation(file_path, output_file_name, false)
+    start_compilation(file_path, output_file_name, false)
   end
 
   #./exc <file-path>
   # in this case, the executable will be found at output.o
   # therefore, you should run ./output.o
   defp filter_args({_,[file_path],_})                                   do
-    _start_compilation(file_path, "", false)
+    start_compilation(file_path, "", false)
   end
 
-  def _start_compilation(file_path, output_file_name \\ "", verbose)     do
+  defp start_compilation(file_path, output_file_name, verbose)     do
     # Note: if you add another module, remember to update GeneralTester's 
     # start_general_test_compilation method
     raw_source_code_string = File.read!(file_path)
