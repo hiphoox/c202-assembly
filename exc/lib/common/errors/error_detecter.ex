@@ -27,12 +27,14 @@ defmodule Error.ErrorDetecter do
     ```error_cause``` string containing the cause of the bad tokens.
     ```file_path``` is the path to the file to be compiled.
   """
-  def parser_error(:token_missing_error, _, error_cause, file_path)  do
+  def parser_error(:token_missing_error, _, error_cause, file_path, 
+    position_tuple)  do
+    {col, row} = position_tuple
     class_msg =         "** (Parser Error) structure"
     fault_element =     error_cause.tag
-    reason_msg =        "is missing something"
+    reason_msg =        " is missing something"
     location =          file_path
-    row_col_msg =       ""
+    row_col_msg =       "#{row}:#{col}"
     IO.Printer._print_error(
       class_msg, fault_element, reason_msg, location, row_col_msg
     )
