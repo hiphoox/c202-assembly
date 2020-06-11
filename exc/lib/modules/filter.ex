@@ -53,7 +53,7 @@ defmodule Filter do
   ```verbose``` a boolean value indicating if the compiler should output all of
       its steps.
   """
-  def filter_parser_output({:token_missing_error, _, token_list, 
+  def filter_parser_output({:token_missing_error, _, _token_list, 
     error_cause, otl}, source_code_path,raw_scs, _) do
     {ast_not_matched, error_token_list, expected_structure} = error_cause
     position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
@@ -62,7 +62,7 @@ defmodule Filter do
     System.halt(1)
   end
 
-  def filter_parser_output({:token_not_absorbed_error, _, token_list, 
+  def filter_parser_output({:token_not_absorbed_error, _, _token_list, 
     error_cause, otl}, source_code_path,raw_scs, _) do
     {ast_not_matched, error_token_list, expected_structure} = error_cause
     position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
