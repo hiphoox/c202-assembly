@@ -40,13 +40,16 @@ defmodule GeneralTester do
     general_abstract_syntax_tree) do 
     {parser_token,output_abstract_syntax_tree,_token_list,error_cause,_otl} = 
       Parser.parse(output_token_list, general_abstract_syntax_tree)
-    {_ast_not_matched, error_token_list} = error_cause
-    {col, row} = Lexer.find_error_position(source_code_string, 
+    if parser_token == :ok do
+      continue_from_parser(output_abstract_syntax_tree)
+    else
+      {_ast_not_matched, error_token_list} = error_cause
+      {col, row} = Lexer.find_error_position(source_code_string, 
       output_token_list, error_token_list)
-    case parser_token do 
-      :token_missing_error -> {row, col}
-      :token_not_absorbed_error -> Common.StringElements.parser_error_token_not_absorbed()
-      :ok -> continue_from_parser(output_abstract_syntax_tree)
+      case parser_token do 
+        :token_missing_error -> {row, col}
+        :token_not_absorbed_error -> Common.StringElements.parser_error_token_not_absorbed()
+      end
     end
   end
 

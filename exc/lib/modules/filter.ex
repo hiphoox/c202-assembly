@@ -53,6 +53,24 @@ defmodule Filter do
   ```verbose``` a boolean value indicating if the compiler should output all of
       its steps.
   """
+  def filter_parser_output({:token_missing_error, _, token_list, 
+    error_cause, otl}, source_code_path,raw_scs, _) do
+    {ast_not_matched, error_token_list} = error_cause
+    position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
+    Error.ErrorDetecter.parser_error(:token_missing_error, token_list, 
+      ast_not_matched, source_code_path, position_tuple)
+    System.halt(1)
+  end
+
+  def filter_parser_output({:token_not_absorbed_error, _, token_list, 
+    error_cause, otl}, source_code_path,raw_scs, _) do
+    {ast_not_matched, error_token_list} = error_cause
+    position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
+    Error.ErrorDetecter.parser_error(:token_not_absorbed_error, token_list, 
+      ast_not_matched, source_code_path, position_tuple)
+    System.halt(1)
+  end
+  
   def filter_parser_output({_,output_abstract_syntax_tree,_,_,_}, _, _, 
     _verbose=true) do
     oast_string = IO.ASTTraveler.travel(output_abstract_syntax_tree, 0)
@@ -63,15 +81,6 @@ defmodule Filter do
   def filter_parser_output({_,output_abstract_syntax_tree,_,_,_}, _, _, 
     _verbose=false) do
     output_abstract_syntax_tree
-  end
-
-  def filter_parser_output({error_token, _, token_list, 
-    error_cause, otl}, source_code_path,raw_scs, _) do
-    {ast_not_matched, error_token_list} = error_cause
-    position_tuple = Lexer.find_error_position(raw_scs, otl, error_token_list)
-    Error.ErrorDetecter.parser_error(error_token, token_list, ast_not_matched, 
-      source_code_path, position_tuple)
-    System.halt(1)
   end
 
   def filter_output_file_name(file_path, "")                              do
