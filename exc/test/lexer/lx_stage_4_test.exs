@@ -733,7 +733,7 @@ defmodule StageFourLexer do
     return_token = %Structs.Token{expression: "return", pos_x: nil, pos_y: nil, 
             tag: "return"}
     
-    token_list = [return_token, literal_token2]
+    token_list = [literal_token1, return_token, literal_token2]
     right_element = {GeneralTester.insert_token_list(context[:output_token_list], token_list, 6), :ok}
 
     refute Lexer.tokenize({source_code_string |> Reader.clean_source_code_string(), gtl}) == right_element
