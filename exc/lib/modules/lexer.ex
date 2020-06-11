@@ -60,7 +60,7 @@ defmodule Lexer do
   defp traverse_errors(scs, tl, pos_x \\ 0, pos_y \\ 0)
 
   defp traverse_errors(_scs, [], pos_x, pos_y) do
-    {pos_x, pos_y}
+    {pos_x-1, pos_y}
   end
 
   defp traverse_errors(scs, tl, pos_x, pos_y) do
@@ -72,12 +72,12 @@ defmodule Lexer do
       new_x_start = 0
       new_y_start = pos_y + jump_lines
       last_chars = Regex.split(~r/\n/, previous_chars) |> List.last
-      traverse_errors(Enum.join(rest_of_scs,""), tail, new_x_start + String.length(last_chars), new_y_start)
+      traverse_errors(Enum.join(rest_of_scs,""), tail, new_x_start + String.length(last_chars) + 1, new_y_start)
     else
       new_x_start = pos_x
       new_y_start = pos_y
       last_chars = Regex.split(~r/\n/, previous_chars) |> List.last
-      traverse_errors(Enum.join(rest_of_scs,""), tail, new_x_start + String.length(last_chars), new_y_start)
+      traverse_errors(Enum.join(rest_of_scs,""), tail, new_x_start + String.length(last_chars) + 1, new_y_start)
     end
   end
 end
