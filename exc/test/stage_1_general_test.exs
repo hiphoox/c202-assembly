@@ -90,7 +90,7 @@ defmodule StageOneGeneral do
         }
         """
         |> GeneralTester.start_general_test_compilation
-        assert {row,col} == {7,7}
+        assert {row,col} == {1,5}
     end
 
     test "009_S1_Invalid_ReturnNoParenth" do 
@@ -100,7 +100,7 @@ defmodule StageOneGeneral do
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert {row, col} == {7,7}
+        assert {row, col} == {1,9}
     end
 
     test "010_S1_Invalid_ReturnNoBrack" do 
@@ -110,7 +110,7 @@ defmodule StageOneGeneral do
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert {row, col} == {7,7}
+        assert {row, col} == {2,5}
     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do

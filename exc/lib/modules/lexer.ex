@@ -57,7 +57,7 @@ defmodule Lexer do
     traverse_errors(scs, tokens_and_error)
   end
 
-  defp traverse_errors(scs, tl, pos_x \\ 0, pos_y \\ 0, offset \\ 0)
+  defp traverse_errors(scs, tl, pos_x \\ 1, pos_y \\ 1, offset \\ 0)
 
   defp traverse_errors(_scs, [], pos_x, pos_y, _offset) do
     {pos_x - 1, pos_y}
@@ -70,7 +70,7 @@ defmodule Lexer do
     jump_lines = Regex.scan(~r/\n/, previous_chars) |> length
     found_length = String.length(found_token) -1
     if jump_lines > 0 do
-      new_x_start = 0
+      new_x_start = 1
       new_y_start = pos_y + jump_lines
       last_chars = Regex.split(~r/\n/, previous_chars) |> List.last
       traverse_errors(Enum.join(rest_of_scs,""), tail, new_x_start + String.length(last_chars) + 1, new_y_start, found_length)

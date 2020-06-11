@@ -43,7 +43,7 @@ defmodule GeneralTester do
     if parser_token == :ok do
       continue_from_parser(output_abstract_syntax_tree)
     else
-      {_ast_not_matched, error_token_list} = error_cause
+      {_ast_not_matched, error_token_list, _expected_structure} = error_cause
       {col, row} = Lexer.find_error_position(source_code_string, 
       output_token_list, error_token_list)
       case parser_token do 

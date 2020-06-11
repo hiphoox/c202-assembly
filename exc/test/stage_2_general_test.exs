@@ -85,7 +85,7 @@ defmodule StageTwoGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert msg == {2,9}
     end
 
 	test "010_S2_Invalid_Correct_Neg_Wrong_Bitwise_Order" do 
@@ -95,7 +95,7 @@ defmodule StageTwoGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert msg == {2,10}
     end
 
 	test "011_S2_Invalid_Bitwise_No_Semicolon" do 
@@ -105,7 +105,7 @@ defmodule StageTwoGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert msg == {3,1}
     end
 
 	test "012_S2_Invalid_Not_Missing_Const" do 
@@ -115,7 +115,7 @@ defmodule StageTwoGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert msg == {2,8}
     end
 
 	test "013_S2_Invalid_Not_Bitwise_Const" do 
@@ -125,7 +125,7 @@ defmodule StageTwoGeneral do
         }
         """
     	|> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert msg == {2,8}
     end
 
 end
