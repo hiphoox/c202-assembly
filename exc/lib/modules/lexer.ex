@@ -60,7 +60,7 @@ defmodule Lexer do
   defp traverse_errors(scs, tl, pos_x \\ 0, pos_y \\ 0)
 
   defp traverse_errors(_scs, [], pos_x, pos_y) do
-    {pos_x-1, pos_y}
+    {pos_x+1, pos_y+1}
   end
 
   defp traverse_errors(scs, tl, pos_x, pos_y) do
