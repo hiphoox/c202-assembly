@@ -55,23 +55,20 @@ defmodule Filter do
   """
   def filter_parser_output({error_token, _, token_list, 
     error_cause}, source_code_path, _) do
-    Error.ErrorDetecter.parser_error(
-      error_token, token_list, error_cause, source_code_path
-    )
+    Error.ErrorDetecter.parser_error(error_token, token_list, error_cause, 
+      source_code_path)
     System.halt(1)
   end
 
-  def filter_parser_output({_,output_abstract_syntax_tree,_,_, _}, _, 
-    _raw_source_code_string, verbose) do
-    if verbose do
-      oast_string = IO.ASTTraveler.travel(
-        output_abstract_syntax_tree, 0
-      )
-      IO.Printer.print_element(
-        Common.StringElements.oast, 
-        oast_string
-      )
-    end
+  def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, _, 
+    _verbose=true) do
+    oast_string = IO.ASTTraveler.travel(output_abstract_syntax_tree, 0)
+    IO.Printer.print_element(Common.StringElements.oast, oast_string)
+    output_abstract_syntax_tree
+  end
+
+  def filter_parser_output({_,output_abstract_syntax_tree,_,_}, _, _, 
+    _verbose=false) do
     output_abstract_syntax_tree
   end
 

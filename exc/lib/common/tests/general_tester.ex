@@ -36,7 +36,7 @@ defmodule GeneralTester do
   end
 
   defp evaluate_parser(output_token_list, general_abstract_syntax_tree) do 
-    {parser_token,output_abstract_syntax_tree,_token_list,_error_cause} = 
+    {parser_token,output_abstract_syntax_tree,_token_list,_error_cause,_otl} = 
       Parser.parse(output_token_list, general_abstract_syntax_tree)
     case parser_token do 
       :token_missing_error -> Common.StringElements.parser_error_missing_token()
