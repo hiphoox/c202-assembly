@@ -1,4 +1,13 @@
-defmodule Common.ModuleCompilator do 
+defmodule Common.ModuleCompilator do
+  @moduledoc """
+  Module in charge of show specific parts of the compilation.
+  """
+
+  @doc """
+  ## Specs
+  ```filepath``` is the path to the file to be compiled.
+  ```all_trace``` every trace that has traveled.
+  """
 
   @c_tokens_path "./specification_files/c_tokens.xml"
   @c_structures_path "./specification_files/c_structures.xml"
@@ -7,14 +16,16 @@ defmodule Common.ModuleCompilator do
     IO.puts("==============")
     IO.puts("Reader")
     IO.puts("==============")
-    Reader.read_code_and_tokens(file_path, @c_tokens_path, true)
+    raw_source_code_string = File.read!(file_path)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, true)
   end
 
-  def start_lexer(file_path, all_trace)                         do 
+  def start_lexer(file_path, all_trace)                         do
     IO.puts("==============")
     IO.puts("Lexer")
     IO.puts("==============")
-    Reader.read_code_and_tokens(file_path, @c_tokens_path, all_trace)
+    raw_source_code_string = File.read!(file_path)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, true)
     |> Lexer.tokenize()
     |> IO.inspect(label: "OTL")
   end
@@ -23,22 +34,24 @@ defmodule Common.ModuleCompilator do
     IO.puts("==============")
     IO.puts("Parser")
     IO.puts("==============")
-    Reader.read_code_and_tokens(file_path, @c_tokens_path, all_trace)
+    raw_source_code_string = File.read!(file_path)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, all_trace)
     |> Lexer.tokenize()
-    |> Filter.filter_lexer_output(file_path, all_trace)
+    |> Filter.filter_lexer_output(file_path, raw_source_code_string, all_trace)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
     |> IO.inspect(label: "OAST")
   end
 
-  def start_code_generator(file_path, all_trace)                do 
+  def start_code_generator(file_path, all_trace)                do
     IO.puts("==============")
     IO.puts("Code Generator")
     IO.puts("==============")
-    Reader.read_code_and_tokens(file_path, @c_tokens_path, all_trace)
+    raw_source_code_string = File.read!(file_path)
+    Reader.read_code_and_tokens(raw_source_code_string, @c_tokens_path, all_trace)
     |> Lexer.tokenize()
-    |> Filter.filter_lexer_output(file_path, all_trace)
+    |> Filter.filter_lexer_output(file_path, raw_source_code_string, all_trace)
     |> Parser.parse(Reader.read_general_ast(@c_structures_path))
-    |> Filter.filter_parser_output(file_path, all_trace)
+    |> Filter.filter_parser_output(file_path, raw_source_code_string, all_trace)
     |> CodeGenerator.generate_code(all_trace)
     |> IO.inspect(label: "Code generated")
   end

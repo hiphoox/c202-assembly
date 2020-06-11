@@ -44,12 +44,12 @@ defmodule Parser do
 		root_AST = generate_root_ast()
 		{result_token, oast, tl, error_cause} = my_structure_matches(root_AST, otl, ps_m)
 		if result_token === :ok and tl === [] do
-			{:ok,oast,tl,error_cause}
+			{:ok,oast,tl,error_cause, otl}
 		else
 			if result_token === :error do
-				{:token_missing_error,oast,tl,error_cause}
+				{:token_missing_error,oast,tl,error_cause, otl}
 			else
-				{:token_not_absorbed_error,oast,tl,error_cause}
+				{:token_not_absorbed_error,oast,tl,{nil, tl, nil}, otl}
 			end
 		end
 	end
@@ -64,15 +64,16 @@ defmodule Parser do
 				{:ok,d_cs,tl_2,nil}
 			else
 				#there was no if
-				if error_cause === nil do
-					{:error,cs,tl,cs}
+				{broken_structure,bad_tokens, breaker} = error_cause
+				if broken_structure == nil do
+					{:error,cs,tl,{cs,bad_tokens, breaker}}#Changed, it returned cs, now it returns cs and the token that caused the catastrophic failure.
 				else
 					{:error,cs,tl,error_cause}
 				end
 				#{:error,cs,tl,incoming_error} #:structure-does-not-match-expectation
 			end
 		else
-			{:error,cs,tl,nil} #:Could not absorb token of structure
+			{:error,cs,tl,{nil,tl, cs}} #:Could not absorb token of structure
 		end
 	end
 	

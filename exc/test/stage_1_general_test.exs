@@ -74,91 +74,83 @@ defmodule StageOneGeneral do
         assert exc_output == '1\n'
     end
 
-    # test "007_S1_Invalid_ReturnNull" do 
-    #     """
-    #     int main() {
-    #      return;
-    #     }
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "007_S1_Invalid_ReturnNull" do 
+      {row, col} = """
+        int main() {
+         return;
+        }
+        """|> GeneralTester.start_general_test_compilation
+      assert {row, col} == {2,2}
+    end
 
-    # test "008_S1_Invalid_ReturnNoFuncName" do 
-    #     """
-    #     int () {
-    #         return 1;
-    #     }
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "008_S1_Invalid_ReturnNoFuncName" do
+        {row, col} = """
+        int () {
+            return 1;
+        }
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert {row,col} == {1,5}
+    end
 
-    # test "009_S1_Invalid_ReturnNoParenth" do 
-    #     """
-    #     int main) {
-    #         return 1;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "009_S1_Invalid_ReturnNoParenth" do 
+        {row, col} = """
+        int main) {
+            return 1;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert {row, col} == {1,9}
+    end
 
-    # test "010_S1_Invalid_ReturnNoBrack" do 
-    #     """
-    #     int main() 
-    #         return 13;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "010_S1_Invalid_ReturnNoBrack" do 
+        {row, col} = """
+        int main() 
+            return 13;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert {row, col} == {2,5}
+    end
 
-    # test "011_S1_Invalid_ReturnNoSpaces" do
-    #     """
-    #     intmain() {
-    #         return 44;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "011_S1_Invalid_ReturnNoSpaces" do
+      {row, col} = """
+        intmain() {
+            return 44;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert {row, col} == {1,1}
+    end
 
-    # test "012_S1_Invalid_ReturnComma" do
-    #     """
-    #     int main() {
-    #         return 25,
-    #     }  
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "012_S1_Invalid_ReturnComma" do
+      {row, col} = """
+        int main() {
+            return 25,
+        }  
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert {row, col} == {2,12}
+    end
 
-    # test "013_S1_Invalid_ReturnCaps" do
-    #     """
-    #     Int main() {
-    #         Return 1;
-    #     }  
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "013_S1_Invalid_ReturnCaps" do
+      {row, col} = """
+        Int main() {
+            Return 1;
+        }  
+        """
+        |> GeneralTester.start_general_test_compilation
+        assert {row, col} == {1,1}
+    end
 
-    # test "014_S1_Invalid_ReturnPrecZero" do
-    #     """
-    #     int main() {
-    #         return 007;
-    #     }   
-    #     """
-    #     |> GeneralTester.start_general_test_compilation
-    #     exc_output = Invoker.invoke_test_output()
-    #     assert exc_output == 'error message'
-    # end
+    test "014_S1_Valid_ReturnPrecZero" do
+        """
+        int main() {
+            return 007;
+        }   
+        """
+        |> GeneralTester.start_general_test_compilation
+        exc_output = Invoker.invoke_test_output()
+        assert exc_output == '7\n'
+    end
 end
