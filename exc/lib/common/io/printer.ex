@@ -53,11 +53,11 @@ defmodule IO.Printer do
         <> "#{row_col}"
       )
     end
-    def check_for_verbose(code, true) do
-      IO.Printer.print_element(Common.StringElements.rc, code)
+    def check_for_verbose(code, module_str, true) do
+      IO.Printer.print_element(module_str, code)
       code
     end
-    def check_for_verbose(code, false) do
+    def check_for_verbose(code, _module_str, false) do
       code
     end
 end

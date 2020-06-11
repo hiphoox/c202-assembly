@@ -10,7 +10,8 @@ defmodule CodeConnector do
   def connect(code, verbose) do
     code
       |> assembly()
-      |> IO.Printer.check_for_verbose(verbose)
+      |> IO.Printer.check_for_verbose(Common.StringElements.code_connected(), 
+        verbose)
   end
   defp assembly(cleaned_asm_code)                                           do
     base_header = """

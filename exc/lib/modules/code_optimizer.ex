@@ -12,7 +12,8 @@ defmodule CodeOptimizer do
           |> String.split("\n")
           |> optimize_downwards
           |> Enum.join("\n")
-          |> IO.Printer.check_for_verbose(verbose)
+          |> IO.Printer.check_for_verbose(Common.StringElements.code_optimized(),
+            verbose)
     end
 
     defp optimize_downwards([]) do
