@@ -1,7 +1,5 @@
 defmodule GeneralTester do
-  @moduledoc """
-  Module used to perform general tests.
-  """
+  @moduledoc false
 
   def insert_token_list(output_token_list, [], _index)        do
     output_token_list

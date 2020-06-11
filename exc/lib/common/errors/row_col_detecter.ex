@@ -1,5 +1,16 @@
 defmodule Error.RowColDetecter do
+  @moduledoc """
+    Module that identifies the row and column inside the source code string of the fault token identified in the lexing process.
+  """
 
+  @doc """
+    Given a token and a source code string, it will return a tuple containing the row and column of the token inside the source code.
+    As a side note, the source code string must be raw, which means it should contain the newline and tabs special characters.
+
+    ## Specs
+      ```token``` fault token identified in the `Lexer` output.
+      ```raw_source_code_string``` contains the source code string with special characters removals like newline or tabs.
+  """
   def find_row_col(token, raw_source_code_string) do
     {num_row, row} = find_row(token, raw_source_code_string)
     num_col = find_col(token, row)
