@@ -279,7 +279,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-    assert msg == Common.StringElements.parser_error_missing_token()
+    assert msg == {2, 13}
   end
   
 end
