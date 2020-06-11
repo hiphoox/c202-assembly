@@ -239,7 +239,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-    assert msg == Common.StringElements.parser_error_missing_token()
+    assert msg == {2,10}
   end
 
   test "023_S4_Invalid_OR_Second_Op_Missing" do
@@ -249,7 +249,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-    assert msg == Common.StringElements.parser_error_missing_token()
+    assert msg == {2,12}
   end
 
   test "024_S4_Invalid_Mid_Op_Missing" do
@@ -259,7 +259,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-    assert msg == Common.StringElements.parser_error_missing_token()
+    assert msg == {2,12}
   end
 
   test "025_S4_Invalid_Semicolon" do
@@ -269,7 +269,7 @@ defmodule StageFourGeneral do
     }
     """
     |> GeneralTester.start_general_test_compilation
-    assert msg == Common.StringElements.parser_error_missing_token()
+    assert msg == {3,1}
   end
 
   test "026_S4_Invalid_Return_Token_Not_Absorbed" do

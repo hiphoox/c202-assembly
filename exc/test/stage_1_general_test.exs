@@ -84,33 +84,33 @@ defmodule StageOneGeneral do
     end
 
     test "008_S1_Invalid_ReturnNoFuncName" do
-        msg = """
+        {row, col} = """
         int () {
             return 1;
         }
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert {row,col} == {1,5}
     end
 
     test "009_S1_Invalid_ReturnNoParenth" do 
-        msg = """
+        {row, col} = """
         int main) {
             return 1;
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert {row, col} == {1,9}
     end
 
     test "010_S1_Invalid_ReturnNoBrack" do 
-        msg = """
+        {row, col} = """
         int main() 
             return 13;
         }   
         """
         |> GeneralTester.start_general_test_compilation
-        assert msg == Common.StringElements.parser_error_missing_token()
+        assert {row, col} == {2,5}
     end
 
     test "011_S1_Invalid_ReturnNoSpaces" do

@@ -27,22 +27,37 @@ defmodule Error.ErrorDetecter do
     ```error_cause``` string containing the cause of the bad tokens.
     ```file_path``` is the path to the file to be compiled.
   """
-  def parser_error(:token_missing_error, _, error_cause, file_path)  do
+  def parser_error(:token_missing_error, tl, error_cause, expected_structure, file_path, 
+    position_tuple)  do
     class_msg =         "** (Parser Error) structure"
     fault_element =     error_cause.tag
-    reason_msg =        "is missing something"
-    location =          file_path
-    row_col_msg =       ""
-    IO.Printer._print_error(
-      class_msg, fault_element, reason_msg, location, row_col_msg
-    )
+    found_token = Enum.at(tl, 0)
+    if found_token == nil do
+      reason_msg =        " expected " <> expected_structure.tag <> " but found nothing"
+      location =          file_path
+      row_col_msg =       ""
+      IO.Printer._print_error(
+        class_msg, fault_element, reason_msg, location, row_col_msg
+      )
+    else
+      {col, row} = position_tuple
+      reason_msg =        " expected " <> expected_structure.tag <> " but found " <> found_token.expression
+      location =          file_path
+      row_col_msg =       "#{row}:#{col}"
+      IO.Printer._print_error(
+        class_msg, fault_element, reason_msg, location, row_col_msg
+      )
+    end
+    
   end
-  def parser_error(:token_not_absorbed_error, tl, _, file_path)      do
+  def parser_error(:token_not_absorbed_error, tl, _, _ ,file_path,
+    position_tuple)      do
+    {col, row} = position_tuple
     class_msg =     "** (Parser Error) token"
     fault_element = Enum.at(tl, 0).expression
     reason_msg =    "was not accepted"
     location =      file_path
-    row_col_msg =   ""
+    row_col_msg =       "#{row}:#{col}"
     IO.Printer._print_error(
       class_msg, fault_element, reason_msg, location, row_col_msg
     )

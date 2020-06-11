@@ -31,17 +31,25 @@ defmodule GeneralTester do
       :error -> Error.RowColDetecter.find_row_col(
         output_token_list, source_code_string
       )
-      :ok -> evaluate_parser(output_token_list, general_abstract_syntax_tree)
+      :ok -> evaluate_parser(source_code_string, output_token_list, 
+        general_abstract_syntax_tree)
     end
   end
 
-  defp evaluate_parser(output_token_list, general_abstract_syntax_tree) do 
-    {parser_token,output_abstract_syntax_tree,_token_list,_error_cause} = 
+  defp evaluate_parser(source_code_string, output_token_list, 
+    general_abstract_syntax_tree) do 
+    {parser_token,output_abstract_syntax_tree,_token_list,error_cause,_otl} = 
       Parser.parse(output_token_list, general_abstract_syntax_tree)
-    case parser_token do 
-      :token_missing_error -> Common.StringElements.parser_error_missing_token()
-      :token_not_absorbed_error -> Common.StringElements.parser_error_token_not_absorbed()
-      :ok -> continue_from_parser(output_abstract_syntax_tree)
+    if parser_token == :ok do
+      continue_from_parser(output_abstract_syntax_tree)
+    else
+      {_ast_not_matched, error_token_list, _expected_structure} = error_cause
+      {col, row} = Lexer.find_error_position(source_code_string, 
+      output_token_list, error_token_list)
+      case parser_token do 
+        :token_missing_error -> {row, col}
+        :token_not_absorbed_error -> Common.StringElements.parser_error_token_not_absorbed()
+      end
     end
   end
 
