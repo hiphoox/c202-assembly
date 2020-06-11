@@ -8,12 +8,11 @@ defmodule ExC do
   Filters command line arguments.
   ## Specs
   ```argv``` can take any of the following values:
-    + **-h** or **--help**     : displays help regarding the use of the compiler
-    + **-v** or **--verbose**  : executes the compiler with logs on each step
+    + **-o** or **--output**   : Give the output file a name.
+    + **-v** or **--verbose**  : executes the compiler with logs on each step.
   ## Examples
   ```
     $ ./exc <file-path>
-    $ ./exc -h (--help)
     $ ./exc <file-path> -o <my-output-file> -v
     $ ./exc <file-path> -v -o <my-output-file>
     $ ./exc <file-path> -v
